@@ -8,6 +8,16 @@ module.exports = function(wallaby) {
       babelrc: true,
     }),
   };
+  // add transformation to hoist jest.mock calls (for typescript projects)
+  // https://wallabyjs.com/docs/integration/jest.html#jest-with-typescript-and-jestmock-calls
+  wallabyCommon.preprocessors = {
+    '**/*.js?(x)': file =>
+      require('@babel/core').transform(file.content, {
+        sourceMap: true,
+        filename: file.path,
+        presets: ['babel-preset-jest']
+      })
+  };
   wallabyCommon.testFramework = 'jest';
   wallabyCommon.setup = () => {
     let jestConfig = require('yoshi/config/jest.config.js'); // eslint-disable-line import/no-unresolved
