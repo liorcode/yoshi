@@ -15,8 +15,8 @@ module.exports = function(wallaby) {
       require('@babel/core').transform(file.content, {
         sourceMap: true,
         filename: file.path,
-        presets: ['babel-preset-jest']
-      })
+        presets: ['babel-preset-jest'],
+      }),
   };
   wallabyCommon.testFramework = 'jest';
   wallabyCommon.setup = () => {
