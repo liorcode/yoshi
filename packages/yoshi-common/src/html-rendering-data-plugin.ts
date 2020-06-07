@@ -10,7 +10,7 @@ export default class implements webpack.Plugin {
   apply(compiler: webpack.Compiler) {
     compiler.hooks.emit.tapPromise(
       'HtmlRenderingDataPlugin',
-      async compilation => {
+      async (compilation) => {
         const entryNames: Array<string> = Array.from(
           compilation.entrypoints.keys(),
         );

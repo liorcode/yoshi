@@ -31,7 +31,7 @@ import { isSiteAssetsModule } from '../utils';
 
 const inTeamCity = checkInTeamCity();
 
-const build: cliCommand = async function(argv, rootConfig, { apps, libs }) {
+const build: cliCommand = async function (argv, rootConfig, { apps, libs }) {
   const args = arg(
     {
       // Types
@@ -76,8 +76,8 @@ const build: cliCommand = async function(argv, rootConfig, { apps, libs }) {
   const appNames = args._;
 
   if (appNames.length) {
-    appNames.forEach(appName => {
-      const pkg = apps.find(pkg => stripOrganization(pkg.name) === appName);
+    appNames.forEach((appName) => {
+      const pkg = apps.find((pkg) => stripOrganization(pkg.name) === appName);
 
       if (!pkg) {
         console.log(
@@ -89,7 +89,7 @@ const build: cliCommand = async function(argv, rootConfig, { apps, libs }) {
           `  ${apps
             .map(({ name }) => name)
             .map(stripOrganization)
-            .map(name => chalk.cyanBright(name))
+            .map((name) => chalk.cyanBright(name))
             .join(', ')}`,
         );
         console.log();
@@ -99,7 +99,7 @@ const build: cliCommand = async function(argv, rootConfig, { apps, libs }) {
       }
     });
 
-    apps = apps.filter(app => appNames.includes(stripOrganization(app.name)));
+    apps = apps.filter((app) => appNames.includes(stripOrganization(app.name)));
   }
 
   await buildPkgs([...libs, ...apps]);
@@ -116,7 +116,7 @@ const build: cliCommand = async function(argv, rootConfig, { apps, libs }) {
     }, []),
   );
 
-  await Promise.all(apps.map(app => copyTemplates(app.location)));
+  await Promise.all(apps.map((app) => copyTemplates(app.location)));
 
   if (inTeamCity) {
     const petriSpecs = await import('yoshi-common/build/sync-petri-specs');
@@ -150,7 +150,7 @@ const build: cliCommand = async function(argv, rootConfig, { apps, libs }) {
     process.env.PROGRESS_BAR = 'false';
   }
 
-  apps.forEach(pkg => {
+  apps.forEach((pkg) => {
     let clientDebugConfig;
     let clientOptimizedConfig;
 
@@ -272,7 +272,7 @@ const build: cliCommand = async function(argv, rootConfig, { apps, libs }) {
 
   const { getAppData } = await webpackManager.run();
 
-  apps.forEach(pkg => {
+  apps.forEach((pkg) => {
     console.log(chalk.bold.underline(pkg.name));
     console.log();
 

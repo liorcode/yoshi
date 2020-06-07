@@ -39,7 +39,7 @@ const syncHTMLDirectory = (type: vmType) => {
 export const generateEditorHTMLFiles = (model: FlowEditorModel) => {
   syncHTMLDirectory('editor');
   syncHTMLDirectory('settings');
-  model.components.forEach(component => {
+  model.components.forEach((component) => {
     generateHTML('editor', component.name, model);
     generateHTML('settings', component.name, model);
   });

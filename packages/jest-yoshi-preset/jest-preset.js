@@ -14,7 +14,7 @@ setupRequireHooks();
 
 const modulePathIgnorePatterns = ['<rootDir>/dist/', '<rootDir>/target/'];
 
-if (envs && envs.some(env => !supportedEnvs.includes(env))) {
+if (envs && envs.some((env) => !supportedEnvs.includes(env))) {
   console.log();
   console.log(chalk.red(`jest-yoshi-preset: invalid MATCH_ENV=${envs}`));
   console.log(chalk.red(`supported envs: ${supportedEnvs.join(`, `)}`));
@@ -95,13 +95,13 @@ const config = {
           ? require.resolve('jest-environment-jsdom-fourteen')
           : 'jsdom',
         testURL: 'http://localhost',
-        testMatch: globs.unitTests.map(glob => `<rootDir>/${glob}`),
+        testMatch: globs.unitTests.map((glob) => `<rootDir>/${glob}`),
         setupFiles: [require.resolve('regenerator-runtime/runtime')],
       },
       {
         displayName: 'e2e',
         testEnvironment: require.resolve('./jest-environment-yoshi-puppeteer'),
-        testMatch: globs.e2eTests.map(glob => `<rootDir>/${glob}`),
+        testMatch: globs.e2eTests.map((glob) => `<rootDir>/${glob}`),
         setupFiles: [
           require.resolve(
             './jest-environment-yoshi-bootstrap/environment-setup.js',
@@ -123,7 +123,7 @@ const config = {
 
         return true;
       })
-      .map(project => {
+      .map((project) => {
         const projectOverrideKey = projectOverrideMapping[project.displayName];
         const projectOverrides = jestYoshiConfig[projectOverrideKey];
 
@@ -147,7 +147,7 @@ const config = {
           console.log();
           console.log(chalk.red('Multiple setup files were detected:'));
           console.log();
-          setupFilePaths.forEach(setupFilePath => {
+          setupFilePaths.forEach((setupFilePath) => {
             console.log(chalk.red(` > ${setupFilePath}`));
           });
           console.log();

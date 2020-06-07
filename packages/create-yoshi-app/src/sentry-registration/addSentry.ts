@@ -50,7 +50,7 @@ export const addSentry = ({
 
   return taskRunner
     .run()
-    .then(ctx => {
+    .then((ctx) => {
       tasks.printProjectLink(ctx);
       return ctx;
     })

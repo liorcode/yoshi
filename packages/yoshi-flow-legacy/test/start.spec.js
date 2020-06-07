@@ -18,7 +18,7 @@ describe('Aggregator: Start', () => {
       child = null;
     });
 
-    afterEach(function() {
+    afterEach(function () {
       if (this.currentTest.state === 'failed') {
         test.logOutput();
       }
@@ -42,7 +42,7 @@ describe('Aggregator: Start', () => {
           return checkServerIsServing({
             port: 3200,
             file: 'app.bundle.js',
-          }).then(content =>
+          }).then((content) =>
             expect(content).to.contain(`async function hello`),
           );
         });
@@ -69,7 +69,7 @@ describe('Aggregator: Start', () => {
           return checkServerIsServing({
             port: 3200,
             file: 'app.bundle.js',
-          }).then(content => {
+          }).then((content) => {
             expect(content).to.contain(`Baz`);
             // babel-preset-yoshi removes propTypes on production builds
             expect(content).to.not.contain(`PropTypes`);
@@ -78,7 +78,7 @@ describe('Aggregator: Start', () => {
       });
     });
 
-    describe('tests', function() {
+    describe('tests', function () {
       it('should run tests initially', () => {
         child = test
           .setup({
@@ -94,7 +94,7 @@ describe('Aggregator: Start', () => {
       });
     });
 
-    describe('process.env', function() {
+    describe('process.env', function () {
       it('should have default values', () => {
         const expected = {
           DEBUG: 'wix:*,wnp:*',
@@ -166,8 +166,10 @@ describe('Aggregator: Start', () => {
 
     describe('--debug', () => {
       it('should not pass --inspect flag when parameter is not passed', () => {
-        const checkIfInspectIsPassedInArgs = function() {
-          return !!process.execArgv.find(arg => arg.indexOf('--inspect') === 0);
+        const checkIfInspectIsPassedInArgs = function () {
+          return !!process.execArgv.find(
+            (arg) => arg.indexOf('--inspect') === 0,
+          );
         };
         child = test
           .setup({
@@ -183,9 +185,9 @@ describe('Aggregator: Start', () => {
 
       it('should pass --inspect flag when parameter is passed with the correct port', () => {
         const port = 8230;
-        const checkIfInspectIsPassedInArgs = function(expectedPort) {
+        const checkIfInspectIsPassedInArgs = function (expectedPort) {
           return !!process.execArgv.find(
-            arg => arg.indexOf(`--inspect=127.0.0.1:${expectedPort}`) === 0,
+            (arg) => arg.indexOf(`--inspect=127.0.0.1:${expectedPort}`) === 0,
           );
         };
 
@@ -245,7 +247,7 @@ describe('Aggregator: Start', () => {
         return checkServerIsServing({
           port: 3200,
           file: 'app.bundle.js',
-        }).then(content => expect(content).to.match(/reload\\?":false/));
+        }).then((content) => expect(content).to.match(/reload\\?":false/));
       });
     });
 
@@ -261,7 +263,7 @@ describe('Aggregator: Start', () => {
         return checkServerIsServing({
           port: 3200,
           file: 'app.bundle.js',
-        }).then(content => expect(content).to.match(/hmr\\?":true/));
+        }).then((content) => expect(content).to.match(/hmr\\?":true/));
       });
 
       it('should create bundle with enabled hot module replacement with multiple entry points', async () => {
@@ -304,7 +306,7 @@ describe('Aggregator: Start', () => {
         return checkServerIsServing({
           port: 3200,
           file: 'app.bundle.js',
-        }).then(content => expect(content).to.match(/hmr\\?":false/));
+        }).then((content) => expect(content).to.match(/hmr\\?":false/));
       });
 
       it('should wrap react root element with react-hot-loader HOC', () => {
@@ -326,7 +328,7 @@ describe('Aggregator: Start', () => {
           .spawn('start');
 
         return checkServerIsServing({ port: 3200, file: 'app.bundle.js' }).then(
-          content => {
+          (content) => {
             expect(content).to.contain('module.hot.accept()');
             expect(content).to.contain('react-hot-loader');
           },
@@ -347,7 +349,7 @@ describe('Aggregator: Start', () => {
           .spawn('start');
 
         return checkServerIsServing({ port: 3200, file: 'app.bundle.js' }).then(
-          content => {
+          (content) => {
             expect(content).to.not.match(/hmr\\?":false/);
             expect(content).to.not.match(/hot\\?":false/);
           },
@@ -366,7 +368,7 @@ describe('Aggregator: Start', () => {
         return checkServerIsServing({
           port: 3200,
           file: 'app.bundle.js',
-        }).then(content =>
+        }).then((content) =>
           expect(content).to.contain(
             `__webpack_require__.p = "http://localhost:3200/";`,
           ),
@@ -386,7 +388,7 @@ describe('Aggregator: Start', () => {
         return checkServerIsServing({
           port: 3200,
           file: 'app.bundle.js',
-        }).then(content =>
+        }).then((content) =>
           expect(content).to.contain(`__webpack_require__.p = "some.url";`),
         );
       });
@@ -404,7 +406,7 @@ describe('Aggregator: Start', () => {
         return checkServerIsServing({
           port: 3200,
           file: 'app.bundle.min.js',
-        }).then(content => {
+        }).then((content) => {
           expect(content).to.contain(
             `__webpack_require__.p = "http://localhost:3200/";`,
           );
@@ -428,7 +430,7 @@ describe('Aggregator: Start', () => {
           file: 'app.bundle.min.js',
           protocol: 'https',
           options: { agent },
-        }).then(content =>
+        }).then((content) =>
           expect(content).to.contain(
             `__webpack_require__.p = "https://localhost:3200/";`,
           ),
@@ -500,7 +502,7 @@ describe('Aggregator: Start', () => {
           })
           .spawn('start');
 
-        return fetchCDN().then(res => {
+        return fetchCDN().then((res) => {
           expect(res.headers.get('Access-Control-Allow-Methods')).to.equal(
             'GET, OPTIONS',
           );
@@ -515,7 +517,7 @@ describe('Aggregator: Start', () => {
           })
           .spawn('start');
 
-        return fetchCDN().then(res => {
+        return fetchCDN().then((res) => {
           expect(res.headers.get('Timing-Allow-Origin')).to.equal('*');
         });
       });
@@ -531,7 +533,7 @@ describe('Aggregator: Start', () => {
         return fetchCDN(3200, {
           path: 'app.bundle.min.js',
           backoff: 500,
-        }).then(res => {
+        }).then((res) => {
           expect(res.headers.get('Content-Type')).to.equal(
             'application/javascript; charset=UTF-8',
           );
@@ -580,7 +582,7 @@ describe('Aggregator: Start', () => {
       });
     });
 
-    describe('Watch', function() {
+    describe('Watch', function () {
       this.timeout(30000);
 
       describe('when using typescript', () => {
@@ -672,7 +674,7 @@ describe('Aggregator: Start', () => {
           return checkServerIsServing(file)
             .then(() => test.modify('src/client.js', newSource))
             .then(() => checkServerReturnsDifferentContent(file))
-            .then(content => expect(content).to.contain(newSource));
+            .then((content) => expect(content).to.contain(newSource));
         });
       });
 
@@ -926,15 +928,15 @@ describe('Aggregator: Start', () => {
   function checkServerIsRespondingWith(expected) {
     return retryPromise({ backoff: 1000, max: 30 }, () =>
       fetch(`http://localhost:${fx.defaultServerPort()}/`)
-        .then(res => res.text())
-        .then(body =>
+        .then((res) => res.text())
+        .then((body) =>
           body === expected ? Promise.resolve() : Promise.reject(),
         ),
     );
   }
 
   function wait(time) {
-    return () => new Promise(resolve => setTimeout(resolve, time));
+    return () => new Promise((resolve) => setTimeout(resolve, time));
   }
 
   function checkServerIsServing({
@@ -946,7 +948,7 @@ describe('Aggregator: Start', () => {
     options = {},
   } = {}) {
     return retryPromise({ backoff, max }, () =>
-      fetch(`${protocol}://localhost:${port}/${file}`, options).then(res =>
+      fetch(`${protocol}://localhost:${port}/${file}`, options).then((res) =>
         res.text(),
       ),
     );
@@ -965,8 +967,8 @@ describe('Aggregator: Start', () => {
       () =>
         new Promise((resolve, reject) =>
           fetch(url)
-            .then(res => res.text())
-            .then(content => {
+            .then((res) => res.text())
+            .then((content) => {
               if (response && response !== content) {
                 resolve(content);
               } else {

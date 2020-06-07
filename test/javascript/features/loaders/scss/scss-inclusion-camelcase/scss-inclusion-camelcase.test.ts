@@ -8,12 +8,12 @@ const scripts = Scripts.setupProjectFromTemplate({
 
 describe.each(['prod', 'dev'] as const)(
   'scss inclusion camel case [%s]',
-  mode => {
+  (mode) => {
     it('integration', async () => {
       await scripts[mode](async () => {
         await page.goto(scripts.serverUrl);
 
-        const className = await page.$eval('#scss-camelcase-inclusion', elm =>
+        const className = await page.$eval('#scss-camelcase-inclusion', (elm) =>
           elm.getAttribute('class'),
         );
 

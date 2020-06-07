@@ -5,7 +5,7 @@ const expect = require('expect');
 
 const taskPath = require.resolve('../index.js');
 
-const fromFixture = filename => {
+const fromFixture = (filename) => {
   return fs.readFileSync(path.join(__dirname, filename), 'utf8');
 };
 

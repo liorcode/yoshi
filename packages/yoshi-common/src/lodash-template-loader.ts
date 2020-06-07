@@ -2,12 +2,12 @@ import _ from 'lodash';
 import { loader } from 'webpack';
 import loaderUtils from 'loader-utils';
 
-const loader: loader.Loader = function(source) {
+const loader: loader.Loader = function (source) {
   // Get templating options
   const options = this.query !== '' ? loaderUtils.getOptions(this) : {};
   const force = options.force || false;
 
-  const allLoadersButThisOne = this.loaders.filter(function(loader) {
+  const allLoadersButThisOne = this.loaders.filter(function (loader) {
     return loader.normal !== module.exports;
   });
   // This loader shouldn't kick in if there is any other loader (unless it's explicitly enforced)

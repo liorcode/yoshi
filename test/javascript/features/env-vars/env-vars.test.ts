@@ -6,14 +6,14 @@ const scripts = Scripts.setupProjectFromTemplate({
   projectType: 'javascript',
 });
 
-describe.each(['prod', 'dev'] as const)('env-vars [%s]', mode => {
+describe.each(['prod', 'dev'] as const)('env-vars [%s]', (mode) => {
   it('supports prod NODE_ENV', async () => {
     await scripts[mode](async () => {
       await page.goto(scripts.serverUrl);
 
       const result = await page.$eval(
         '#env-vars #node-env',
-        elm => elm.textContent,
+        (elm) => elm.textContent,
       );
 
       if (mode === 'dev') {
@@ -30,7 +30,7 @@ describe.each(['prod', 'dev'] as const)('env-vars [%s]', mode => {
 
       const result = await page.$eval(
         '#env-vars #ci-app-version',
-        elm => elm.textContent,
+        (elm) => elm.textContent,
       );
 
       if (mode === 'dev') {
@@ -47,7 +47,7 @@ describe.each(['prod', 'dev'] as const)('env-vars [%s]', mode => {
 
       const result = await page.$eval(
         '#env-vars #browser',
-        elm => elm.textContent,
+        (elm) => elm.textContent,
       );
 
       expect(result).toEqual('true');

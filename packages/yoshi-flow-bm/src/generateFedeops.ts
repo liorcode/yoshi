@@ -6,7 +6,7 @@ import path from 'path';
 const artifactId = '{%projectName%}';
 
 export default (pages: Array<string>) => {
-  return pages.map(filePath => {
+  return pages.map((filePath) => {
     const { name } = path.parse(filePath);
 
     const pageComponentId = `${artifactId}.pages.${name}`;

@@ -54,9 +54,9 @@ module.exports = async ({
 
       if (transformHMRRuntime) {
         const entryFiles = getListOfEntries(configuredEntry || defaultEntry);
-        webpackConfig.module.rules.forEach(rule => {
+        webpackConfig.module.rules.forEach((rule) => {
           if (Array.isArray(rule.use)) {
-            rule.use = rule.use.map(useItem => {
+            rule.use = rule.use.map((useItem) => {
               if (useItem === 'babel-loader') {
                 useItem = { loader: 'babel-loader' };
               }
@@ -115,7 +115,7 @@ module.exports = async ({
   const serverFactory = ssl ? httpsServer(app) : app;
 
   return new Promise((resolve, reject) => {
-    serverFactory.listen(port, host, err => (err ? reject(err) : resolve()));
+    serverFactory.listen(port, host, (err) => (err ? reject(err) : resolve()));
   });
 };
 

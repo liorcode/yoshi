@@ -19,14 +19,14 @@ describe('Aggregator: Test', () => {
     let child;
 
     beforeEach(() => (test = tp.create()));
-    afterEach(function() {
+    afterEach(function () {
       if (this.currentTest.state === 'failed') {
         test.logOutput();
       }
       test.teardown();
     });
 
-    afterEach(done => {
+    afterEach((done) => {
       if (server) {
         server.close(() => {
           server = null;
@@ -37,7 +37,7 @@ describe('Aggregator: Test', () => {
       }
     });
 
-    afterEach(done => {
+    afterEach((done) => {
       if (child) {
         child.on('exit', () => {
           done();
@@ -49,7 +49,7 @@ describe('Aggregator: Test', () => {
       }
     });
 
-    const executionOptions = port => ({
+    const executionOptions = (port) => ({
       'test/component.spec.js': 'it.only("pass", () => 1);',
       'test/some.e2e.js': `
         it("should write to body", () => {
@@ -67,7 +67,7 @@ describe('Aggregator: Test', () => {
       }),
     });
 
-    it('should throw an error when CDN port is in use by another directory', async function() {
+    it('should throw an error when CDN port is in use by another directory', async function () {
       const TEST_PORT = 3335;
       server = await takePort(TEST_PORT);
       const res = test
@@ -81,7 +81,7 @@ describe('Aggregator: Test', () => {
       );
     });
 
-    it('should skip cdn startup when yoshi is already running in the same path', async function() {
+    it('should skip cdn startup when yoshi is already running in the same path', async function () {
       const TEST_PORT = 3336;
       test.setup(executionOptions(TEST_PORT));
       const testPath = test.tmp;
@@ -98,14 +98,14 @@ describe('Aggregator: Test', () => {
   describe('defaults', () => {
     let test;
     beforeEach(() => (test = tp.create()));
-    afterEach(function() {
+    afterEach(function () {
       if (this.currentTest.state === 'failed') {
         test.logOutput();
       }
       test.teardown();
     });
 
-    it('should pass with exit code 0 with jest as default', function() {
+    it('should pass with exit code 0 with jest as default', function () {
       this.timeout(40000);
       const res = test
         .setup({
@@ -122,7 +122,7 @@ describe('Aggregator: Test', () => {
   describe('--protractor', () => {
     let test;
     beforeEach(() => (test = tp.create()));
-    afterEach(function() {
+    afterEach(function () {
       if (this.currentTest.state === 'failed') {
         test.logOutput();
       }
@@ -353,7 +353,7 @@ describe('Aggregator: Test', () => {
         res = test.setup(testSetup).execute('test', ['--jest'], insideTeamCity);
       });
 
-      afterEach(function() {
+      afterEach(function () {
         if (this.currentTest.state === 'failed') {
           test.logOutput();
         }
@@ -691,7 +691,7 @@ describe('Aggregator: Test', () => {
         .execute('test', ['--mocha']);
     });
 
-    afterEach(function() {
+    afterEach(function () {
       if (this.currentTest.state === 'failed') {
         test.logOutput();
       }
@@ -705,24 +705,24 @@ describe('Aggregator: Test', () => {
       expect(res.code).to.equal(0);
     });
 
-    it('should mock scss/css files to always return a string as the prop name', function() {
+    it('should mock scss/css files to always return a string as the prop name', function () {
       expect(res.stdout).to.contain('passed with css');
       expect(res.stdout).to.contain('passed with default css');
     });
 
-    it('should mock image files to always return the file name', function() {
-      imageExtensions.forEach(ext => {
+    it('should mock image files to always return the file name', function () {
+      imageExtensions.forEach((ext) => {
         expect(res.stdout).to.contain(`passed ${ext} with mocha`);
       });
     });
 
-    it('should mock audio files to always return the file name', function() {
-      audioExtensions.forEach(ext => {
+    it('should mock audio files to always return the file name', function () {
+      audioExtensions.forEach((ext) => {
         expect(res.stdout).to.contain(`passed ${ext} with mocha`);
       });
     });
 
-    it('should load graphql files', function() {
+    it('should load graphql files', function () {
       expect(res.stdout).to.contain(`passed with graphql`);
       expect(res.stdout).to.contain(`passed with gql`);
     });
@@ -755,7 +755,7 @@ describe('Aggregator: Test', () => {
     let res;
 
     beforeEach(() => (customTest = tp.create()));
-    afterEach(function() {
+    afterEach(function () {
       if (this.currentTest.state === 'failed') {
         customTest.logOutput();
       }
@@ -763,7 +763,7 @@ describe('Aggregator: Test', () => {
       customTest.teardown();
     });
 
-    it('should fail with exit code 1', function() {
+    it('should fail with exit code 1', function () {
       this.timeout(60000);
 
       res = customTest
@@ -878,7 +878,7 @@ describe('Aggregator: Test', () => {
     });
 
     describe('with @babel/register', () => {
-      it('should transpile explicitly configured externalUnprocessedModules', function() {
+      it('should transpile explicitly configured externalUnprocessedModules', function () {
         res = customTest
           .setup({
             'node_modules/my-unprocessed-module/index.js': 'export default 1',
@@ -968,7 +968,7 @@ describe('Aggregator: Test', () => {
       });
     });
   });
-  describe('--karma', function() {
+  describe('--karma', function () {
     this.timeout(60000);
     let test;
     let res;
@@ -1022,7 +1022,7 @@ describe('Aggregator: Test', () => {
         .execute('test', ['--karma'], outsideTeamCity);
     });
 
-    afterEach(function() {
+    afterEach(function () {
       if (this.currentTest.state === 'failed') {
         test.logOutput();
       }
@@ -1076,7 +1076,7 @@ describe('Aggregator: Test', () => {
     describe('with custom build', () => {
       let customTest;
       beforeEach(() => (customTest = tp.create()));
-      afterEach(function() {
+      afterEach(function () {
         if (this.currentTest.state === 'failed') {
           test.logOutput();
         }
@@ -1230,7 +1230,7 @@ describe('Aggregator: Test', () => {
     let test;
 
     beforeEach(() => (test = tp.create()));
-    afterEach(function() {
+    afterEach(function () {
       if (this.currentTest.state === 'failed') {
         test.logOutput();
       }
@@ -1272,7 +1272,7 @@ function setupMediaFilesExtensions(extensions, type) {
       const assert = require('assert');
       ${extensions
         .map(
-          ext => `it("pass ${ext} with mocha", () => {
+          (ext) => `it("pass ${ext} with mocha", () => {
         assert.equal(require('./some.${ext}'), 'some.${ext}');
         console.log("passed ${ext} with mocha");
       })`,

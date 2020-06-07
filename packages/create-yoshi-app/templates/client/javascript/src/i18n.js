@@ -12,8 +12,8 @@ export default function i18n(locale) {
         // See https://webpack.js.org/guides/code-splitting/#dynamic-imports for
         // more information.
         return import(`./locales/messages_${language}.json`)
-          .then(translation => callback(null, translation))
-          .catch(error => callback(error));
+          .then((translation) => callback(null, translation))
+          .catch((error) => callback(error));
       },
     })
     .init({

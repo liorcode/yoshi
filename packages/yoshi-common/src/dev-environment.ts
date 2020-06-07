@@ -86,7 +86,7 @@ export default class DevEnvironment {
         });
       });
 
-      multiCompiler.hooks.done.tap('finished-log', stats => {
+      multiCompiler.hooks.done.tap('finished-log', (stats) => {
         // @ts-ignore
         const messages = formatWebpackMessages(stats.toJson({}, true));
         const isSuccessful =
@@ -209,7 +209,7 @@ export default class DevEnvironment {
         this.store.setState({
           TypeScript: {
             status: 'errors',
-            errors: message.errors.map(error => formatTypescriptError(error)),
+            errors: message.errors.map((error) => formatTypescriptError(error)),
           },
         });
         break;
@@ -348,7 +348,7 @@ export default class DevEnvironment {
     }
 
     if (multiCompiler && webpackDevServer) {
-      const compilationPromise = new Promise(resolve => {
+      const compilationPromise = new Promise((resolve) => {
         multiCompiler.hooks.done.tap('done', resolve);
       });
 

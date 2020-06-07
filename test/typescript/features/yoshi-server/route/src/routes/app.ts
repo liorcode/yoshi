@@ -7,7 +7,7 @@ const helloMiddleware = (req: Request, res: Response, next: NextFunction) => {
   next();
 };
 
-export default route(async function() {
+export default route(async function () {
   await runMiddleware(this.req, this.res, helloMiddleware);
   const html = await render('app', {
     // @ts-ignore

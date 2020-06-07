@@ -4,7 +4,7 @@ export default class WebWorker extends React.Component {
   state = { messageFromWorker: 'Waiting for message' };
   componentDidMount() {
     const myWorker = new Worker('web-worker.js');
-    myWorker.onmessage = e => {
+    myWorker.onmessage = (e) => {
       this.setState({ messageFromWorker: e.data });
     };
   }

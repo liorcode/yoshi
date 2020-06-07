@@ -15,7 +15,7 @@ const checkTodo = (
   id: string,
   done?: boolean,
 ): Array<Todo> => {
-  const index = todos.findIndex(todo => todo.id === id);
+  const index = todos.findIndex((todo) => todo.id === id);
 
   return [
     ...todos.slice(0, index),
@@ -28,16 +28,14 @@ const useTodos = () => {
   const [todos, setTodos] = useState<Array<Todo>>([]);
 
   useEffect(() => {
-    getTodos()
-      .then(setTodos)
-      .catch();
+    getTodos().then(setTodos).catch();
   }, []);
 
   return {
     todos,
-    addTodo: (todo: Todo) => setTodos(prevTodos => [...prevTodos, todo]),
+    addTodo: (todo: Todo) => setTodos((prevTodos) => [...prevTodos, todo]),
     checkTodo: (todoId: string, done?: boolean) =>
-      setTodos(prevTodos => checkTodo(prevTodos, todoId, done)),
+      setTodos((prevTodos) => checkTodo(prevTodos, todoId, done)),
   } as const;
 };
 

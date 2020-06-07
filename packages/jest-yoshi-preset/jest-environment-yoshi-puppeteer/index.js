@@ -46,12 +46,12 @@ module.exports = class PuppeteerEnvironment extends ParentEnvironment {
 
     this.global.page.setDefaultNavigationTimeout(10 * 1000);
 
-    this.global.page.on('pageerror', error => {
+    this.global.page.on('pageerror', (error) => {
       this.global.console.warn(`Puppeteer page error: ${error.message}`);
       this.global.console.warn(error.stack);
     });
 
-    this.global.page.on('requestfailed', request => {
+    this.global.page.on('requestfailed', (request) => {
       if (request.url().includes(servers.cdn.url)) {
         this.global.console.warn(
           `We found that some of your static assets failed to load:

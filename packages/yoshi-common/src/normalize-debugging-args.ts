@@ -6,9 +6,9 @@ export default (): void => {
 
   // IDEs start debugging with '--inspect' or '--inspect-brk' option
   // we are setting --debug instead
-  if (process.execArgv.some(arg => arg.startsWith(inspectPrefix))) {
+  if (process.execArgv.some((arg) => arg.startsWith(inspectPrefix))) {
     process.execArgv = process.execArgv.filter(
-      arg => !arg.startsWith(inspectPrefix),
+      (arg) => !arg.startsWith(inspectPrefix),
     );
     process.argv.push(debugArgName);
   }

@@ -9,7 +9,7 @@ const scripts = Scripts.setupProjectFromTemplate({
 
 const workerFilePath = path.join(scripts.testDirectory, 'src/worker.js');
 
-describe.each(['dev'] as const)('hmr, web-worker [%s]', mode => {
+describe.each(['dev'] as const)('hmr, web-worker [%s]', (mode) => {
   it('refresh the browser after changes in the web-worker', async () => {
     await scripts[mode](async () => {
       const originalLog = 'hello from a web worker';

@@ -31,7 +31,7 @@ class FlowAPI {
     }
   }
 
-  reportError: ReportError = error => {
+  reportError: ReportError = (error) => {
     console.warn(
       "You are trying to report an error, but didn't configure it in `.application.json`",
       'Error: ',
@@ -157,7 +157,7 @@ export class ViewerScriptFlowAPI extends FlowAPI {
 
       this.sentryMonitor = platformServices.monitoring.createMonitor(
         sentryOptions.dsn,
-        config => ({
+        (config) => ({
           ...config,
           ...sentryOptions.config,
         }),

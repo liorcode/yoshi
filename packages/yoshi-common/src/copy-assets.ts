@@ -7,7 +7,7 @@ export async function copyTemplates(cwd = process.cwd()) {
   const files = await globby('**/*.{ejs,vm}', { cwd: path.join(cwd, SRC_DIR) });
 
   await Promise.all(
-    files.map(file => {
+    files.map((file) => {
       return fs.copy(
         path.join(cwd, SRC_DIR, file),
         path.join(cwd, STATICS_DIR, file),

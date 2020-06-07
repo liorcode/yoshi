@@ -57,7 +57,7 @@ function redirectMiddleware(hostname, port) {
       rejectUnauthorized: false,
     };
 
-    const request = httpModule.request(options, proxiedResponse => {
+    const request = httpModule.request(options, (proxiedResponse) => {
       for (const header in proxiedResponse.headers) {
         res.setHeader(header, proxiedResponse.headers[header]);
       }
@@ -77,7 +77,7 @@ const decorate = ({ app, middlewares = [], host, port, statics }) => {
     express.static(files),
     ...middlewares,
     redirectMiddleware(host, port),
-  ].forEach(mw => app.use(mw));
+  ].forEach((mw) => app.use(mw));
 
   return app;
 };
@@ -89,7 +89,7 @@ const start = ({ middlewares, host, ssl, port, statics }) => {
 
   return new Promise((resolve, reject) => {
     const serverFactory = ssl ? httpsServer(app) : app;
-    const server = serverFactory.listen(port, host, err =>
+    const server = serverFactory.listen(port, host, (err) =>
       err ? reject(err) : resolve(server),
     );
   });

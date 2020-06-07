@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './planet.module.css';
 
-const getAnimationDuration = size => `${size / 20}s`;
+const getAnimationDuration = (size) => `${size / 20}s`;
 
 export default ({ label, color, size }) => {
   return (

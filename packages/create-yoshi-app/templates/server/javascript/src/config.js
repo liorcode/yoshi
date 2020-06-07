@@ -1,4 +1,4 @@
-module.exports = context => {
+module.exports = (context) => {
   // load your app-specific configuration values
   const { petriScopes } = context.config.load('{%projectName%}');
 

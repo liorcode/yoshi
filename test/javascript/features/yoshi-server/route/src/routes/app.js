@@ -5,7 +5,7 @@ const helloMiddleware = (req, res, next) => {
   next();
 };
 
-export default route(async function() {
+export default route(async function () {
   await runMiddleware(this.req, this.res, helloMiddleware);
   const html = await render('app', {
     title: this.req.hello,

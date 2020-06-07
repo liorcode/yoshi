@@ -4,8 +4,8 @@ const get = require('lodash/get');
 
 module.exports = class LoggerPlugin {
   apply(runner) {
-    runner.hooks.beforeExecution.tapPromise('logger', async execution => {
-      execution.hooks.createTask.tap('pipe streams', task => {
+    runner.hooks.beforeExecution.tapPromise('logger', async (execution) => {
+      execution.hooks.createTask.tap('pipe streams', (task) => {
         const maxListeners = 100;
 
         process.stdout.setMaxListeners(maxListeners);
@@ -14,7 +14,7 @@ module.exports = class LoggerPlugin {
         task.pool.stdout.pipe(process.stdout);
         task.pool.stderr.pipe(process.stderr);
 
-        task.hooks.before.tap('log start', run => {
+        task.hooks.before.tap('log start', (run) => {
           const start = new Date();
 
           const title = generateRunTitle({ run, task });

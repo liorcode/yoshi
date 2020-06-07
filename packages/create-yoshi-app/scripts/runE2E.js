@@ -34,7 +34,7 @@ const mocha = new Mocha({
 
 mocha.addFile(testFile);
 
-mocha.run(function(failures) {
+mocha.run(function (failures) {
   // exit with non-zero status if there were failures
   process.exitCode = failures ? 1 : 0;
   console.log(`Mocha finished with ${failures} failures.`);

@@ -5,7 +5,7 @@ const scripts = Scripts.setupProjectFromTemplate({
   projectType: 'typescript',
 });
 
-describe.each(['prod', 'dev'] as const)('web-worker externals [%s]', mode => {
+describe.each(['prod', 'dev'] as const)('web-worker externals [%s]', (mode) => {
   it('supports externals for web-worker', async () => {
     await scripts[mode](async () => {
       await page.goto(scripts.serverUrl);

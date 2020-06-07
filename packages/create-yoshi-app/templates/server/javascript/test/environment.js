@@ -4,7 +4,7 @@ const testkit = require('@wix/wix-bootstrap-testkit');
 const TestEnv = require('@wix/wix-test-env');
 
 export const env = TestEnv.builder()
-  .withMainAppConfigEmitter(builder =>
+  .withMainAppConfigEmitter((builder) =>
     builder.val('base_domain', 'test.wix.com'),
   )
   .withMainApp(bootstrapServer())

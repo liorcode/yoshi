@@ -26,7 +26,7 @@ export function redirectMiddleware(
       rejectUnauthorized: false,
     };
 
-    const request = httpModule.request(options, proxiedResponse => {
+    const request = httpModule.request(options, (proxiedResponse) => {
       for (const header in proxiedResponse.headers) {
         // @ts-ignore
         res.setHeader(header, proxiedResponse.headers[header]);
@@ -146,7 +146,9 @@ export class WebpackDevServer extends OriginalWebpackDevServer {
     }
 
     return new Promise((resolve, reject) => {
-      super.listen(listenTarget, host, err => (err ? reject(err) : resolve()));
+      super.listen(listenTarget, host, (err) =>
+        err ? reject(err) : resolve(),
+      );
     });
   }
 }

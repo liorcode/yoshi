@@ -38,7 +38,7 @@ function mockStylable(module, filename) {
 }
 
 function mockCssModules(module) {
-  module.exports = conditionedProxy(name => name === 'default');
+  module.exports = conditionedProxy((name) => name === 'default');
 }
 
 function conditionedProxy(predicate = () => {}) {
@@ -67,7 +67,7 @@ function mockSvg(module) {
   module.exports = {
     __esModule: true,
     default: svgFilename,
-    ReactComponent: props => ({
+    ReactComponent: (props) => ({
       $$typeof: Symbol.for('react.element'),
       type: 'svg',
       ref: null,

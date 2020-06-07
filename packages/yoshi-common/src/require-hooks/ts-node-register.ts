@@ -23,7 +23,7 @@ const shouldIgnore = globby.gitignore.sync({ cwd: process.cwd() });
 if (extensions.includes('.js')) {
   const originalTsNodeHandler = require.extensions['.js'];
 
-  require.extensions['.js'] = function(m, filename) {
+  require.extensions['.js'] = function (m, filename) {
     if (shouldIgnore(filename)) {
       return originalJsHandler(m, filename);
     }

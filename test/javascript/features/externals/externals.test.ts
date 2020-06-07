@@ -5,11 +5,11 @@ const scripts = Scripts.setupProjectFromTemplate({
   projectType: 'javascript',
 });
 
-describe.each(['prod', 'dev'] as const)('externals [%s]', mode => {
+describe.each(['prod', 'dev'] as const)('externals [%s]', (mode) => {
   it('integration', async () => {
     await scripts[mode](async () => {
       await page.goto(scripts.serverUrl);
-      const result = await page.$eval('#externals', elm => elm.textContent);
+      const result = await page.$eval('#externals', (elm) => elm.textContent);
 
       expect(result).toBe('Some external text.');
     });

@@ -109,7 +109,7 @@ describe('Loaders', () => {
         .execute('build', [], getMockedCI({ ci: false }));
     });
 
-    afterEach(function() {
+    afterEach(function () {
       if (this.currentTest.state === 'failed') {
         test.logOutput();
       }
@@ -327,7 +327,7 @@ describe('Loaders', () => {
         });
     });
 
-    afterEach(function() {
+    afterEach(function () {
       if (this.currentTest.state === 'failed') {
         test.logOutput();
       }
@@ -405,7 +405,7 @@ describe('Loaders', () => {
   describe('loaders exceptions', () => {
     let test;
     beforeEach(() => (test = tp.create()));
-    afterEach(function() {
+    afterEach(function () {
       if (this.currentTest.state === 'failed') {
         test.logOutput();
       }
@@ -462,7 +462,7 @@ describe('Loaders', () => {
     });
 
     describe.skip('Stylable', () => {
-      afterEach(function() {
+      afterEach(function () {
         if (this.currentTest.state === 'failed') {
           test.logOutput();
         }

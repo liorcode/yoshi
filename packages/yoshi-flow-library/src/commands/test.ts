@@ -16,7 +16,7 @@ const hasBundleInStatics = () => {
   return globby.sync(path.resolve(STATICS_DIR, '*.umd.js')).length > 0;
 };
 
-const test: cliCommand = async function(argv, config) {
+const test: cliCommand = async function (argv, config) {
   const args = arg(
     {
       // Types

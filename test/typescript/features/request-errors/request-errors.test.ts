@@ -7,7 +7,7 @@ const scripts = Scripts.setupProjectFromTemplate({
 
 jest.setTimeout(35000);
 
-describe.each(['prod', 'dev'] as const)('e2e [%s]', mode => {
+describe.each(['prod', 'dev'] as const)('e2e [%s]', (mode) => {
   it('run tests', async () => {
     await scripts[mode](async () => {
       await scripts.test(mode);

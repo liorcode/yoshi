@@ -4,7 +4,7 @@ const hiddenFilesRegex = /(^|\/)\.[^/.]/;
 
 export default function verifyWorkingDirectory(workingDir: string) {
   const emptyDirectory =
-    fs.readdirSync(workingDir).filter(entry => !hiddenFilesRegex.test(entry))
+    fs.readdirSync(workingDir).filter((entry) => !hiddenFilesRegex.test(entry))
       .length === 0;
 
   if (!emptyDirectory) {

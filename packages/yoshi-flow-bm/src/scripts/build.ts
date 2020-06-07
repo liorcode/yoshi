@@ -19,7 +19,7 @@ import renderModuleConfig from '../renderModuleConfig';
 
 const join = (...dirs: Array<string>) => path.join(process.cwd(), ...dirs);
 
-const build: CliCommand = async function(argv, config) {
+const build: CliCommand = async function (argv, config) {
   const args = arg(
     {
       // Types

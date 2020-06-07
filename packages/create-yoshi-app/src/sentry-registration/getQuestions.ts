@@ -7,7 +7,7 @@ export default (): Array<ExtendedPromptObject<string>> => {
       type: 'text',
       name: 'teamName',
       message: "Sentry Team Name (Will be created if doesn't exist already)",
-      format: val => val.replace(/\s+/g, '-').toLowerCase(),
+      format: (val) => val.replace(/\s+/g, '-').toLowerCase(),
       async after(answers, context: any) {
         const sentryApp = await addSentry({
           teamName: answers.teamName,

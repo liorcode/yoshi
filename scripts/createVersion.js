@@ -112,7 +112,7 @@ Promise.resolve()
       ),
     );
   })
-  .catch(error => {
+  .catch((error) => {
     console.log(chalk.red('Version release failed.'));
     console.log(chalk.red(error.stack));
     console.log();

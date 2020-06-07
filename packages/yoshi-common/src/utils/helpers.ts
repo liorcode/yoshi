@@ -10,7 +10,7 @@ export function requestHttps(url: string, params: Record<string, any>) {
     .join('&');
 
   return new Promise((resolve, reject) => {
-    const req = https.request(`${url}?${queryParams}`, res => {
+    const req = https.request(`${url}?${queryParams}`, (res) => {
       if (
         (res.statusCode && res.statusCode < 200) ||
         (res.statusCode && res.statusCode >= 300)

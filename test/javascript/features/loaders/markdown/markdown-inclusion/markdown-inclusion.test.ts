@@ -5,13 +5,13 @@ const scripts = Scripts.setupProjectFromTemplate({
   projectType: 'javascript',
 });
 
-describe.each(['prod', 'dev'] as const)('markdown inclusion [%s]', mode => {
+describe.each(['prod', 'dev'] as const)('markdown inclusion [%s]', (mode) => {
   it('integration', async () => {
     await scripts[mode](async () => {
       await page.goto(scripts.serverUrl);
       const innerHTML = await page.$eval(
         '#markdown-inclusion',
-        elm => elm.innerHTML,
+        (elm) => elm.innerHTML,
       );
 
       expect(innerHTML.replace(/\n/g, '')).toEqual('## Hello World');

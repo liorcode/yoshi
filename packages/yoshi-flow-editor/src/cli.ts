@@ -1,6 +1,6 @@
 // We want to always load the same yoshi.config.js
 process.env.YOSHI_CONFIG_DIR = __dirname;
-process.on('unhandledRejection', error => {
+process.on('unhandledRejection', (error) => {
   throw error;
 });
 

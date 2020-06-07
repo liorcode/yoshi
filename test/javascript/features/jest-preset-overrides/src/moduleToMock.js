@@ -1,5 +1,5 @@
 module.exports = {
-  functionToMock: text => {
+  functionToMock: (text) => {
     return text;
   },
 };

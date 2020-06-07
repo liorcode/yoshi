@@ -92,7 +92,7 @@ function addExtensionPrefix(filePath: string, prefix: string) {
 }
 
 function prependNameWith(filename: string, prefix: string) {
-  return filename.replace(/\.[0-9a-z]+$/i, match => `.${prefix}${match}`);
+  return filename.replace(/\.[0-9a-z]+$/i, (match) => `.${prefix}${match}`);
 }
 
 function getProgressBarInfo(
@@ -501,7 +501,7 @@ export function createBaseWebpackConfig({
             globalObject: "(typeof self !== 'undefined' ? self : this)",
             // Point sourcemap entries to original disk location (format as URL on Windows)
             // todo: remove once useCustomSourceMapPlugin option is getting merged
-            devtoolModuleFilenameTemplate: info =>
+            devtoolModuleFilenameTemplate: (info) =>
               path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
           }
         : {}),
@@ -616,7 +616,7 @@ export function createBaseWebpackConfig({
                       cwd: join(TEMPLATES_DIR),
                       absolute: true,
                     })
-                    .map(templatePath => {
+                    .map((templatePath) => {
                       const basename = path.basename(templatePath);
                       const filename = join(TEMPLATES_BUILD_DIR, basename);
                       const customLoader = require.resolve(
@@ -637,7 +637,7 @@ export function createBaseWebpackConfig({
                           options,
                         ) => {
                           // Add `async` attribute to all non-inline scripts
-                          assetTags.bodyTags.forEach(tag => {
+                          assetTags.bodyTags.forEach((tag) => {
                             if (
                               tag.tagName === 'script' &&
                               tag.attributes.src
@@ -1196,7 +1196,7 @@ export function createBaseWebpackConfig({
               }
 
               // Bundle any white listed dependencies
-              if (notExternalModules.some(regex => regex.test(res))) {
+              if (notExternalModules.some((regex) => regex.test(res))) {
                 return callback();
               }
 

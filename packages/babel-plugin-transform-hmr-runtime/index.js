@@ -7,7 +7,7 @@ const RENDER_NAME = 'render';
 const HOT_LOADER_PATH = 'react-hot-loader';
 const HOT_LOADER_PROVIDER = 'AppContainer';
 
-module.exports = function({ types: t }) {
+module.exports = function ({ types: t }) {
   const isRender = (type, renderName = RENDER_NAME) => {
     return type === renderName;
   };
@@ -22,7 +22,7 @@ module.exports = function({ types: t }) {
 
   const withEntry = (entryFiles, fileName) => {
     const resolvedTarget = nodePath.resolve(fileName);
-    return entryFiles.some(entryFile => {
+    return entryFiles.some((entryFile) => {
       const resolvedEntry = nodePath.resolve(entryFile);
       return resolvedTarget.startsWith(resolvedEntry);
     });
@@ -65,11 +65,11 @@ module.exports = function({ types: t }) {
   //   return path.node.imported.name === HOT_LOADER_METHOD && declaration.node.source.value === HOT_LOADER_PATH;
   // };
 
-  const isValidTargetToWrap = target => {
+  const isValidTargetToWrap = (target) => {
     return t.isJSXElement(target.node);
   };
 
-  const isAcceptModuleCall = path => {
+  const isAcceptModuleCall = (path) => {
     return (
       t.isCallExpression(path.node) &&
       t.isMemberExpression(path.node.callee) &&
@@ -89,7 +89,7 @@ module.exports = function({ types: t }) {
   };
 
   const findRenderVariableFromProps = (props, variable) => {
-    const prop = props.find(property => {
+    const prop = props.find((property) => {
       return property.key.name === variable;
     });
     return prop ? prop.value.name : null;
@@ -116,7 +116,7 @@ module.exports = function({ types: t }) {
         const importFromReactDOM = sourceValue === 'react-dom';
         const importFromReactHotLoader = sourceValue === 'react-hot-loader';
 
-        path.get('specifiers').forEach(specifier => {
+        path.get('specifiers').forEach((specifier) => {
           if (
             importFromReactDOM &&
             t.isImportNamespaceSpecifier(specifier.node)

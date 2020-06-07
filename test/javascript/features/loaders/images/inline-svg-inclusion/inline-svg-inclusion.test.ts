@@ -5,13 +5,13 @@ const scripts = Scripts.setupProjectFromTemplate({
   projectType: 'javascript',
 });
 
-describe.each(['prod', 'dev'] as const)('inline svg inclusion [%s]', mode => {
+describe.each(['prod', 'dev'] as const)('inline svg inclusion [%s]', (mode) => {
   it('integration', async () => {
     await scripts[mode](async () => {
       await page.goto(scripts.serverUrl);
       const imageSource = await page.$eval(
         '#inline-svg-inclusion',
-        elm => (elm as HTMLImageElement).src,
+        (elm) => (elm as HTMLImageElement).src,
       );
 
       expect(imageSource).toMatch(/svg/);

@@ -6,7 +6,7 @@ const scripts = Scripts.setupProjectFromTemplate({
   projectType: 'javascript',
 });
 
-describe.each(['prod', 'dev'] as const)('css inclusion global [%s]', mode => {
+describe.each(['prod', 'dev'] as const)('css inclusion global [%s]', (mode) => {
   it('integration', async () => {
     await scripts[mode](async () => {
       await page.goto(scripts.serverUrl);

@@ -5,7 +5,7 @@ import FunctionModulePlugin from 'webpack/lib/FunctionModulePlugin';
 import LoaderTargetPlugin from 'webpack/lib/LoaderTargetPlugin';
 import { AsyncWebWorkerPlugin } from './AsyncWebWorkerPlugin';
 
-export const asyncWebWorkerTarget = options => compiler => {
+export const asyncWebWorkerTarget = (options) => (compiler) => {
   new AsyncWebWorkerPlugin().apply(compiler);
   new FetchCompileWasmTemplatePlugin({
     mangleImports: options.optimization.mangleWasmImports,

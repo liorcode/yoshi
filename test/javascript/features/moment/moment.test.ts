@@ -6,7 +6,7 @@ const scripts = Scripts.setupProjectFromTemplate({
   projectType: 'javascript',
 });
 
-describe.each(['prod', 'dev'] as const)('moment [%s]', mode => {
+describe.each(['prod', 'dev'] as const)('moment [%s]', (mode) => {
   it('exclude locales imported from moment', async () => {
     await scripts[mode](async () => {
       await page.goto(scripts.serverUrl);

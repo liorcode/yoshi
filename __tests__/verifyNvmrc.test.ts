@@ -4,10 +4,7 @@ import { capitalize } from 'lodash';
 import { templates } from '../packages/create-yoshi-app';
 
 const readNvmrc = (dir: string) =>
-  fs
-    .readFileSync(path.join(dir, '.nvmrc'))
-    .toString()
-    .trim();
+  fs.readFileSync(path.join(dir, '.nvmrc')).toString().trim();
 
 const rootNvmrc = readNvmrc(path.resolve(__dirname, '..'));
 
@@ -19,7 +16,7 @@ test("create-yoshi-app's .nvmrc should match yoshi's .nvmrc", () => {
 });
 
 templates.forEach(({ name, path: templatePath, language }) => {
-  language.forEach(lang => {
+  language.forEach((lang) => {
     test(`${capitalize(
       lang,
     )} template ${name}'s .nvmrc should match create-yoshi-app's .nvmrc`, () => {

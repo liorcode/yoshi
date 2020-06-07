@@ -6,7 +6,9 @@ import stringLength from 'string-length';
 import execa from 'execa';
 import copyAssets from './copy-assets';
 
-const shouldWatch = !!process.argv.slice(2).find(arg => arg.includes('watch'));
+const shouldWatch = !!process.argv
+  .slice(2)
+  .find((arg) => arg.includes('watch'));
 
 const OK = chalk.reset.inverse.bold.green(' DONE ');
 
@@ -18,13 +20,13 @@ const packages = globby.sync('*', {
   absolute: true,
 });
 
-const packagesWithTs = packages.filter(p =>
+const packagesWithTs = packages.filter((p) =>
   fs.existsSync(path.join(p, 'tsconfig.json')),
 );
 
 const packagesWithESM = packagesWithTs
-  .map(p => path.join(p, 'tsconfig.esm.json'))
-  .filter(p => fs.existsSync(p));
+  .map((p) => path.join(p, 'tsconfig.esm.json'))
+  .filter((p) => fs.existsSync(p));
 
 copyAssets(packagesDir, packagesWithTs, shouldWatch);
 
@@ -68,8 +70,5 @@ function adjustToTerminalWidth(str: string) {
     lastString += Array(WIDTH - lastString.length).join(chalk.dim('.'));
   }
 
-  return strs!
-    .slice(0, -1)
-    .concat(lastString)
-    .join('\n');
+  return strs!.slice(0, -1).concat(lastString).join('\n');
 }

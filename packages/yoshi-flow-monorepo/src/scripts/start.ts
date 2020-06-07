@@ -13,7 +13,7 @@ import {
 } from '../webpack.config';
 import { isSiteAssetsModule } from '../utils';
 
-const start: cliCommand = async function(argv, rootConfig, { apps, libs }) {
+const start: cliCommand = async function (argv, rootConfig, { apps, libs }) {
   const args = arg(
     {
       // Types
@@ -67,7 +67,7 @@ const start: cliCommand = async function(argv, rootConfig, { apps, libs }) {
     return process.exit(1);
   }
 
-  const pkg = apps.find(pkg => pkg.name === appName);
+  const pkg = apps.find((pkg) => pkg.name === appName);
 
   if (!pkg) {
     console.log(
@@ -78,7 +78,7 @@ const start: cliCommand = async function(argv, rootConfig, { apps, libs }) {
       `  ${apps
         .map(({ name }) => name)
         .map(stripOrganization)
-        .map(name => chalk.cyanBright(name))
+        .map((name) => chalk.cyanBright(name))
         .join(', ')}`,
     );
     console.log();

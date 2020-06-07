@@ -7,14 +7,14 @@ const scripts = Scripts.setupProjectFromTemplate({
 
 describe.each(['prod', 'dev'] as const)(
   'yoshi-server init data, api [%s]',
-  mode => {
+  (mode) => {
     it('title should contain config data', async () => {
       await scripts[mode](async () => {
         await page.goto(`${scripts.serverUrl}/app`);
         await page.waitForFunction(
           `document.getElementById('my-text').innerText !== ''`,
         );
-        const title = await page.$eval('h2', elm => elm.innerHTML);
+        const title = await page.$eval('h2', (elm) => elm.innerHTML);
         expect(title).toBe('hello Yaniv FOO');
       });
     });
@@ -23,14 +23,14 @@ describe.each(['prod', 'dev'] as const)(
 
 describe.each(['prod', 'dev'] as const)(
   'yoshi-server init data, route [%s]',
-  mode => {
+  (mode) => {
     it('title should have config values', async () => {
       await scripts[mode](async () => {
         await page.goto(`${scripts.serverUrl}/app`);
         await page.waitForFunction(
           `document.getElementById('my-text').innerText !== ''`,
         );
-        const title = await page.$eval('title', elm => elm.innerHTML);
+        const title = await page.$eval('title', (elm) => elm.innerHTML);
         expect(title).toBe('FOO');
       });
     });

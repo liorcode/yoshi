@@ -1,9 +1,9 @@
 import React from 'react';
 
 function punctuate(value) {
-  return function(target) {
+  return function (target) {
     const originalMethod = target.descriptor.value;
-    target.descriptor.value = function(message) {
+    target.descriptor.value = function (message) {
       return originalMethod.call(this, `${message}${value}`);
     };
   };

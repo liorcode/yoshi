@@ -4,7 +4,7 @@ import { DOCKER_FILE } from 'yoshi-config/build/paths';
 import { Config } from 'yoshi-config/build/config';
 import { replaceTemplates } from './utils/template-utils';
 
-export default async function(config: Config, cwd = process.cwd()) {
+export default async function (config: Config, cwd = process.cwd()) {
   if (!config.yoshiServer) {
     return;
   }

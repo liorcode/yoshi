@@ -4,7 +4,7 @@ import validateProjectName from 'validate-npm-package-name';
 
 function printValidationResults(results?: Array<string>) {
   if (typeof results !== 'undefined') {
-    results.forEach(error => {
+    results.forEach((error) => {
       console.error(chalk.red(`  *  ${error}`));
     });
   }

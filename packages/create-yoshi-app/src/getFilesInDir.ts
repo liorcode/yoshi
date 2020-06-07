@@ -11,7 +11,7 @@ export default (absoluteDirPath: string) => {
 
   const files: Record<string, string> = {};
 
-  filesPaths.forEach(filePath => {
+  filesPaths.forEach((filePath) => {
     files[filePath] = fs.readFileSync(
       path.join(absoluteDirPath, filePath),
       'utf-8',

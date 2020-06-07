@@ -49,7 +49,7 @@ function runLinter({ options, tslintFilePath, tsconfigFilePath, filterPaths }) {
     }
   }
 
-  const files = filePaths.map(fileName => ({
+  const files = filePaths.map((fileName) => ({
     fileName,
     fileContents: program.getSourceFile(fileName).getFullText(),
   }));
@@ -74,13 +74,13 @@ function runLinter({ options, tslintFilePath, tsconfigFilePath, filterPaths }) {
   });
 
   const { length: fixablesCount } = linter.failures.filter(
-    failure => failure.fix,
+    (failure) => failure.fix,
   );
   const { length: errorsCount } = linter.failures.filter(
-    failure => failure.ruleSeverity === 'error',
+    (failure) => failure.ruleSeverity === 'error',
   );
   const { length: warningsCount } = linter.failures.filter(
-    failure => failure.ruleSeverity === 'warning',
+    (failure) => failure.ruleSeverity === 'warning',
   );
 
   return {

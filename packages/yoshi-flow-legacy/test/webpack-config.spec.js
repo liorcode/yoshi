@@ -24,7 +24,7 @@ describe('Webpack basic configs', () => {
     });
   });
 
-  afterEach(function() {
+  afterEach(function () {
     if (this.currentTest.state === 'failed') {
       test.logOutput();
     }
@@ -174,7 +174,7 @@ describe('Webpack basic configs', () => {
         return fetchClientBundle({
           port: 3200,
           file: 'app.bundle.js',
-        }).then(bundle =>
+        }).then((bundle) =>
           expect(bundle).to.contain(
             '__webpack_require__.p = "http://localhost:3200/"',
           ),
@@ -323,7 +323,7 @@ describe('Webpack basic configs', () => {
       return fetchClientBundle({
         port: 3200,
         file: 'app.bundle.js',
-      }).then(bundle => expect(bundle).to.not.contain('CONCATENATED MODULE'));
+      }).then((bundle) => expect(bundle).to.not.contain('CONCATENATED MODULE'));
     });
   });
 
@@ -416,6 +416,6 @@ function fetchClientBundle({
   file = '',
 } = {}) {
   return retryPromise({ backoff, max }, () =>
-    fetch(`http://localhost:${port}/${file}`).then(res => res.text()),
+    fetch(`http://localhost:${port}/${file}`).then((res) => res.text()),
   );
 }

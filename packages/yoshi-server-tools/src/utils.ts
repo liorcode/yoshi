@@ -30,7 +30,7 @@ export function transform(source: string, fullFileName: string) {
 
   const headers = [`import { dsl } from 'yoshi-server/build/wrap';`];
 
-  const functions = collectExportNames(source as string).map(functionName => {
+  const functions = collectExportNames(source as string).map((functionName) => {
     return `export const ${functionName} = dsl({
           functionName: '${functionName}',
           fileName: '${fileName}',

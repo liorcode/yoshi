@@ -3,12 +3,12 @@ const DEFAULT_MODULES = 'commonjs';
 const env = process.env.BABEL_ENV || process.env.NODE_ENV || DEFAULT_ENV;
 const disablePropTypeRemoval = process.env.DISABLE_REACT_PROP_TYPE_REMOVAL;
 
-const requireDefault = path => {
+const requireDefault = (path) => {
   const required = require(path);
   return required.default || required;
 };
 
-const normaliseOptions = opts => {
+const normaliseOptions = (opts) => {
   return {
     ...opts,
     include: opts.include || [],
@@ -16,7 +16,7 @@ const normaliseOptions = opts => {
   };
 };
 
-module.exports = function(api, opts = {}) {
+module.exports = function (api, opts = {}) {
   const options = normaliseOptions(opts);
   const inWebpack = process.env.IN_WEBPACK;
 

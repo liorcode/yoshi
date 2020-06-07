@@ -41,7 +41,7 @@ const getTestKitConfig = async (
   return builder.build();
 };
 
-module.exports.environment = async envConfig => {
+module.exports.environment = async (envConfig) => {
   const app = bootstrapServer();
   const bmApp = createTestkit(await getTestKitConfig(envConfig, app));
   return {

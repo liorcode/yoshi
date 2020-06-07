@@ -7,7 +7,7 @@ const scripts = Scripts.setupProjectFromTemplate({
 
 describe.each(['prod', 'dev'] as const)(
   'yoshi-server csrf protection [%s]',
-  mode => {
+  (mode) => {
     it('should have csrf middleware - route', async () => {
       await scripts[mode](async () => {
         await page.goto(`${scripts.serverUrl}/app`);
@@ -21,14 +21,14 @@ describe.each(['prod', 'dev'] as const)(
 
 describe.each(['prod', 'dev'] as const)(
   'yoshi-server csrf protection [%s]',
-  mode => {
+  (mode) => {
     it('should have csrf middleware - api function', async () => {
       await scripts[mode](async () => {
         await page.goto(`${scripts.serverUrl}/app`);
         await page.waitForFunction(
           `document.getElementById('my-text').innerText !== ''`,
         );
-        const title = await page.$eval('h2', elm => elm.innerHTML);
+        const title = await page.$eval('h2', (elm) => elm.innerHTML);
         expect(title).toBe('hello Yaniv csrfProtected');
       });
     });

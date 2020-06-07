@@ -29,7 +29,7 @@ const shouldWatch = watchMode();
 const cliArgs = parseArgs(process.argv.slice(2));
 
 module.exports = runner.command(
-  async tasks => {
+  async (tasks) => {
     if (shouldWatch) {
       return;
     }
@@ -134,9 +134,9 @@ module.exports = runner.command(
       return copy(
         {
           pattern: [
-            ...globs.baseDirs.map(dir => `${dir}/assets/**/*`),
-            ...globs.baseDirs.map(dir => `${dir}/**/*.{ejs,html,vm}`),
-            ...globs.baseDirs.map(dir => `${dir}/**/*.{css,json,d.ts}`),
+            ...globs.baseDirs.map((dir) => `${dir}/assets/**/*`),
+            ...globs.baseDirs.map((dir) => `${dir}/**/*.{ejs,html,vm}`),
+            ...globs.baseDirs.map((dir) => `${dir}/**/*.{css,json,d.ts}`),
           ],
           target: globs.dist({ esTarget }),
         },
@@ -148,9 +148,9 @@ module.exports = runner.command(
       return copy(
         {
           pattern: [
-            ...globs.assetsLegacyBaseDirs.map(dir => `${dir}/assets/**/*`),
+            ...globs.assetsLegacyBaseDirs.map((dir) => `${dir}/assets/**/*`),
             ...globs.assetsLegacyBaseDirs.map(
-              dir => `${dir}/**/*.{ejs,html,vm}`,
+              (dir) => `${dir}/**/*.{ejs,html,vm}`,
             ),
           ],
           target: 'dist/statics',
@@ -220,7 +220,7 @@ module.exports = runner.command(
       if (projectConfig.isAngularProject) {
         return ngAnnotate(
           {
-            pattern: globs.baseDirs.map(dir =>
+            pattern: globs.baseDirs.map((dir) =>
               path.join(globs.dist(), dir, '**', '*.js'),
             ),
             target: './',

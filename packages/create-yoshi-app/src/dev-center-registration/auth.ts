@@ -6,7 +6,7 @@ const LOCAL_AUTH_APP_URL = `https://editor.wix.com/html/editor/web/renderer/rend
 const FALLBACK_DELAY = 60000;
 
 function waitForInstance(): Promise<string | null> {
-  return new Promise(async resolve => {
+  return new Promise(async (resolve) => {
     const tm = setTimeout(() => {
       resolve(null);
     }, FALLBACK_DELAY);
@@ -35,7 +35,7 @@ function waitForInstance(): Promise<string | null> {
       }
       clearTimeout(tm);
       server.close();
-      connections.forEach(curr => {
+      connections.forEach((curr) => {
         curr.end();
         curr.destroy();
       });

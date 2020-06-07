@@ -3,7 +3,7 @@ import Template from 'webpack/lib/Template';
 
 export class WebWorkerMainTemplatePlugin {
   apply(mainTemplate) {
-    const needChunkOnDemandLoadingCode = chunk => {
+    const needChunkOnDemandLoadingCode = (chunk) => {
       for (const chunkGroup of chunk.groupsIterable) {
         if (chunkGroup.getNumberOfChildren() > 0) {
           return true;
@@ -22,7 +22,7 @@ export class WebWorkerMainTemplatePlugin {
             '// "1" means "already loaded"',
             'var installedChunks = {',
             Template.indent(
-              chunk.ids.map(id => `${JSON.stringify(id)}: 1`).join(',\n'),
+              chunk.ids.map((id) => `${JSON.stringify(id)}: 1`).join(',\n'),
             ),
             '};',
           ]);
@@ -45,7 +45,7 @@ export class WebWorkerMainTemplatePlugin {
                 '__webpack_require__.p + ' +
                 mainTemplate.getAssetPath(JSON.stringify(chunkFilename), {
                   hash: `" + ${mainTemplate.renderCurrentHashCode(hash)} + "`,
-                  hashWithLength: length =>
+                  hashWithLength: (length) =>
                     `" + ${mainTemplate.renderCurrentHashCode(
                       hash,
                       length,
@@ -72,7 +72,7 @@ export class WebWorkerMainTemplatePlugin {
                       )}[chunkId] + "`,
                     },
                     contentHashWithLength: {
-                      javascript: length => {
+                      javascript: (length) => {
                         const shortContentHashMap = {};
                         const contentHash = chunkMaps.contentHash.javascript;
                         for (const chunkId of Object.keys(contentHash)) {
@@ -154,7 +154,7 @@ export class WebWorkerMainTemplatePlugin {
           JSON.stringify(hotUpdateChunkFilename),
           {
             hash: `" + ${mainTemplate.renderCurrentHashCode(hash)} + "`,
-            hashWithLength: length =>
+            hashWithLength: (length) =>
               `" + ${mainTemplate.renderCurrentHashCode(hash, length)} + "`,
             chunk: {
               id: '" + chunkId + "',
@@ -165,7 +165,7 @@ export class WebWorkerMainTemplatePlugin {
           JSON.stringify(hotUpdateMainFilename),
           {
             hash: `" + ${mainTemplate.renderCurrentHashCode(hash)} + "`,
-            hashWithLength: length =>
+            hashWithLength: (length) =>
               `" + ${mainTemplate.renderCurrentHashCode(hash, length)} + "`,
           },
         );
@@ -188,7 +188,7 @@ export class WebWorkerMainTemplatePlugin {
         );
       },
     );
-    mainTemplate.hooks.hash.tap('WebWorkerMainTemplatePlugin', hash => {
+    mainTemplate.hooks.hash.tap('WebWorkerMainTemplatePlugin', (hash) => {
       hash.update('webworker');
       hash.update('4');
     });

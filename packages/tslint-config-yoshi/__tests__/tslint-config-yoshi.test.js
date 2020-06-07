@@ -23,15 +23,15 @@ const rulesDir = path.join(__dirname, './rules');
 const rules = fs.readdirSync(rulesDir);
 
 describe('tslint-config-yoshi', () => {
-  rules.forEach(ruleName => {
-    const find = pattern => {
+  rules.forEach((ruleName) => {
+    const find = (pattern) => {
       return glob.sync(path.join(rulesDir, ruleName, pattern));
     };
 
     describe(ruleName, () => {
       const validFiles = find('valid*.ts');
 
-      validFiles.forEach(filename => {
+      validFiles.forEach((filename) => {
         const basename = path.relative(path.join(__dirname, '..'), filename);
 
         it(`should be valid for ${basename}`, () => {
@@ -46,7 +46,7 @@ describe('tslint-config-yoshi', () => {
 
       const invalidFiles = find('invalid*.ts');
 
-      invalidFiles.forEach(filename => {
+      invalidFiles.forEach((filename) => {
         const basename = path.relative(path.join(__dirname, '..'), filename);
 
         it(`should be invalid for ${basename}`, async () => {

@@ -1,7 +1,7 @@
 import chance from 'chance';
 
 export const appDriver = () => {
-  const waitForVisibilityOf = async selector => {
+  const waitForVisibilityOf = async (selector) => {
     return page.waitForSelector(selector);
   };
 
@@ -15,7 +15,7 @@ export const appDriver = () => {
     },
     getAppTitleText: async () => {
       await waitForVisibilityOf('h2');
-      return page.$eval('h2', e => e.textContent);
+      return page.$eval('h2', (e) => e.textContent);
     },
     waitForSelector: waitForVisibilityOf,
   };

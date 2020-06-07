@@ -23,11 +23,11 @@ export const processFilesWithScopes = (
   scope: Record<string, any>,
   workingDir: string,
 ) => {
-  return Object.keys(files).forEach(fileName => {
+  return Object.keys(files).forEach((fileName) => {
     const fullPath = path.join(workingDir, fileName);
     const scopes = getTemplateScopes(fileName, scope);
 
-    scopes.forEach(loopScope => {
+    scopes.forEach((loopScope) => {
       processFileWithScope(fullPath, files[fileName], {
         ...scope,
         ...loopScope,

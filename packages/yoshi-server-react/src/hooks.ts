@@ -32,8 +32,8 @@ export function useRequest<
     context!
       .client!.request(dsl)(...args)
       .then(
-        data => setState({ ...state, loading: false, data, error: null }),
-        error => setState({ ...state, loading: false, data: null, error }),
+        (data) => setState({ ...state, loading: false, data, error: null }),
+        (error) => setState({ ...state, loading: false, data: null, error }),
       );
   }, []);
 

@@ -5,7 +5,7 @@ const scripts = Scripts.setupProjectFromTemplate({
   projectType: 'javascript',
 });
 
-describe.each(['prod', 'dev'] as const)('web-worker [%s]', mode => {
+describe.each(['prod', 'dev'] as const)('web-worker [%s]', (mode) => {
   it('integration', async () => {
     await scripts[mode](async () => {
       await page.goto(scripts.serverUrl);

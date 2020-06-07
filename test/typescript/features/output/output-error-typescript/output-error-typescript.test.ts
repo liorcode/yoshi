@@ -7,7 +7,7 @@ const scripts = Scripts.setupProjectFromTemplate({
 
 describe.each(['prod'] as const)(
   'fails with typescript syntax errors [%s]',
-  mode => {
+  (mode) => {
     it('integration', async () => {
       try {
         await scripts[mode]();

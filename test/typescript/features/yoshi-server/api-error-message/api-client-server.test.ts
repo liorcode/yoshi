@@ -10,7 +10,7 @@ const scripts = Scripts.setupProjectFromTemplate({
 
 describe.each(['dev'] as const)(
   'yoshi-server api client to server - show an error message for development [%s]',
-  mode => {
+  (mode) => {
     let page: Page;
     afterEach(() => page.close());
     it('run tests', async () => {
@@ -19,7 +19,7 @@ describe.each(['dev'] as const)(
         await page.goto(`${scripts.serverUrl}/app`);
         await page.waitForSelector('.popover');
 
-        expect(await page.$eval('.popover', el => el.innerHTML)).toMatch(
+        expect(await page.$eval('.popover', (el) => el.innerHTML)).toMatch(
           'A cool error',
         );
       });

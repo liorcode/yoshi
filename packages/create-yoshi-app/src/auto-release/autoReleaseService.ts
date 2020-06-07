@@ -12,7 +12,7 @@ export const generateAppModel = (
 ): Promise<IAppConfig> => {
   return axios
     .get<IAppConfig>(getUrl(`peek/${appDefinitionId}/${artifactId}`))
-    .then(response => {
+    .then((response) => {
       return response.data;
     });
 };

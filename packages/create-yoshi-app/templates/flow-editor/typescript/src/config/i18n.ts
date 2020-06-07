@@ -21,7 +21,7 @@ export function getSiteTranslations(
   //   https://github.com/wix-private/site-search/commit/93a16dfbe1fcca9af7cc1abe88f0e0df222970c8
   return fetch(
     `${__webpack_public_path__}assets/locales/messages_${language}.json`,
-  ).then(r => {
+  ).then((r) => {
     if (!r.ok) {
       console.error(`Can't load locale: ${language}`);
       return Promise.resolve(messagesEn);
@@ -65,8 +65,8 @@ export default memoize(function i18n(params: I18nConfig) {
         callback: (error: Error | null, t?: any) => void,
       ) => {
         return getSiteTranslations(lang)
-          .then(t => callback(null, t))
-          .catch(error => callback(error));
+          .then((t) => callback(null, t))
+          .catch((error) => callback(error));
       },
     });
   }

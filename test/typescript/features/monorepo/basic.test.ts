@@ -13,7 +13,7 @@ describe('monorepo', () => {
     await scripts.prod(
       async () => {
         await page.goto(`${scripts.serverUrl}`);
-        const innerHTML = await page.$eval('#name', elm => elm.textContent);
+        const innerHTML = await page.$eval('#name', (elm) => elm.textContent);
 
         expect(innerHTML).toEqual('hello from app!');
       },
@@ -27,7 +27,7 @@ describe('monorepo', () => {
     await scripts.dev(
       async () => {
         await page.goto(`${scripts.serverUrl}`);
-        const innerHTML = await page.$eval('#name', elm => elm.textContent);
+        const innerHTML = await page.$eval('#name', (elm) => elm.textContent);
 
         expect(innerHTML).toEqual('hello from app!');
       },

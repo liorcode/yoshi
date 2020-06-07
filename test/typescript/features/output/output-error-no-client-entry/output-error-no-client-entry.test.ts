@@ -7,7 +7,7 @@ const scripts = Scripts.setupProjectFromTemplate({
 
 describe.each(['prod'] as const)(
   'fails when client entry does not exist [%s]',
-  mode => {
+  (mode) => {
     it('integration', async () => {
       try {
         await scripts[mode]();

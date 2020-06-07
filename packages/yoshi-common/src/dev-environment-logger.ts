@@ -89,7 +89,7 @@ const logProcessState = (
 };
 
 const hasErrorsOrWarnings = (state: State): boolean => {
-  return Object.values(state).some(processState =>
+  return Object.values(state).some((processState) =>
     ['errors', 'warnings'].includes(processState?.status as string),
   );
 };
@@ -128,7 +128,7 @@ const logStateErrorsOrWarnings = (state: State) => {
 };
 
 const isAllCompiled = (state: State): boolean => {
-  return Object.keys(state).every(stateName => {
+  return Object.keys(state).every((stateName) => {
     const processState = state[stateName as ProcessType];
     return processState?.status === 'success';
   });

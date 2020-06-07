@@ -81,12 +81,13 @@ function shouldUseSentry(): boolean {
 }
 
 function formatPathsForLog(paths: Array<string>, ext: string) {
-  return paths.map(path => (ext ? `${path}.${ext}` : path)).join(' or ');
+  return paths.map((path) => (ext ? `${path}.${ext}` : path)).join(' or ');
 }
 
 function resolveFileNamesFromDirectory(dir: string, fileNames: Array<string>) {
   return (
-    fileNames.map(fileName => resolveFrom(dir, fileName)).find(Boolean) || null
+    fileNames.map((fileName) => resolveFrom(dir, fileName)).find(Boolean) ||
+    null
   );
 }
 

@@ -6,11 +6,11 @@ const scripts = Scripts.setupProjectFromTemplate({
   projectType: 'javascript',
 });
 
-describe.each(['prod', 'dev'] as const)('scss inclusion [%s]', mode => {
+describe.each(['prod', 'dev'] as const)('scss inclusion [%s]', (mode) => {
   it('integration', async () => {
     await scripts[mode](async () => {
       await page.goto(scripts.serverUrl);
-      const className = await page.$eval('#scss-inclusion', elm =>
+      const className = await page.$eval('#scss-inclusion', (elm) =>
         elm.getAttribute('class'),
       );
 

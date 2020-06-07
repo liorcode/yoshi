@@ -63,7 +63,7 @@ export default async function loadPackageGraph(
 
   const [apps, libs] = partition(
     pkgsArray,
-    node => node.config.projectType === 'app',
+    (node) => node.config.projectType === 'app',
   );
 
   return { graph, apps, libs };

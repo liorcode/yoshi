@@ -89,7 +89,7 @@ Apps are available:
   Settings app: ${baseUrl}/settings/:widgetName
     `);
   },
-  err => {
+  (err) => {
     console.error(
       `Fake server failed to start on port ${process.env.PORT}: ${err.message}`,
     );

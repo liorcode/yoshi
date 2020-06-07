@@ -18,10 +18,10 @@ export const terminateAsync = promisify(terminate);
 export const tmpDirectory = path.join(__dirname, '../.tmp');
 
 const makeRequest = (url: string): Promise<string> => {
-  return new Promise(resolve => {
-    http.get(url, res => {
+  return new Promise((resolve) => {
+    http.get(url, (res) => {
       let rawData = '';
-      res.on('data', chunk => (rawData += chunk));
+      res.on('data', (chunk) => (rawData += chunk));
       res.on('end', () => resolve(rawData));
     });
   });
@@ -46,8 +46,8 @@ export const matchCSS = async (
         .filter((link: any): link is HTMLLinkElement => {
           return link.rel === 'stylesheet';
         })
-        .map(link => link.href)
-        .find(href => href.includes(name));
+        .map((link) => link.href)
+        .find((href) => href.includes(name));
     },
     chunkName,
   );
@@ -92,8 +92,8 @@ async function getChunkContentFromScriptTag(
     'script',
     (scripts, name) => {
       return (scripts as Array<HTMLScriptElement>)
-        .map(script => script.src)
-        .find(src => src.includes(name));
+        .map((script) => script.src)
+        .find((src) => src.includes(name));
     },
     chunkName,
   );
@@ -126,7 +126,7 @@ function isPortTaken(port: number): Promise<boolean> {
   return new Promise((resolve, reject) => {
     const tester = net
       .createServer()
-      .once('error', err => {
+      .once('error', (err) => {
         // @ts-ignore
         err.code !== 'EADDRINUSE' ? reject(err) : resolve(true);
       })
@@ -153,7 +153,7 @@ function throttleFunc(
   ...args: Array<any>
 ) {
   method._tId && clearTimeout(method._tId);
-  method._tId = setTimeout(function() {
+  method._tId = setTimeout(function () {
     method.call(scope, ...args);
   }, 100);
 }
@@ -165,7 +165,7 @@ export function waitForStdout(
 ): Promise<string> {
   let data = '';
 
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     spawnedProcess.stdout &&
       spawnedProcess.stdout.on('data', function listener(buffer) {
         data += buffer.toString();
@@ -197,7 +197,7 @@ export const replaceTemplates = (
   content: string,
   map: Record<string, string>,
 ): string =>
-  content.replace(templateRegex, match => {
+  content.replace(templateRegex, (match) => {
     const key = match.slice(2, -2);
 
     if (!map.hasOwnProperty(key)) {

@@ -20,7 +20,7 @@ export default ({
     sentryData,
   };
 
-  Object.keys(valuesMap).forEach(key => {
+  Object.keys(valuesMap).forEach((key) => {
     const fieldIsString = isString(valuesMap[key]);
     // create CONSTANT_CASE entries for values map
     valuesMap[constantCase(key)] = fieldIsString

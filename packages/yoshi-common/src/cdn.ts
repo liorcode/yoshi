@@ -50,9 +50,9 @@ export async function startCDN({
     ? https.createServer(getSslCertificate(), app)
     : http.createServer(app);
 
-  await new Promise(resolve => server.listen(port, resolve));
+  await new Promise((resolve) => server.listen(port, resolve));
 
   return {
-    close: () => new Promise(resolve => server.close(resolve)),
+    close: () => new Promise((resolve) => server.close(resolve)),
   };
 }

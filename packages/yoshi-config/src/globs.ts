@@ -31,18 +31,20 @@ export const dist = ({ esTarget = false } = {}) =>
   esTarget ? esModulesDist : distDir;
 
 export const babel = [
-  ...baseDirs.map(dir => path.join(dir, '**', '*.js{,x}')),
+  ...baseDirs.map((dir) => path.join(dir, '**', '*.js{,x}')),
   'index.js',
 ];
 
-export const specs = baseDirs.map(dir => `${dir}/**/*.+(spec|it).+(ts|js){,x}`);
+export const specs = baseDirs.map(
+  (dir) => `${dir}/**/*.+(spec|it).+(ts|js){,x}`,
+);
 
-export const e2eTests = baseDirs.map(dir => `${dir}/**/*.e2e.+(ts|js){,x}`);
+export const e2eTests = baseDirs.map((dir) => `${dir}/**/*.e2e.+(ts|js){,x}`);
 
-export const unitTests = baseDirs.map(dir => `${dir}/**/*.spec.+(ts|js){,x}`);
+export const unitTests = baseDirs.map((dir) => `${dir}/**/*.spec.+(ts|js){,x}`);
 
 export const testFilesWatch = [
-  ...baseDirs.map(dir => path.join(dir, '**', '*.(ts|js){,x}')),
+  ...baseDirs.map((dir) => path.join(dir, '**', '*.(ts|js){,x}')),
   'index.js',
 ];
 
@@ -55,11 +57,11 @@ export const multipleModules = {
 };
 
 export const less = [
-  ...baseDirs.map(dir => `${dir}/**/*.less`),
-  ...baseDirs.map(dir => `!${dir}/assets/**/*`),
+  ...baseDirs.map((dir) => `${dir}/**/*.less`),
+  ...baseDirs.map((dir) => `!${dir}/assets/**/*`),
 ];
 
 export const scss = [
-  ...baseDirs.map(dir => `${dir}/**/*.scss`),
-  ...baseDirs.map(dir => `!${dir}/assets/**/*`),
+  ...baseDirs.map((dir) => `${dir}/**/*.scss`),
+  ...baseDirs.map((dir) => `!${dir}/assets/**/*`),
 ];

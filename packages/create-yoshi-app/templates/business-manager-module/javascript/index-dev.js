@@ -15,7 +15,7 @@ const { environment } = require('./environment');
 
   const signals = ['SIGINT', 'SIGUSR1', 'SIGUSR2'];
 
-  signals.forEach(ev => process.on(ev, stopTestKit));
+  signals.forEach((ev) => process.on(ev, stopTestKit));
 
   process.on('uncaughtException', stopTestKit);
   process.on('exit', stopTestKit);

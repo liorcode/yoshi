@@ -20,7 +20,7 @@ import {
   webWorkerExternals,
 } from '../buildEditorEntires';
 
-const start: cliCommand = async function(argv, config, model) {
+const start: cliCommand = async function (argv, config, model) {
   const args = arg(
     {
       // Types

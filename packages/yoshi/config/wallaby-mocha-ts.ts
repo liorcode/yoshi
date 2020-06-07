@@ -1,6 +1,6 @@
 import path from 'path';
 
-module.exports = function(wallaby: any) {
+module.exports = function (wallaby: any) {
   process.env.NODE_PATH += `:${path.join(
     wallaby.localProjectDir,
     'node_modules',

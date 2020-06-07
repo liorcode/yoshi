@@ -51,7 +51,7 @@ const withComponents = (components: Array<ComponentModel>) => {
       formatter: (component: ComponentModel, baseUrl: string) => string,
     ) => {
       return components
-        .map(component => formatter(component, baseUrl))
+        .map((component) => formatter(component, baseUrl))
         .join(',');
     };
   };

@@ -11,7 +11,7 @@ describe('Yoshi serve monorepo', () => {
 
     await scripts.serve(
       () => Promise.resolve(),
-      e => expect(e.message).toEqual('use yoshi-flow-monorepo/serve instead'),
+      (e) => expect(e.message).toEqual('use yoshi-flow-monorepo/serve instead'),
     );
   });
 });

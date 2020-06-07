@@ -60,8 +60,8 @@ function prepareAssets(
 
   return optimizedStats
     .toJson({ all: false, assets: true })
-    .assets!.filter(asset => !asset.name.endsWith('.map'))
-    .map(asset => {
+    .assets!.filter((asset) => !asset.name.endsWith('.map'))
+    .map((asset) => {
       const fileContents = fs.readFileSync(path.join(assetsDir, asset.name));
 
       return {
@@ -78,7 +78,7 @@ function prepareAssets(
 }
 
 function printStatsResult(assets: Array<Asset>, assetNameColor: string) {
-  return assets.forEach(asset => {
+  return assets.forEach((asset) => {
     console.log(
       '  ' +
         filesize(asset.size) +

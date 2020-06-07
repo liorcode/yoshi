@@ -10,7 +10,7 @@ describe('Lookup and read configuration', () => {
 
   beforeEach(() => (test = tp.create()));
 
-  afterEach(function() {
+  afterEach(function () {
     if (this.currentTest.state === 'failed') {
       test.logOutput();
     }
@@ -72,7 +72,7 @@ describe('Lookup and read configuration', () => {
       if (child) child.kill('SIGKILL');
     });
 
-    ['build', 'test', 'lint', 'release', 'start'].forEach(command => {
+    ['build', 'test', 'lint', 'release', 'start'].forEach((command) => {
       it(`should print a warning on validation errors for ${command} command`, () => {
         child = test
           .setup({

@@ -15,7 +15,7 @@ export const appDriver = () => {
     },
     getAppTitleText: async () => {
       await waitForVisibilityOf('h1');
-      return page.$eval('h1', e => e.textContent);
+      return page.$eval('h1', (e) => e.textContent);
     },
     waitForSelector: waitForVisibilityOf,
   };

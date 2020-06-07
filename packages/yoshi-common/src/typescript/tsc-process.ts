@@ -19,16 +19,16 @@ const zeroErrorsRegex = /Found 0+/;
 const typescriptErrorRegex = /error TS\d+:/;
 
 const isRecompiling = (lines: Array<string>) =>
-  lines.some(line => changeDetectedRegex.test(line));
+  lines.some((line) => changeDetectedRegex.test(line));
 
 const isCompileWithErrors = (lines: Array<string>) =>
-  lines.some(line => foundErrorsRegex.test(line));
+  lines.some((line) => foundErrorsRegex.test(line));
 
 const isCompileSuccessfully = (lines: Array<string>) =>
-  lines.some(line => zeroErrorsRegex.test(line));
+  lines.some((line) => zeroErrorsRegex.test(line));
 
 const isErrorMessage = (lines: Array<string>) =>
-  lines.some(line => typescriptErrorRegex.test(line));
+  lines.some((line) => typescriptErrorRegex.test(line));
 
 export class TypeError extends Error {
   errors: Array<string>;
@@ -110,7 +110,7 @@ export default class TscProcess extends EventEmitter {
     // Emit the first compiling message to give fast feedback to the user
     this.emit('message', { type: 'compiling' });
 
-    tscWorker.stdout.on('data', buffer => {
+    tscWorker.stdout.on('data', (buffer) => {
       const lines = buffer.toString().split('\n');
 
       if (isErrorMessage(lines)) {
@@ -135,7 +135,7 @@ export default class TscProcess extends EventEmitter {
       }
     });
 
-    tscWorker.on('exit', code => {
+    tscWorker.on('exit', (code) => {
       throw new Error(`tsc exited with code ${code}`);
     });
   }

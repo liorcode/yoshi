@@ -7,13 +7,13 @@ const scripts = Scripts.setupProjectFromTemplate({
 
 describe.each(['prod', 'dev'] as const)(
   'transpile whitelisted external [%s]',
-  mode => {
+  (mode) => {
     it('integration', async () => {
       await scripts[mode](async () => {
         await page.goto(scripts.serverUrl);
         const result = await page.$eval(
           '#transpile-default-external',
-          elm => elm.textContent,
+          (elm) => elm.textContent,
         );
 
         expect(result).toBe('Wix style react.');

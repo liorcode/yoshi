@@ -6,11 +6,11 @@ const scripts = Scripts.setupProjectFromTemplate({
   projectType: 'typescript',
 });
 
-describe.each(['prod', 'dev'] as const)('less import external [%s]', mode => {
+describe.each(['prod', 'dev'] as const)('less import external [%s]', (mode) => {
   it('integration', async () => {
     await scripts[mode](async () => {
       await page.goto(scripts.serverUrl);
-      const className = await page.$eval('#less-import-external', elm =>
+      const className = await page.$eval('#less-import-external', (elm) =>
         elm.getAttribute('class'),
       );
 

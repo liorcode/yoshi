@@ -5,13 +5,13 @@ const scripts = Scripts.setupProjectFromTemplate({
   projectType: 'javascript',
 });
 
-describe.each(['prod'] as const)('optimize [%s]', mode => {
+describe.each(['prod'] as const)('optimize [%s]', (mode) => {
   describe('tree shaking', () => {
     it('removes unused exports', async () => {
       await scripts[mode](async () => {
         const logs: Array<string> = [];
 
-        page.on('console', msg => {
+        page.on('console', (msg) => {
           if (msg.type() === 'info') {
             logs.push(msg.text());
           }

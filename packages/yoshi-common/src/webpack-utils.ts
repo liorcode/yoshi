@@ -63,7 +63,7 @@ function overrideRules(
   rules: Array<webpack.Rule>,
   patch: (rule: webpack.Rule) => webpack.Rule,
 ): Array<webpack.Rule> {
-  return rules.map(ruleToPatch => {
+  return rules.map((ruleToPatch) => {
     let rule = patch(ruleToPatch);
     if (rule.rules) {
       rule = { ...rule, rules: overrideRules(rule.rules, patch) };
@@ -81,7 +81,7 @@ function overrideRules(
 
 function waitForCompilation(compiler: webpack.Compiler) {
   return new Promise((resolve, reject) => {
-    compiler.hooks.done.tap('promise', stats =>
+    compiler.hooks.done.tap('promise', (stats) =>
       stats.hasErrors() ? reject(stats) : resolve(stats),
     );
   });
@@ -154,7 +154,7 @@ function validateServerEntry({
   extensions: Array<string>;
   yoshiServer: boolean;
 }) {
-  const serverEntry = possibleServerEntries.find(entry => {
+  const serverEntry = possibleServerEntries.find((entry) => {
     return (
       globby.sync(`${entry}(${extensions.join('|')})`, {
         cwd: path.join(cwd, SRC_DIR),

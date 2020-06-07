@@ -5,13 +5,13 @@ const scripts = Scripts.setupProjectFromTemplate({
   projectType: 'javascript',
 });
 
-describe.each(['prod', 'dev'] as const)('graphql inclusion [%s]', mode => {
+describe.each(['prod', 'dev'] as const)('graphql inclusion [%s]', (mode) => {
   it('integration', async () => {
     await scripts[mode](async () => {
       await page.goto(scripts.serverUrl);
       const innerHTML = await page.$eval(
         '#graphql-inclusion',
-        elm => elm.innerHTML,
+        (elm) => elm.innerHTML,
       );
 
       expect(JSON.parse(innerHTML)).toMatchObject({ kind: 'Document' });

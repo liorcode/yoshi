@@ -41,13 +41,13 @@ export const createApp = ({
 }): Promise<{ appId: string }> => {
   return axios
     .post<{ appId: string }>(getUrl('apps'), { name })
-    .then(res => res.data);
+    .then((res) => res.data);
 };
 
 export const getApps = (): Promise<Array<{ appId: string }>> => {
   return axios
     .get<{ apps: Array<{ appId: string }> }>(getUrl('apps'))
-    .then(res => res.data.apps);
+    .then((res) => res.data.apps);
 };
 
 export const getApp = (appId: string): Promise<DevCenterApp> => {
@@ -80,7 +80,7 @@ export const createComponent = ({
         compData: data,
       },
     )
-    .then(res => ({
+    .then((res) => ({
       id: res.data.compId,
       type,
       name,

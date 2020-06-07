@@ -6,7 +6,7 @@ const scripts = Scripts.setupProjectFromTemplate({
   projectType: 'typescript',
 });
 
-describe.each(['prod', 'dev'] as const)('static assets [%s]', mode => {
+describe.each(['prod', 'dev'] as const)('static assets [%s]', (mode) => {
   it('serves static assets', async () => {
     await scripts[mode](async () => {
       expect(await request('http://localhost:3200/assets/hello.txt')).toBe(

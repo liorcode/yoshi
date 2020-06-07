@@ -7,7 +7,7 @@ const presetPath = require.resolve('../src/index.js');
 // load can validate the config
 require('yoshi-config');
 
-module.exports = async command => {
+module.exports = async (command) => {
   const appDirectory = fs.realpathSync(process.cwd());
   const action = require(`./commands/${command}`);
 

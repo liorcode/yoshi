@@ -6,10 +6,7 @@ import chalk from 'chalk';
 export default () => {
   const nvmrcPath = path.join(__dirname, '../.nvmrc');
 
-  const requiredVersion = fs
-    .readFileSync(nvmrcPath)
-    .toString()
-    .trim();
+  const requiredVersion = fs.readFileSync(nvmrcPath).toString().trim();
 
   const nodeVersion = process.version;
 

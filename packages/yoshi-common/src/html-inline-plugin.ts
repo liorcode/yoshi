@@ -30,7 +30,7 @@ class HtmlInlinePlugin implements webpack.Plugin {
       return null;
     }
 
-    if (!this.tests.some(test => scriptName.match(test))) {
+    if (!this.tests.some((test) => scriptName.match(test))) {
       return null;
     }
 
@@ -84,7 +84,7 @@ class HtmlInlinePlugin implements webpack.Plugin {
       publicPath += '/';
     }
 
-    compiler.hooks.compilation.tap('HtmlInlinePlugin', compilation => {
+    compiler.hooks.compilation.tap('HtmlInlinePlugin', (compilation) => {
       const tagFunction = (tag: HtmlWebpackPlugin.HtmlTagObject) =>
         this.getInlinedTag(publicPath, compilation.assets, tag);
 
@@ -93,7 +93,7 @@ class HtmlInlinePlugin implements webpack.Plugin {
         compilation,
       ) as HtmlWebpackPlugin.Hooks;
 
-      hooks.alterAssetTagGroups.tap('HtmlInlinePlugin', assets => {
+      hooks.alterAssetTagGroups.tap('HtmlInlinePlugin', (assets) => {
         assets.headTags = assets.headTags.map(tagFunction);
         assets.bodyTags = assets.bodyTags.map(tagFunction);
 

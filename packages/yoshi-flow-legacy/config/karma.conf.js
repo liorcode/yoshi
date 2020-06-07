@@ -22,7 +22,7 @@ const teamCityConfig = {
   reporters: ['teamcity'],
 };
 
-module.exports = config => {
+module.exports = (config) => {
   const configuration = inTeamCity()
     ? _.mergeWith(baseConfig, teamCityConfig, customizer)
     : baseConfig;

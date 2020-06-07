@@ -15,7 +15,7 @@ import {
 
 const join = (...dirs: Array<string>) => path.join(process.cwd(), ...dirs);
 
-const start: cliCommand = async function(argv, config) {
+const start: cliCommand = async function (argv, config) {
   const args = arg(
     {
       // Types

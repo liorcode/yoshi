@@ -6,7 +6,7 @@ const { insideTeamCity } = require('../../../test-helpers/env-variables');
 describe('Aggregator: Lint', () => {
   const test = tp.create();
 
-  afterEach(function() {
+  afterEach(function () {
     if (this.currentTest.state === 'failed') {
       test.logOutput();
     }

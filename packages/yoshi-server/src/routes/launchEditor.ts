@@ -1,7 +1,7 @@
 import launchEditor from 'react-dev-utils/launchEditor';
 import { route } from '..';
 
-export default route(async function() {
+export default route(async function () {
   launchEditor(
     '/' + this.req.query.file,
     parseInt(this.req.query.line as string, 10),

@@ -14,7 +14,7 @@ import verifyNodeVersion from '../verifyNodeVersion';
 // Cannot be `import` as it's not under TS root dir
 const pkg = require('../../package.json');
 
-process.on('unhandledRejection', error => {
+process.on('unhandledRejection', (error) => {
   throw error;
 });
 

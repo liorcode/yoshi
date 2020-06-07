@@ -34,7 +34,7 @@ Please remove the flags and use these default entry points:
   }
 
   const serverStartFile = serverStartFileOrder
-    .map(filePath => path.join(cwd, filePath))
+    .map((filePath) => path.join(cwd, filePath))
     .find(existsSync);
 
   if (!serverStartFile) {

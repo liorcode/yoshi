@@ -16,7 +16,7 @@ describe('test --jasmine', () => {
     test = tp.create(outsideTeamCity);
   });
 
-  afterEach(function() {
+  afterEach(function () {
     if (this.currentTest.state === 'failed') {
       test.logOutput();
     }

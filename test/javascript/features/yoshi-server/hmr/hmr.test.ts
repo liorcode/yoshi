@@ -7,7 +7,7 @@ const scripts = Scripts.setupProjectFromTemplate({
   projectType: 'yoshi-server-javascript',
 });
 
-describe.each(['dev'] as const)('yoshi-server route hmr [%s]', mode => {
+describe.each(['dev'] as const)('yoshi-server route hmr [%s]', (mode) => {
   const routeFilePath = path.join(scripts.testDirectory, 'src/routes/app.js');
   const originalContent = fs.readFileSync(routeFilePath, 'utf-8');
 
@@ -17,7 +17,7 @@ describe.each(['dev'] as const)('yoshi-server route hmr [%s]', mode => {
   it('route', async () => {
     await scripts[mode](async () => {
       await page.goto(`${scripts.serverUrl}/app`);
-      const title = await page.$eval('h1', elm => elm.innerHTML);
+      const title = await page.$eval('h1', (elm) => elm.innerHTML);
       expect(title).toBe('hello from yoshi server Yaniv');
 
       const editedContent = originalContent.replace(
@@ -29,39 +29,42 @@ describe.each(['dev'] as const)('yoshi-server route hmr [%s]', mode => {
 
       await page.waitForNavigation();
 
-      const newTitle = await page.$eval('h1', elm => elm.innerHTML);
+      const newTitle = await page.$eval('h1', (elm) => elm.innerHTML);
       expect(newTitle).toBe('hello from hmr! Yaniv');
     });
   });
 });
 
-describe.each(['dev'] as const)('yoshi-server api function hmr [%s]', mode => {
-  const apiFilePath = path.join(
-    scripts.testDirectory,
-    'src/api/greeting.api.js',
-  );
-  const originalContent = fs.readFileSync(apiFilePath, 'utf-8');
+describe.each(['dev'] as const)(
+  'yoshi-server api function hmr [%s]',
+  (mode) => {
+    const apiFilePath = path.join(
+      scripts.testDirectory,
+      'src/api/greeting.api.js',
+    );
+    const originalContent = fs.readFileSync(apiFilePath, 'utf-8');
 
-  afterEach(() => {
-    fs.writeFileSync(apiFilePath, originalContent);
-  });
-  it('api function', async () => {
-    await scripts[mode](async () => {
-      await page.goto(`${scripts.serverUrl}/app`);
-      const title = await page.$eval('h1', elm => elm.innerHTML);
-      expect(title).toBe('hello from yoshi server Yaniv');
-
-      const editedContent = originalContent.replace(
-        'greeting: name',
-        "greeting: name + ' with HMR!'",
-      );
-
-      fs.writeFileSync(apiFilePath, editedContent);
-
-      await page.waitForNavigation();
-
-      const newTitle = await page.$eval('h1', elm => elm.innerHTML);
-      expect(newTitle).toBe('hello from yoshi server Yaniv with HMR!');
+    afterEach(() => {
+      fs.writeFileSync(apiFilePath, originalContent);
     });
-  });
-});
+    it('api function', async () => {
+      await scripts[mode](async () => {
+        await page.goto(`${scripts.serverUrl}/app`);
+        const title = await page.$eval('h1', (elm) => elm.innerHTML);
+        expect(title).toBe('hello from yoshi server Yaniv');
+
+        const editedContent = originalContent.replace(
+          'greeting: name',
+          "greeting: name + ' with HMR!'",
+        );
+
+        fs.writeFileSync(apiFilePath, editedContent);
+
+        await page.waitForNavigation();
+
+        const newTitle = await page.$eval('h1', (elm) => elm.innerHTML);
+        expect(newTitle).toBe('hello from yoshi server Yaniv with HMR!');
+      });
+    });
+  },
+);

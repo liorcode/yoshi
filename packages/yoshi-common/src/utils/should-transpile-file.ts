@@ -23,7 +23,7 @@ export default (fileName: string): boolean => {
   };
 
   const externalRegexList = config.externalUnprocessedModules.map(
-    m => new RegExp(`node_modules/${m}`),
+    (m) => new RegExp(`node_modules/${m}`),
   );
 
   const isFlowEditorEntryPoint = (filePath: string) => {
@@ -31,7 +31,7 @@ export default (fileName: string): boolean => {
   };
 
   return (
-    externalRegexList.some(regex => regex.test(fileName)) ||
+    externalRegexList.some((regex) => regex.test(fileName)) ||
     allSourcesButExternalModules(fileName) ||
     isWixStyleReactSource(fileName) ||
     isFlowEditorEntryPoint(fileName) ||

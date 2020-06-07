@@ -33,7 +33,7 @@ if (!process.env.WALLABY_NODE_PATH && process.platform !== 'win32') {
   }
 }
 
-module.exports = function(wallaby) {
+module.exports = function (wallaby) {
   process.env.NODE_PATH += `:${require('path').join(
     wallaby.localProjectDir,
     'node_modules',

@@ -2,8 +2,8 @@ const path = require('path');
 const glob = require('glob');
 const { isPlainObject, isString } = require('lodash');
 
-module.exports.logStats = compiler => {
-  compiler.plugin('done', stats => {
+module.exports.logStats = (compiler) => {
+  compiler.plugin('done', (stats) => {
     logIfAny(
       stats.toString({
         colors: true,
@@ -24,12 +24,12 @@ module.exports.logStats = compiler => {
   return compiler;
 };
 
-const readDir = patterns =>
+const readDir = (patterns) =>
   []
     .concat(patterns)
     .reduce((acc, pattern) => acc.concat(glob.sync(pattern)), []);
 
-const exists = patterns => !!readDir(patterns).length;
+const exists = (patterns) => !!readDir(patterns).length;
 
 module.exports.shouldRunWebpack = (
   webpackConfig,
@@ -40,7 +40,7 @@ module.exports.shouldRunWebpack = (
   return configuredEntry || exists(`${defaultEntryPath}.{js,jsx,ts,tsx}`);
 };
 
-const normalizeEntries = entries => {
+const normalizeEntries = (entries) => {
   if (isString(entries)) {
     return [entries];
   } else if (isPlainObject(entries)) {

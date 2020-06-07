@@ -96,7 +96,7 @@ export default class Scripts {
     // Copy the specific feature template, with override
     fs.copySync(templateDir, featureDir, {
       overwrite: true,
-      filter: file => !file.includes('.test.js'),
+      filter: (file) => !file.includes('.test.js'),
     });
 
     // Process tsconfig template for dynamic content
@@ -181,7 +181,7 @@ export default class Scripts {
     });
 
     startProcess.stdout &&
-      startProcess.stdout.on('data', buffer => {
+      startProcess.stdout.on('data', (buffer) => {
         startProcessOutput += buffer.toString();
         if (this.verbose) {
           console.log(buffer.toString());
@@ -189,7 +189,7 @@ export default class Scripts {
       });
 
     startProcess.stderr &&
-      startProcess.stderr.on('data', buffer => {
+      startProcess.stderr.on('data', (buffer) => {
         startProcessOutput += buffer.toString();
         if (this.verbose) {
           console.log(buffer.toString());
@@ -247,7 +247,7 @@ export default class Scripts {
     });
 
     buildProcess.stdout &&
-      buildProcess.stdout.on('data', buffer => {
+      buildProcess.stdout.on('data', (buffer) => {
         buildProcessOutput += buffer.toString();
         if (this.verbose) {
           console.log(buffer.toString());
@@ -255,7 +255,7 @@ export default class Scripts {
       });
 
     buildProcess.stderr &&
-      buildProcess.stderr.on('data', buffer => {
+      buildProcess.stderr.on('data', (buffer) => {
         buildProcessOutput += buffer.toString();
         if (this.verbose) {
           console.log(buffer.toString());
@@ -372,7 +372,7 @@ export default class Scripts {
     let serverOutput = '';
 
     appServerProcess.all &&
-      appServerProcess.all.on('data', d => {
+      appServerProcess.all.on('data', (d) => {
         serverOutput += d.toString();
       });
 

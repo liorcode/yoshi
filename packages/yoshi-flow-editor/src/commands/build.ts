@@ -25,7 +25,7 @@ import { generateEditorHTMLFiles } from './htmlGenerator';
 
 const join = (...dirs: Array<string>) => path.join(process.cwd(), ...dirs);
 
-const build: cliCommand = async function(argv, config, model) {
+const build: cliCommand = async function (argv, config, model) {
   const args = arg(
     {
       // Types

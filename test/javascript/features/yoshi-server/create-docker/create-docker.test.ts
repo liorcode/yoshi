@@ -7,7 +7,7 @@ const scripts = Scripts.setupProjectFromTemplate({
   projectType: 'yoshi-server-javascript',
 });
 
-describe.each(['prod'] as const)('docker [%s]', mode => {
+describe.each(['prod'] as const)('docker [%s]', (mode) => {
   it('should create a docker file', async () => {
     await scripts[mode](async () => {
       const dockerContent = fs.readFileSync(

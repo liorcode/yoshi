@@ -16,12 +16,12 @@ describe('monorepo', () => {
     stopServers = await monorepoServe({ cwd: monorepoRoot });
 
     await page.goto('http://localhost:3000');
-    const firstAppHtml = await page.$eval('#name', elm => elm.textContent);
+    const firstAppHtml = await page.$eval('#name', (elm) => elm.textContent);
 
     expect(firstAppHtml).toEqual('hello from app!');
 
     await page.goto('http://localhost:4000');
-    const secondAppHtml = await page.$eval('#name', elm => elm.textContent);
+    const secondAppHtml = await page.$eval('#name', (elm) => elm.textContent);
 
     expect(secondAppHtml).toEqual('hello from app-b!');
   });

@@ -8,7 +8,7 @@ const scripts = Scripts.setupProjectFromTemplate({
   projectType: 'javascript',
 });
 
-describe.each(['analyze'] as const)('analyze [%s]', mode => {
+describe.each(['analyze'] as const)('analyze [%s]', (mode) => {
   it('integration', async () => {
     await scripts[mode](async () => {
       await waitForPort(8888, { timeout: 20000 });

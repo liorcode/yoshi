@@ -3,7 +3,7 @@ import { ConcatSource } from 'webpack-sources';
 
 export default class implements webpack.Plugin {
   apply(compiler: webpack.Compiler) {
-    compiler.hooks.thisCompilation.tap('ExportDefaultPlugin', compilation => {
+    compiler.hooks.thisCompilation.tap('ExportDefaultPlugin', (compilation) => {
       const { mainTemplate, chunkTemplate } = compilation;
 
       const onRenderWithEntry = (source: string) => {
@@ -23,7 +23,7 @@ export default class implements webpack.Plugin {
       }
 
       // @ts-ignore
-      mainTemplate.hooks.hash.tap('ExportDefaultPlugin', hash => {
+      mainTemplate.hooks.hash.tap('ExportDefaultPlugin', (hash) => {
         hash.update('export property');
         // @ts-ignore
         hash.update(`${this.property}`);

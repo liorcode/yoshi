@@ -86,7 +86,7 @@ export const getListOfEntries = (entry: any) => {
   if (typeof entry === 'string') {
     return [path.resolve('src', entry)];
   } else if (typeof entry === 'object') {
-    return Object.keys(entry).map(name => {
+    return Object.keys(entry).map((name) => {
       const file = entry[name];
       return path.resolve('src', file);
     });
@@ -225,7 +225,7 @@ export const getProjectCDNBasePath = (useUnversionedBaseUrl: boolean) => {
 };
 
 export const killSpawnProcessAndHisChildren = (child: ChildProcess) => {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     if (!child) {
       return resolve();
     }
@@ -234,7 +234,7 @@ export const killSpawnProcessAndHisChildren = (child: ChildProcess) => {
 
     psTree(pid, (err, children) => {
       [pid]
-        .concat(children.map(p => parseInt(p.PID, 10)))
+        .concat(children.map((p) => parseInt(p.PID, 10)))
         .forEach((tpid: number) => {
           try {
             process.kill(tpid, 'SIGKILL');

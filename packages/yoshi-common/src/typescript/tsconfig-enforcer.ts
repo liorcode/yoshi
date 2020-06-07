@@ -87,7 +87,7 @@ export const enforceTsconfig = ({ cwd }: { cwd: string }) => {
 
   const messages = [];
 
-  Object.keys(compilerOptions).forEach(option => {
+  Object.keys(compilerOptions).forEach((option) => {
     // @ts-ignore
     const { value, suggested, reason }: CustomTSConfigOption = compilerOptions[
       option
@@ -137,7 +137,7 @@ export const enforceTsconfig = ({ cwd }: { cwd: string }) => {
         'file:',
       ),
     );
-    messages.forEach(message => {
+    messages.forEach((message) => {
       console.warn('  - ' + message);
     });
     console.warn();

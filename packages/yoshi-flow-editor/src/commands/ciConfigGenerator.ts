@@ -10,12 +10,12 @@ function generateWidgetsUrls(
   components: Array<ComponentModel>,
   artifactId: string,
 ): Array<string> {
-  const controllerConfig = components.map(component =>
+  const controllerConfig = components.map((component) =>
     generateWidgetControllerUrl(component, artifactId),
   );
 
   return controllerConfig.concat(
-    components.map(component =>
+    components.map((component) =>
       generateWidgetComponentUrl(component, artifactId),
     ),
   );

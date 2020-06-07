@@ -13,10 +13,7 @@ const setNodeVersion = (version: string) => {
 };
 
 const readNvmrc = (dir: string) =>
-  fs
-    .readFileSync(path.join(dir, '.nvmrc'))
-    .toString()
-    .trim();
+  fs.readFileSync(path.join(dir, '.nvmrc')).toString().trim();
 
 const nvmrc = readNvmrc(path.resolve(__dirname, '..'));
 

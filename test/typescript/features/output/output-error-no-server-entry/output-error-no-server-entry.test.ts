@@ -14,7 +14,7 @@ const originalServerFilePath = path.join(
 
 describe.each(['prod'] as const)(
   'fails when server entry does not exist [%s]',
-  mode => {
+  (mode) => {
     it('integration', async () => {
       try {
         await fs.remove(originalServerFilePath);

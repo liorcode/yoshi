@@ -74,7 +74,7 @@ const protractor = async (debugPort, debugBrkPort) => {
         const protractorProcess = crossSpawn('node', protractorArgs, {
           stdio: 'inherit',
         });
-        protractorProcess.on('exit', code => {
+        protractorProcess.on('exit', (code) => {
           code === 0
             ? resolve()
             : reject(`protractor failed with status code "${code}"`);

@@ -22,7 +22,7 @@ function ensureServerIsNotRunning(newPort) {
   let startServerPromise = Promise.resolve(newPort);
   if (server) {
     server.kill('SIGTERM');
-    startServerPromise = new Promise(resolve => {
+    startServerPromise = new Promise((resolve) => {
       // Wait for the server to really be killed (Otherwise, sometimes, debugging port is not released)
       const intervalKey = setInterval(() => {
         if (server.killed) {
@@ -42,7 +42,7 @@ function initializeServerStartDelegate({
   debugBrkPort,
   log,
 }) {
-  return async newPort => {
+  return async (newPort) => {
     const defaultEnv = {
       NODE_ENV: 'development',
       DEBUG: 'wix:*,wnp:*',
@@ -74,7 +74,7 @@ function initializeServerStartDelegate({
     }
 
     server = spawn('node', runScripts, { env });
-    [server.stdout, server.stderr].forEach(stream => stream.on('data', log));
+    [server.stdout, server.stderr].forEach((stream) => stream.on('data', log));
 
     const displayErrors = debounce(() => {
       console.log(
@@ -83,7 +83,7 @@ function initializeServerStartDelegate({
       );
     }, 500);
 
-    server.stderr.on('data', buffer => {
+    server.stderr.on('data', (buffer) => {
       if (buffer.toString().includes('wix:error')) {
         displayErrors();
       }
@@ -106,8 +106,9 @@ function initializeServerStartDelegate({
 
     clearTimeout(waitingLogTimeout);
 
-    const localUrlForBrowser = `http://localhost:${env.PORT}${env.MOUNT_POINT ||
-      '/'}`;
+    const localUrlForBrowser = `http://localhost:${env.PORT}${
+      env.MOUNT_POINT || '/'
+    }`;
 
     console.log(
       'Application is now available at ',
@@ -133,7 +134,7 @@ function initializeServerStartDelegate({
   };
 }
 
-const showNoServerWarning = entryPoint => {
+const showNoServerWarning = (entryPoint) => {
   console.log(
     boxen(
       `Yoshi could not find a server file at:\n\n` +

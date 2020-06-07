@@ -19,7 +19,7 @@ const { environment } = require('./environment');
     'SIGUSR2',
   ];
 
-  signals.forEach(ev => process.on(ev, stopTestKit));
+  signals.forEach((ev) => process.on(ev, stopTestKit));
 
   process.on('uncaughtException', stopTestKit);
   process.on('exit', stopTestKit);

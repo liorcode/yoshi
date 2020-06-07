@@ -49,7 +49,7 @@ describe('Aggregator: Build', () => {
             'src/a.js': 'export default "I\'m a module!";',
             'app/b.jsx': 'const b = 2;',
             'src/nativeModules.js': ['fs', 'net', 'tls']
-              .map(moduleName => `require(${moduleName})`)
+              .map((moduleName) => `require(${moduleName})`)
               .join(';'),
             'src/entry.js': 'export default "I\'m a module!";',
             'src/dep.js': `module.exports = function(a){return a + 1;};`,
@@ -117,7 +117,7 @@ describe('Aggregator: Build', () => {
         .execute('build', ['--source-map']);
     });
 
-    afterEach(function() {
+    afterEach(function () {
       if (this.currentTest.state === 'failed') {
         test.logOutput();
       }
@@ -403,7 +403,7 @@ describe('Aggregator: Build', () => {
       });
     });
 
-    describe('Externalize relative lodash (lodash/map -> lodash.map)', function() {
+    describe('Externalize relative lodash (lodash/map -> lodash.map)', function () {
       it('should be disabled when features.externalizeRelativeLodash = false', () => {
         expect(test.content('dist/statics/second.bundle.js')).not.to.contain(
           ').map',
@@ -411,7 +411,7 @@ describe('Aggregator: Build', () => {
       });
     });
 
-    describe('Using angular ngInject annotations for babel project', function() {
+    describe('Using angular ngInject annotations for babel project', function () {
       it('are not executed when project is not Angular and EcmaScript', () => {
         expect(test.content('dist/src/angular-module.js')).not.to.contain(
           $inject,
@@ -438,7 +438,7 @@ describe('Aggregator: Build', () => {
         .execute('build');
     });
 
-    afterEach(function() {
+    afterEach(function () {
       if (this.currentTest.state === 'failed') {
         test.logOutput();
       }
@@ -486,7 +486,7 @@ describe('Aggregator: Build', () => {
         .execute('build');
     });
 
-    afterEach(function() {
+    afterEach(function () {
       if (this.currentTest.state === 'failed') {
         test.logOutput();
       }
@@ -548,7 +548,7 @@ describe('Aggregator: Build', () => {
         .execute('build');
     });
 
-    afterEach(function() {
+    afterEach(function () {
       if (this.currentTest.state === 'failed') {
         test.logOutput();
       }
@@ -645,7 +645,7 @@ describe('Aggregator: Build', () => {
         .execute('build', [], insideTeamCity);
     });
 
-    afterEach(function() {
+    afterEach(function () {
       if (this.currentTest.state === 'failed') {
         test.logOutput();
       }
@@ -699,7 +699,7 @@ describe('Aggregator: Build', () => {
       );
     });
 
-    it('should generate css modules on regular bundle with long name and hash', function() {
+    it('should generate css modules on regular bundle with long name and hash', function () {
       const hashA = generateCssModulesPattern({
         name: 'a',
         path: 'styles/style.scss',
@@ -771,7 +771,7 @@ describe('Aggregator: Build', () => {
         .execute('build', [], { NODE_ENV: 'PRODUCTION' });
     });
 
-    afterEach(function() {
+    afterEach(function () {
       if (this.currentTest.state === 'failed') {
         test.logOutput();
       }
@@ -836,7 +836,7 @@ describe('Aggregator: Build', () => {
         .execute('build', [], { NODE_ENV: 'PRODUCTION' });
     });
 
-    afterEach(function() {
+    afterEach(function () {
       if (this.currentTest.state === 'failed') {
         test.logOutput();
       }
@@ -901,9 +901,9 @@ describe('Aggregator: Build', () => {
     });
 
     it('should serve webpack-bundle-analyzer server', () => {
-      return checkServerIsServing({ port: analyzerServerPort }).then(content =>
-        expect(content).to.contain(analyzerContentPart),
-      );
+      return checkServerIsServing({
+        port: analyzerServerPort,
+      }).then((content) => expect(content).to.contain(analyzerContentPart));
     });
   });
 
@@ -942,7 +942,7 @@ describe('Aggregator: Build', () => {
       test = tp.create();
     });
 
-    afterEach(function() {
+    afterEach(function () {
       if (this.currentTest.state === 'failed') {
         test.logOutput();
       }
@@ -1165,7 +1165,7 @@ describe('Aggregator: Build', () => {
     file = '',
   } = {}) {
     return retryPromise({ backoff, max }, () =>
-      fetch(`http://localhost:${port}/${file}`).then(res => res.text()),
+      fetch(`http://localhost:${port}/${file}`).then((res) => res.text()),
     );
   }
 });

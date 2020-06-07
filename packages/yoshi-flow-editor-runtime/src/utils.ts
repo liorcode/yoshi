@@ -20,7 +20,7 @@ export * from './createInstances';
 export * from './fetchExperiments';
 
 export const loadScript = (scriptSrc: string) =>
-  new Promise(resolve => {
+  new Promise((resolve) => {
     const script = document.createElement('script');
     script.src = scriptSrc;
     script.async = false;

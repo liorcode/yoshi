@@ -1,6 +1,6 @@
 function withoutKeys(obj, keys) {
   return Object.keys(obj)
-    .filter(key => !keys.includes(key))
+    .filter((key) => !keys.includes(key))
     .reduce((prev, key) => Object.assign({}, prev, { [key]: obj[key] }), {});
 }
 
@@ -30,7 +30,7 @@ const tsOnlyRules = [
   'restrict-plus-operands',
 ];
 
-module.exports = config => {
+module.exports = (config) => {
   return Object.assign({}, config, {
     jsRules: withoutKeys(config.rules, tsOnlyRules),
   });

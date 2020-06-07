@@ -7,7 +7,7 @@ import { BUILD_DIR } from 'yoshi-config/build/paths';
 import { PackageGraphNode } from './load-package-graph';
 
 export default async function build(pkgs: Array<PackageGraphNode>) {
-  const pkgsLocations = pkgs.map(pkg => pkg.location);
+  const pkgsLocations = pkgs.map((pkg) => pkg.location);
 
   try {
     await execa(`npx tsc -b ${pkgsLocations.join(' ')}`, {
@@ -21,13 +21,13 @@ export default async function build(pkgs: Array<PackageGraphNode>) {
     process.exit(1);
   }
 
-  pkgs.forEach(pkg => {
+  pkgs.forEach((pkg) => {
     const assets = globby.sync('src/**/*', {
       cwd: pkg.location,
       ignore: ['**/*.js', '**/*.ts', '**/*.tsx', '**/*.json', '**/*.snap'],
     });
 
-    assets.forEach(assetPath => {
+    assets.forEach((assetPath) => {
       const dirname = path.join(pkg.location, BUILD_DIR, assetPath);
 
       fs.ensureDirSync(path.dirname(dirname));

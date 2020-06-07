@@ -2,7 +2,7 @@
 import { loader } from 'webpack';
 import { transform } from './utils';
 
-const serverFunctionLoader: loader.Loader = function(source) {
+const serverFunctionLoader: loader.Loader = function (source) {
   return transform(source as string, this.resourcePath);
 };
 

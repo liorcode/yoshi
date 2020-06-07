@@ -18,7 +18,7 @@ const setupPath = path.join(process.cwd(), 'test', `setup.${ext}`);
 if (projectConfig.yoshiServer) {
   addHook(transform, {
     exts: ['.js'],
-    matcher: filename => filename.endsWith('.api.js'),
+    matcher: (filename) => filename.endsWith('.api.js'),
   });
 }
 

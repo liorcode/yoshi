@@ -15,10 +15,10 @@ async function verifyDependenciesVersions() {
   ];
 
   const outdatedPackages = relatedPackages
-    .map(packageName => path.join(packageName, 'package.json'))
-    .map(packageJsonPath => resolveCwd.silent(packageJsonPath))
+    .map((packageName) => path.join(packageName, 'package.json'))
+    .map((packageJsonPath) => resolveCwd.silent(packageJsonPath))
     .filter(isTruthy)
-    .map(packageJsonFullPath => {
+    .map((packageJsonFullPath) => {
       const pkg = require(packageJsonFullPath);
 
       return {
@@ -64,7 +64,7 @@ async function verifyDevDependencies() {
   const { dependencies } = readPkg.sync({ cwd: process.cwd() });
   if (dependencies) {
     const depNames = Object.keys(dependencies);
-    devOnlyDependencies.forEach(devOnlyDep => {
+    devOnlyDependencies.forEach((devOnlyDep) => {
       if (depNames.includes(devOnlyDep)) {
         console.warn(
           chalk.yellow(

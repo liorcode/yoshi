@@ -5,12 +5,12 @@ const { writeFileSync } = require('fs');
 
 module.exports = {
   takePort(port) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       const server = express().listen(port, () => resolve(server));
     });
   },
   takePortFromAnotherProcess(cwd, port) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       const toExecute = `
           const http = require('http');
           const server = http.createServer();

@@ -69,7 +69,7 @@ try {
 } catch (e) {}
 
 module.exports = runner.command(
-  async tasks => {
+  async (tasks) => {
     const { sass, less, copy, clean, typescript } = tasks;
 
     const wixCdn = tasks[require.resolve('../tasks/cdn')];
@@ -100,9 +100,9 @@ module.exports = runner.command(
       copy(
         {
           pattern: [
-            ...globs.baseDirs.map(dir => `${dir}/assets/**/*`),
-            ...globs.baseDirs.map(dir => `${dir}/**/*.{ejs,html,vm}`),
-            ...globs.baseDirs.map(dir => `${dir}/**/*.{css,json,d.ts}`),
+            ...globs.baseDirs.map((dir) => `${dir}/assets/**/*`),
+            ...globs.baseDirs.map((dir) => `${dir}/**/*.{ejs,html,vm}`),
+            ...globs.baseDirs.map((dir) => `${dir}/**/*.{css,json,d.ts}`),
           ],
           target: 'dist',
         },
@@ -111,9 +111,9 @@ module.exports = runner.command(
       copy(
         {
           pattern: [
-            ...globs.assetsLegacyBaseDirs.map(dir => `${dir}/assets/**/*`),
+            ...globs.assetsLegacyBaseDirs.map((dir) => `${dir}/assets/**/*`),
             ...globs.assetsLegacyBaseDirs.map(
-              dir => `${dir}/**/*.{ejs,html,vm}`,
+              (dir) => `${dir}/**/*.{ejs,html,vm}`,
             ),
           ],
           target: 'dist/statics',
@@ -178,22 +178,24 @@ module.exports = runner.command(
     watch(
       {
         pattern: [
-          ...globs.baseDirs.map(dir => `${dir}/assets/**/*`),
-          ...globs.baseDirs.map(dir => `${dir}/**/*.{ejs,html,vm}`),
-          ...globs.baseDirs.map(dir => `${dir}/**/*.{css,json,d.ts}`),
+          ...globs.baseDirs.map((dir) => `${dir}/assets/**/*`),
+          ...globs.baseDirs.map((dir) => `${dir}/**/*.{ejs,html,vm}`),
+          ...globs.baseDirs.map((dir) => `${dir}/**/*.{css,json,d.ts}`),
         ],
       },
-      changed => copy({ pattern: changed, target: 'dist' }),
+      (changed) => copy({ pattern: changed, target: 'dist' }),
     );
 
     watch(
       {
         pattern: [
-          ...globs.assetsLegacyBaseDirs.map(dir => `${dir}/assets/**/*`),
-          ...globs.assetsLegacyBaseDirs.map(dir => `${dir}/**/*.{ejs,html,vm}`),
+          ...globs.assetsLegacyBaseDirs.map((dir) => `${dir}/assets/**/*`),
+          ...globs.assetsLegacyBaseDirs.map(
+            (dir) => `${dir}/**/*.{ejs,html,vm}`,
+          ),
         ],
       },
-      changed => copy({ pattern: changed, target: 'dist/statics' }),
+      (changed) => copy({ pattern: changed, target: 'dist/statics' }),
     );
 
     watch(
@@ -201,7 +203,7 @@ module.exports = runner.command(
         pattern: [`assets/**/*`, `**/*.{ejs,html,vm}`],
         cwd: path.resolve(globs.assetsBase),
       },
-      changed =>
+      (changed) =>
         copy({
           pattern: changed,
           target: 'dist/statics',
@@ -211,7 +213,7 @@ module.exports = runner.command(
 
     function transpileCss() {
       if (shouldRunSass()) {
-        watch({ pattern: globs.scss }, changed =>
+        watch({ pattern: globs.scss }, (changed) =>
           sass({
             pattern: changed,
             target: 'dist',
@@ -223,7 +225,7 @@ module.exports = runner.command(
       }
 
       if (shouldRunLess()) {
-        watch({ pattern: globs.less }, changed =>
+        watch({ pattern: globs.less }, (changed) =>
           less({
             pattern: changed,
             target: 'dist',
@@ -252,7 +254,7 @@ module.exports = runner.command(
               target: 'dist',
               paths: ['.', 'node_modules'],
             }),
-      ].filter(a => a);
+      ].filter((a) => a);
     }
 
     async function transpileJavascriptAndRunServer() {
@@ -280,7 +282,7 @@ module.exports = runner.command(
         target: 'dist',
       };
 
-      watch({ pattern: globs.babel }, async changed => {
+      watch({ pattern: globs.babel }, async (changed) => {
         await babel(
           {
             pattern: changed,

@@ -59,9 +59,9 @@ export const getModuleEntry = (model: FlowBMModel): Entry => ({
 });
 
 const renderModule = (model: FlowBMModel) => {
-  model.pages.forEach(page => renderPage(page, model));
+  model.pages.forEach((page) => renderPage(page, model));
 
-  model.exportedComponents.forEach(component =>
+  model.exportedComponents.forEach((component) =>
     renderExportedComponent(component, model),
   );
 

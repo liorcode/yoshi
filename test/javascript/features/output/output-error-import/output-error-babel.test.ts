@@ -7,7 +7,7 @@ const scripts = Scripts.setupProjectFromTemplate({
 
 describe.each(['prod'] as const)(
   'fails with case sensitive imports [%s]',
-  mode => {
+  (mode) => {
     it('integration', async () => {
       try {
         await scripts[mode]();

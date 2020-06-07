@@ -17,11 +17,11 @@ export default (arg: string | Array<string>): void => {
     urlsList = arg;
   } else {
     if (arg.indexOf(',') !== -1) {
-      urlsList = arg.split(',').map(url => url.trim());
+      urlsList = arg.split(',').map((url) => url.trim());
     } else {
       urlsList = [arg];
     }
   }
 
-  urlsList.forEach(url => openBrowser(url));
+  urlsList.forEach((url) => openBrowser(url));
 };

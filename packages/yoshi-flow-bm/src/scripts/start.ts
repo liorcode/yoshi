@@ -17,7 +17,7 @@ import getStartUrl from '../start-url';
 
 const join = (...dirs: Array<string>) => path.join(process.cwd(), ...dirs);
 
-const start: CliCommand = async function(argv, yoshiConfig) {
+const start: CliCommand = async function (argv, yoshiConfig) {
   const args = arg(
     {
       // Types
@@ -85,7 +85,7 @@ const start: CliCommand = async function(argv, yoshiConfig) {
     fs.emptyDir(join(TARGET_DIR)),
   ]);
 
-  watchFlowBMModel(model => {
+  watchFlowBMModel((model) => {
     renderModule(model);
     renderModuleConfig(model);
   });

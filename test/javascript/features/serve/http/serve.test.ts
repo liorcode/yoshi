@@ -11,7 +11,7 @@ describe('Yoshi, serve', () => {
 
     await scripts.serve(
       () => Promise.resolve(),
-      e => {
+      (e) => {
         expect(e.message).toMatch(
           'dist/statics directory is empty. Run the build before running serve',
         );
@@ -25,7 +25,7 @@ describe('Yoshi, serve', () => {
     await scripts.serve(async () => {
       await page.goto(scripts.serverUrl);
 
-      const result = await page.$eval('#node-env', elm => elm.textContent);
+      const result = await page.$eval('#node-env', (elm) => elm.textContent);
 
       expect(result).toEqual('production');
     });

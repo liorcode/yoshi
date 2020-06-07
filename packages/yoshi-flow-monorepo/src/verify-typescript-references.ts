@@ -16,7 +16,7 @@ export default async function verifyTypeScriptReferences({
         .map(([depName]) => {
           return path.relative(pkg.location, graph.get(depName)!.location);
         })
-        .map(relativePath => ({ path: relativePath }));
+        .map((relativePath) => ({ path: relativePath }));
 
       const clonedTsconfig = { ...tsconfig, references };
       // Don't write empty references

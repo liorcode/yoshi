@@ -19,8 +19,8 @@ const focusProjects = process.env.FOCUS_PROJECTS;
 verifyRegistry();
 
 // add `${template}-typescript` to support legacy filter by title
-const templatesWithTitles = flatMap(templates, templateDefinition => {
-  return templateDefinition.language.map(language => {
+const templatesWithTitles = flatMap(templates, (templateDefinition) => {
+  return templateDefinition.language.map((language) => {
     return {
       ...templateDefinition,
       title: `${templateDefinition.name}-${language}`,
@@ -32,7 +32,7 @@ const filteredTemplates = templatesWithTitles.filter(({ title }) =>
   !focusProjects ? true : focusProjects.split(',').includes(title),
 );
 
-const mockAppData = data => {
+const mockAppData = (data) => {
   mock('../src/runPrompt', { default: async () => data });
 };
 
@@ -77,7 +77,7 @@ if (filteredTemplates.length === 0) {
   console.log('try to use one for the following:');
   console.log();
   console.log(
-    templatesWithTitles.map(p => `> ${chalk.magenta(p.title)}`).join('\n'),
+    templatesWithTitles.map((p) => `> ${chalk.magenta(p.title)}`).join('\n'),
   );
   console.log();
   process.exit(1);
@@ -86,7 +86,7 @@ if (filteredTemplates.length === 0) {
 console.log('Running e2e tests for the following templates:\n');
 filteredTemplates.forEach(({ title }) => console.log(`> ${chalk.cyan(title)}`));
 
-const testTemplate = mockedAnswers => {
+const testTemplate = (mockedAnswers) => {
   describe(mockedAnswers.getTitle(), () => {
     const testDirectory = `${tempy.directory()}/${mockedAnswers.projectName}`;
     fs.mkdirSync(testDirectory);
@@ -196,7 +196,7 @@ describe('create-yoshi-app + yoshi e2e tests', () => {
 
   filteredTemplates
     .map(
-      templateDefinition =>
+      (templateDefinition) =>
         new TemplateModel({
           projectName: `test-${templateDefinition.title}`,
           templateDefinition,

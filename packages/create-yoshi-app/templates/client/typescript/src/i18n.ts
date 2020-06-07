@@ -22,7 +22,7 @@ export default function i18n(locale: string) {
           .then((translation: Record<string, string>) =>
             callback(null, translation),
           )
-          .catch(error => callback(error));
+          .catch((error) => callback(error));
       },
     })
     .init({

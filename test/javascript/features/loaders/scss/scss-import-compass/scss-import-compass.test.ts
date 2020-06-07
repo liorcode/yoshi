@@ -6,11 +6,11 @@ const scripts = Scripts.setupProjectFromTemplate({
   projectType: 'javascript',
 });
 
-describe.each(['prod', 'dev'] as const)('scss import compass [%s]', mode => {
+describe.each(['prod', 'dev'] as const)('scss import compass [%s]', (mode) => {
   it('integration', async () => {
     await scripts[mode](async () => {
       await page.goto(scripts.serverUrl);
-      const className = await page.$eval('#scss-import-compass', elm =>
+      const className = await page.$eval('#scss-import-compass', (elm) =>
         elm.getAttribute('class'),
       );
 

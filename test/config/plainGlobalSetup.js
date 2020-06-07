@@ -5,6 +5,6 @@ global.scripts = new Scripts({
   testDirectory: process.env.TEST_DIRECTORY,
 });
 
-module.exports = async globalConfig => {
+module.exports = async (globalConfig) => {
   await setupPuppeteer(globalConfig);
 };

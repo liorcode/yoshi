@@ -40,14 +40,14 @@ export const symlinkModules = (repoDirectory: string) => {
     }
   });
 
-  fs.readdirSync(yoshiNodeModulesDir).forEach(nodeModule => {
+  fs.readdirSync(yoshiNodeModulesDir).forEach((nodeModule) => {
     // There is a clash between devDependency @types of yoshi and the @types
     // That we install in generated project
     // This happens only because we are symlinking everything (include the dev depenencies)
     // This strategy only symlinks that things that our direct module requires
     if (nodeModule === '@types') {
       fs.readdirSync(path.join(yoshiNodeModulesDir, nodeModule)).forEach(
-        typesModule => {
+        (typesModule) => {
           if (!typesToSymlink.includes(typesModule)) {
             return;
           }
@@ -81,7 +81,7 @@ export const symlinkModules = (repoDirectory: string) => {
       path.join(packageDir, 'package.json'),
     );
 
-    Object.keys(bins).forEach(bin =>
+    Object.keys(bins).forEach((bin) =>
       fs.ensureSymlinkSync(
         path.join(packageDir, bins[bin]),
         path.join(repoDirectory, `node_modules/.bin/${bin}`),

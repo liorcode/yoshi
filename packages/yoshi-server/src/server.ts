@@ -130,7 +130,7 @@ export default class Server {
       absolute: true,
     });
 
-    return serverChunks.map(absolutePath => {
+    return serverChunks.map((absolutePath) => {
       const chunk = importFresh(absolutePath) as RouteFunction<any>;
       const route = buildRoute(absolutePath);
       return {

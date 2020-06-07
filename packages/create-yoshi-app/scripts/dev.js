@@ -1,4 +1,4 @@
-process.on('unhandledRejection', error => {
+process.on('unhandledRejection', (error) => {
   throw error;
 });
 
@@ -48,13 +48,13 @@ function startWatcher(workingDir, templateModel) {
 
   const valuesMap = getValuesMap(templateModel);
 
-  const generateFile = relativePath => {
+  const generateFile = (relativePath) => {
     const fullPath = path.join(templatePath, relativePath);
     const fileContents = fs.readFileSync(fullPath, 'utf-8');
     const destinationPath = path.join(workingDir, relativePath);
     const scopes = getTemplateScopes(fullPath, valuesMap);
 
-    scopes.forEach(loopScope => {
+    scopes.forEach((loopScope) => {
       const transformed = processFileWithScope(
         destinationPath,
         fileContents,
@@ -76,15 +76,15 @@ function startWatcher(workingDir, templateModel) {
     });
   };
 
-  watcher.on('change', relativePath => {
+  watcher.on('change', (relativePath) => {
     generateFile(relativePath);
   });
 
-  watcher.on('add', relativePath => {
+  watcher.on('add', (relativePath) => {
     generateFile(relativePath);
   });
 
-  watcher.on('unlink', relativePath => {
+  watcher.on('unlink', (relativePath) => {
     const destinationPath = path.join(workingDir, relativePath);
     fs.removeSync(destinationPath);
     console.log(chalk.red('removed ') + chalk.cyan(destinationPath));

@@ -43,15 +43,15 @@ export default ({
     });
 
     watcher
-      .on('add', assetPath => copyToOutDir(assetPath))
-      .on('change', assetPath => copyToOutDir(assetPath))
-      .on('unlink', assetPath => removeFromOutDir(assetPath));
+      .on('add', (assetPath) => copyToOutDir(assetPath))
+      .on('change', (assetPath) => copyToOutDir(assetPath))
+      .on('unlink', (assetPath) => removeFromOutDir(assetPath));
   } else {
     const assets = globby.sync(filesGlobPattern, {
       cwd,
       ignore: ignoredFiles,
     });
 
-    assets.forEach(assetPath => copyToOutDir(assetPath));
+    assets.forEach((assetPath) => copyToOutDir(assetPath));
   }
 };

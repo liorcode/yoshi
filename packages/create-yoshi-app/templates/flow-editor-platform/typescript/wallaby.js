@@ -1,4 +1,4 @@
-module.exports = function(wallaby) {
+module.exports = function (wallaby) {
   return Object.assign(
     {},
     require('yoshi-flow-editor/config/wallaby-jest')(wallaby),

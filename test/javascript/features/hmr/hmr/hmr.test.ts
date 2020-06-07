@@ -14,16 +14,16 @@ const serverFilePath = path.join(scripts.testDirectory, 'src/server.js');
 
 const originalServerContent = fs.readFileSync(serverFilePath, 'utf-8');
 
-describe.each(['dev'] as const)('hmr [%s]', mode => {
+describe.each(['dev'] as const)('hmr [%s]', (mode) => {
   describe('client side', () => {
     it('integration', async () => {
       await scripts[mode](async () => {
         await page.goto(scripts.serverUrl);
-        await page.$eval('#css-inclusion', elm => elm.getAttribute('class'));
+        await page.$eval('#css-inclusion', (elm) => elm.getAttribute('class'));
 
-        expect(await page.$eval('#css-inclusion', elm => elm.textContent)).toBe(
-          'CSS Modules are working!',
-        );
+        expect(
+          await page.$eval('#css-inclusion', (elm) => elm.textContent),
+        ).toBe('CSS Modules are working!');
 
         const originalContent = fs.readFileSync(clientFilePath, 'utf-8');
 
@@ -36,17 +36,17 @@ describe.each(['dev'] as const)('hmr [%s]', mode => {
 
         await page.waitForNavigation();
 
-        expect(await page.$eval('#css-inclusion', elm => elm.textContent)).toBe(
-          'Overridden content!',
-        );
+        expect(
+          await page.$eval('#css-inclusion', (elm) => elm.textContent),
+        ).toBe('Overridden content!');
 
         fs.writeFileSync(clientFilePath, originalContent);
 
         await page.waitForNavigation();
 
-        expect(await page.$eval('#css-inclusion', elm => elm.textContent)).toBe(
-          'CSS Modules are working!',
-        );
+        expect(
+          await page.$eval('#css-inclusion', (elm) => elm.textContent),
+        ).toBe('CSS Modules are working!');
       });
     });
   });

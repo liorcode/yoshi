@@ -7,12 +7,12 @@ const scripts = Scripts.setupProjectFromTemplate({
 
 describe.each(['prod', 'dev'] as const)(
   'yoshi-server api client to server, react[%s]',
-  mode => {
+  (mode) => {
     it('run tests', async () => {
       await scripts[mode](async () => {
         await page.goto(`${scripts.serverUrl}/app`);
         await page.waitForSelector('h2');
-        const title = await page.$eval('h2', elm => elm.innerHTML);
+        const title = await page.$eval('h2', (elm) => elm.innerHTML);
         expect(title).toBe('hello Yaniv');
       });
     });

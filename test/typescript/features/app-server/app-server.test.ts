@@ -5,11 +5,11 @@ const scripts = Scripts.setupProjectFromTemplate({
   projectType: 'typescript',
 });
 
-describe.each(['dev'] as const)('app-server [%s]', mode => {
+describe.each(['dev'] as const)('app-server [%s]', (mode) => {
   it('should support ts transpilation without throwing on type errors', async () => {
     await scripts[mode](async () => {
       await page.goto('http://localhost:3000');
-      expect(await page.$eval('div', element => element.textContent)).toBe(
+      expect(await page.$eval('div', (element) => element.textContent)).toBe(
         'foo',
       );
     });

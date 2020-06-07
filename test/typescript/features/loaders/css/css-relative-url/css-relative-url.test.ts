@@ -6,7 +6,7 @@ const scripts = Scripts.setupProjectFromTemplate({
   projectType: 'typescript',
 });
 
-describe.each(['prod', 'dev'] as const)('css relative url [%s]', mode => {
+describe.each(['prod', 'dev'] as const)('css relative url [%s]', (mode) => {
   it('integration', async () => {
     await scripts[mode](async () => {
       await page.goto(scripts.serverUrl);

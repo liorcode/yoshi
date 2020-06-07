@@ -5,20 +5,23 @@ const scripts = Scripts.setupProjectFromTemplate({
   projectType: 'javascript',
 });
 
-describe.each(['prod', 'dev'] as const)('small image inclusion [%s]', mode => {
-  it('integration', async () => {
-    await scripts[mode](async () => {
-      await page.goto(scripts.serverUrl);
-      const imageSource = await page.$eval(
-        '#small-image-inclusion',
-        elm => (elm as HTMLImageElement).src,
-      );
+describe.each(['prod', 'dev'] as const)(
+  'small image inclusion [%s]',
+  (mode) => {
+    it('integration', async () => {
+      await scripts[mode](async () => {
+        await page.goto(scripts.serverUrl);
+        const imageSource = await page.$eval(
+          '#small-image-inclusion',
+          (elm) => (elm as HTMLImageElement).src,
+        );
 
-      expect(imageSource).toMatch(/^data:image\/jpeg;base64.+==$/);
+        expect(imageSource).toMatch(/^data:image\/jpeg;base64.+==$/);
+      });
     });
-  });
 
-  it('component tests', async () => {
-    await scripts.test(mode);
-  });
-});
+    it('component tests', async () => {
+      await scripts.test(mode);
+    });
+  },
+);

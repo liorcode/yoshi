@@ -101,7 +101,7 @@ const merged = ld.mergeWith(
     },
   },
   userConf,
-  a => (typeof a === 'function' ? a : undefined),
+  (a) => (typeof a === 'function' ? a : undefined),
 );
 
 function normaliseSpecs(config) {
@@ -109,8 +109,8 @@ function normaliseSpecs(config) {
   const exclude = [].concat(config.exclude || []);
 
   return Object.assign({}, config, {
-    specs: specs.map(spec => path.resolve(spec)),
-    exclude: exclude.map(spec => path.resolve(spec)),
+    specs: specs.map((spec) => path.resolve(spec)),
+    exclude: exclude.map((spec) => path.resolve(spec)),
   });
 }
 

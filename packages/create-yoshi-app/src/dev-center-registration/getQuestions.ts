@@ -285,7 +285,7 @@ export default (): Array<ExtendedPromptObject<string>> => {
                             {
                               type: 'text',
                               name: 'componentName',
-                              format: val => val.split(/\s|-/).join(''),
+                              format: (val) => val.split(/\s|-/).join(''),
                               async after(answers, context: any) {
                                 if (!answers.components) {
                                   answers.components = [];

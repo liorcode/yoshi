@@ -25,7 +25,7 @@ export const hot: BootstrapHotFunction = (sourceModule, _wrappedFunction_) => {
 
     if (sourceModule.hot.addStatusHandler) {
       if (sourceModule.hot.status() === 'idle') {
-        sourceModule.hot.addStatusHandler(status => {
+        sourceModule.hot.addStatusHandler((status) => {
           if (status === 'apply') {
             // Updates the application state by invoking the new
             // `wrappedFunction` and creating a new `router`.

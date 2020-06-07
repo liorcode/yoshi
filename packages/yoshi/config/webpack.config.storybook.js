@@ -13,7 +13,7 @@ const styleLoaders = getStyleLoaders({
   tpaStyle: false,
 });
 
-module.exports = config => {
+module.exports = (config) => {
   const webpackClientConfig = createClientWebpackConfig({
     isDebug: true,
     includeStyleLoaders: false,

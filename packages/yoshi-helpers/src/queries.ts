@@ -44,7 +44,7 @@ export const shouldRunWebpack = (webpackConfig: any): boolean => {
 
 export const shouldRunSass = () => {
   return (
-    globby.sync(globs.scss).filter(file => path.basename(file)[0] !== '_')
+    globby.sync(globs.scss).filter((file) => path.basename(file)[0] !== '_')
       .length > 0
   );
 };

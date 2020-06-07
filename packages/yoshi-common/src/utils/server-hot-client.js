@@ -11,7 +11,7 @@ if (module.hot) {
     if (module.hot.status() === 'idle') {
       module.hot
         .check(true)
-        .then(function(updatedModules) {
+        .then(function (updatedModules) {
           if (!updatedModules) {
             if (fromUpdate) log('info', '[HMR] Update applied.');
             return;
@@ -25,7 +25,7 @@ if (module.hot) {
           // Inform the parent process (Yoshi) that HMR was successful
           socket.send(JSON.stringify({ success: true }));
         })
-        .catch(function(err) {
+        .catch(function (err) {
           const status = module.hot.status();
           if (['abort', 'fail'].indexOf(status) >= 0) {
             log('warning', '[HMR] Cannot apply update.');

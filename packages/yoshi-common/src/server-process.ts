@@ -25,7 +25,7 @@ function notUndefined<T>(x: T | undefined): x is T {
   return x !== undefined;
 }
 
-const inspectArg = process.argv.find(arg => arg.includes('--debug'));
+const inspectArg = process.argv.find((arg) => arg.includes('--debug'));
 
 type ServerProcessEnv = {
   NODE_ENV: 'development' | 'production';
@@ -86,7 +86,7 @@ export class ServerProcess {
       // execArgv
       nodeOptions: [inspectArg]
         .filter(notUndefined)
-        .map(arg => arg.replace('debug', 'inspect')),
+        .map((arg) => arg.replace('debug', 'inspect')),
       env: {
         ...process.env,
         PORT: `${this.port}`,
@@ -126,7 +126,7 @@ export class ServerProcess {
     if (this.child && this.child.exitCode === null) {
       this.child.kill();
 
-      await new Promise(resolve => {
+      await new Promise((resolve) => {
         const check = () => {
           if (this.child && this.child.killed) {
             return resolve();
@@ -201,7 +201,7 @@ export class ServerProcessWithHMR extends ServerProcess {
   send(message: any) {
     this.socketServer.send(message);
 
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       this.resolve = resolve;
     });
   }

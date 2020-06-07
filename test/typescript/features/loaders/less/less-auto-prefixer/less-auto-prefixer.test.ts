@@ -6,7 +6,7 @@ const scripts = Scripts.setupProjectFromTemplate({
   projectType: 'typescript',
 });
 
-describe.each(['prod', 'dev'] as const)('less auto prefixer [%s]', mode => {
+describe.each(['prod', 'dev'] as const)('less auto prefixer [%s]', (mode) => {
   it('integration', async () => {
     await scripts[mode](async () => {
       await page.goto(scripts.serverUrl);

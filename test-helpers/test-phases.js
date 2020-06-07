@@ -37,11 +37,11 @@ class Test {
   setup(tree, hooks = []) {
     const flat = flattenTree(tree);
 
-    Object.keys(flat).forEach(file => {
+    Object.keys(flat).forEach((file) => {
       this.write(file, flat[file]);
     });
 
-    hooks.forEach(hook => hook(this.tmp));
+    hooks.forEach((hook) => hook(this.tmp));
     return this;
   }
 
@@ -60,13 +60,13 @@ class Test {
             env,
           },
         );
-        this.child.stdout.on('data', buffer => {
+        this.child.stdout.on('data', (buffer) => {
           if (!this.silent) {
             console.log(buffer.toString());
           }
           this.stdout += stripAnsi(buffer.toString());
         });
-        this.child.stderr.on('data', buffer => {
+        this.child.stderr.on('data', (buffer) => {
           if (!this.silent) {
             console.log(buffer.toString());
           }
@@ -184,7 +184,7 @@ class Test {
 function flattenTree(tree, prefix) {
   let result = {};
   prefix = prefix ? prefix + path.sep : '';
-  Object.keys(tree).forEach(key => {
+  Object.keys(tree).forEach((key) => {
     const value = tree[key];
     if (typeof value === 'string') {
       result[prefix + key] = value;

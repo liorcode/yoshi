@@ -27,10 +27,10 @@ export default class SocketServer extends EventEmitter {
 
     this.socket.installHandlers(this.server, { prefix: '/_yoshi_server_hmr_' });
 
-    this.socket.on('connection', connection => {
+    this.socket.on('connection', (connection) => {
       this.connections.push(connection);
 
-      connection.on('data', message => {
+      connection.on('data', (message) => {
         this.emit('message', JSON.parse(message));
       });
 
@@ -45,14 +45,14 @@ export default class SocketServer extends EventEmitter {
   }
 
   send(message: any) {
-    this.connections.forEach(connection => {
+    this.connections.forEach((connection) => {
       connection.write(JSON.stringify(message));
     });
   }
 
   async initialize() {
     if (!this.server.listening) {
-      await new Promise(resolve => this.server.listen(this.hmrPort, resolve));
+      await new Promise((resolve) => this.server.listen(this.hmrPort, resolve));
     }
   }
 

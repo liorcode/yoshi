@@ -44,7 +44,7 @@ export default async function startRewriteForwardProxy({
         target = target.replace(search, rewrite);
       }
 
-      regularProxy.web(req, res, { target }, err => {
+      regularProxy.web(req, res, { target }, (err) => {
         if (err) {
           res.statusCode = 500;
           res.end();
@@ -62,7 +62,7 @@ export default async function startRewriteForwardProxy({
   enableDestroy(httpsReverseProxyServer);
 
   // start an https server to proxy requests
-  const httpsReverseProxyPort = await new Promise(resolve => {
+  const httpsReverseProxyPort = await new Promise((resolve) => {
     const listener = httpsReverseProxyServer.listen(0, () => {
       // @ts-ignore
       resolve(listener.address().port);
@@ -76,7 +76,7 @@ export default async function startRewriteForwardProxy({
   server.on('connect', (_, socket) => {
     // open a TCP connection to the remote host
     // @ts-ignore
-    const conn = net.connect(httpsReverseProxyPort, '127.0.0.1', function() {
+    const conn = net.connect(httpsReverseProxyPort, '127.0.0.1', function () {
       // respond to the client that the connection was made
       socket.write('HTTP/1.1 200 OK\r\n\r\n');
       // create a tunnel between the two hosts

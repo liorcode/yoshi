@@ -4,7 +4,7 @@ import { builder as TestEnvBuilder } from '@wix/wix-test-env';
 
 export const env = TestEnvBuilder()
   .withMainApp(bootstrapServer())
-  .withMainAppConfigEmitter(builder =>
+  .withMainAppConfigEmitter((builder) =>
     builder.val('base_domain', 'test.wix.com'),
   )
   .build();

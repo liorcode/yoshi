@@ -56,7 +56,7 @@ const fx = {
       null,
       2,
     ),
-  tslint: rules => JSON.stringify({ rules, jsRules: true }, null, 2),
+  tslint: (rules) => JSON.stringify({ rules, jsRules: true }, null, 2),
   eslintrc: () =>
     JSON.stringify(
       {
@@ -79,8 +79,9 @@ const fx = {
       framework: "${framework || 'jasmine'}",
       onPrepare: () => {
         const server = http.createServer((req, res) => {
-          const response = "<html><body><script src=http://localhost:${cdnPort ||
-            6452}/app.bundle.js></script></body></html>";
+          const response = "<html><body><script src=http://localhost:${
+            cdnPort || 6452
+          }/app.bundle.js></script></body></html>";
           res.end(response);
         });
         app.use(express.static(path.join(__dirname, '/dist/statics')));
@@ -96,8 +97,9 @@ const fx = {
       framework: "${framework || 'jasmine'}",
       beforeLaunch: () => {
         const server = http.createServer((req, res) => {
-          const response = "<html><body><script src=http://localhost:${cdnPort ||
-            6452}/app.bundle.js></script></body></html>";
+          const response = "<html><body><script src=http://localhost:${
+            cdnPort || 6452
+          }/app.bundle.js></script></body></html>";
           res.end(response);
         });
         return server.listen(1337);
@@ -123,9 +125,11 @@ const fx = {
       framework: "${framework || 'jasmine'}",
       onPrepare: () => {
         const server = http.createServer((req, res) => {
-          const response = "<html><body><script src=${protocol ||
-            'http'}://localhost:${cdnPort ||
-    6452}/app.bundle.js></script></body></html>";
+          const response = "<html><body><script src=${
+            protocol || 'http'
+          }://localhost:${
+    cdnPort || 6452
+  }/app.bundle.js></script></body></html>";
           res.end(response);
         });
         return server.listen(1337);

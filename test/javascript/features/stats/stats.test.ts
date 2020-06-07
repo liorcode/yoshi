@@ -9,7 +9,7 @@ const scripts = Scripts.setupProjectFromTemplate({
   projectType: 'javascript',
 });
 
-describe.each(['prod'] as const)('stats [%s]', mode => {
+describe.each(['prod'] as const)('stats [%s]', (mode) => {
   it('integration', async () => {
     await scripts[mode](
       async () => {

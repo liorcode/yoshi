@@ -7,7 +7,7 @@ export class AsyncWebWorkerPlugin {
   apply(compiler) {
     compiler.hooks.thisCompilation.tap(
       'AsyncWebWorkerTemplatePlugin',
-      compilation => {
+      (compilation) => {
         new WebWorkerMainTemplatePlugin().apply(compilation.mainTemplate);
         new WebWorkerChunkTemplatePlugin().apply(compilation.chunkTemplate);
         new WebWorkerHotUpdateChunkTemplatePlugin().apply(

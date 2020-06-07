@@ -14,14 +14,14 @@ describe('Aggregator: e2e', () => {
     test = tp.create();
   });
 
-  afterEach(function() {
+  afterEach(function () {
     if (this.currentTest.state === 'failed') {
       test.logOutput();
     }
     test.teardown();
   });
 
-  describe('should run protractor with a cdn server', function() {
+  describe('should run protractor with a cdn server', function () {
     this.timeout(60000);
 
     it('should download chromedriver 2.29 and use it (when there is environment param TEAMCITY_VERSION and no CHROMEDRIVER_VERSION supplied)', () => {
@@ -125,7 +125,7 @@ describe('Aggregator: e2e', () => {
       expect(res.stdout).to.contain('##teamcity[');
     });
 
-    it('should use @babel/register', function() {
+    it('should use @babel/register', function () {
       this.timeout(60000);
 
       const res = test
@@ -161,7 +161,7 @@ describe('Aggregator: e2e', () => {
     expect(res.stdout).to.not.contain('protractor');
   });
 
-  it('should support css class selectors with cssModules on', function() {
+  it('should support css class selectors with cssModules on', function () {
     this.timeout(60000);
 
     test
@@ -173,7 +173,7 @@ describe('Aggregator: e2e', () => {
     expect(res.code).to.equal(0);
   });
 
-  it('should pre-process sass with cssModules on', function() {
+  it('should pre-process sass with cssModules on', function () {
     this.timeout(60000);
 
     test
@@ -185,7 +185,7 @@ describe('Aggregator: e2e', () => {
     expect(res.code).to.equal(0);
   });
 
-  it("should extend project's beforeLaunch", function() {
+  it("should extend project's beforeLaunch", function () {
     this.timeout(60000);
     const res = test
       .setup(singleModuleWithBeforeLaunch())
@@ -195,7 +195,7 @@ describe('Aggregator: e2e', () => {
     expect(res.stdout).to.contain('1 spec, 0 failures');
   });
 
-  it('should support custom protrctor config location', function() {
+  it('should support custom protrctor config location', function () {
     this.timeout(60000);
     const res = test
       .setup(singleModuleWithCustomMochaProtractorConfig())
@@ -209,7 +209,7 @@ describe('Aggregator: e2e', () => {
     expect(res.stdout).to.contain('chrome #01 passed');
   });
 
-  it("should extend project's afterLaunch", function() {
+  it("should extend project's afterLaunch", function () {
     this.timeout(60000);
     const res = test
       .setup({

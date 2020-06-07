@@ -7,7 +7,7 @@ const scripts = Scripts.setupProjectFromTemplate({
   projectType: 'typescript',
 });
 
-describe.each(['prod', 'dev'] as const)('manifest [%s]', mode => {
+describe.each(['prod', 'dev'] as const)('manifest [%s]', (mode) => {
   it('generates manifest stat file for non optimized', async () => {
     await scripts[mode](async () => {
       const statsFilePath = path.join(
@@ -22,7 +22,7 @@ describe.each(['prod', 'dev'] as const)('manifest [%s]', mode => {
   });
 });
 
-describe.each(['prod'] as const)('manifest [%s]', mode => {
+describe.each(['prod'] as const)('manifest [%s]', (mode) => {
   it('generates manifest stat file for optimized', async () => {
     await scripts[mode](async () => {
       const statsFilePath = path.join(

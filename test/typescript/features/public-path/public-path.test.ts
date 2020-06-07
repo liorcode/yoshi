@@ -5,7 +5,7 @@ const scripts = Scripts.setupProjectFromTemplate({
   projectType: 'typescript',
 });
 
-describe.each(['prod', 'dev'] as const)('public path [%s]', mode => {
+describe.each(['prod', 'dev'] as const)('public path [%s]', (mode) => {
   const publicPath = 'http://some-public-path/';
 
   it('overrides public path by YOSHI_PUBLIC_PATH env var', async () => {
@@ -13,7 +13,7 @@ describe.each(['prod', 'dev'] as const)('public path [%s]', mode => {
       async () => {
         await page.goto(scripts.serverUrl);
 
-        const result = await page.$eval('#component', elm => elm.textContent);
+        const result = await page.$eval('#component', (elm) => elm.textContent);
 
         expect(result).toBe(publicPath);
       },

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-process.on('unhandledRejection', error => {
+process.on('unhandledRejection', (error) => {
   throw error;
 });
 

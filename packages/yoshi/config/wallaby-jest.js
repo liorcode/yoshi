@@ -1,4 +1,4 @@
-module.exports = function(wallaby) {
+module.exports = function (wallaby) {
   const wallabyCommon = require('./wallaby-common')(wallaby);
   // We need to add a wallaby compiler, because apparently wallaby does not
   // use the transform configuration of jest
@@ -14,7 +14,7 @@ module.exports = function(wallaby) {
     if (jestConfig.preset === 'jest-yoshi-preset') {
       const jestYoshiPreset = require('jest-yoshi-preset/jest-preset'); // eslint-disable-line import/no-extraneous-dependencies
       jestConfig = jestYoshiPreset.projects.find(
-        project => project.displayName === 'spec',
+        (project) => project.displayName === 'spec',
       );
     }
     wallaby.testFramework.configure(jestConfig);

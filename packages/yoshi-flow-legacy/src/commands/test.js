@@ -61,7 +61,7 @@ const shouldRunPuppeteer =
   hasE2ETests() && !shouldWatch && !hasProtractorConfigFile();
 
 module.exports = runner.command(
-  async tasks => {
+  async (tasks) => {
     const { karma, webpack } = tasks;
 
     const wixCdn = tasks[require.resolve('../tasks/cdn/index')];
@@ -123,7 +123,7 @@ module.exports = runner.command(
         mochaArgs.push('--no-timeouts');
       }
 
-      const runMocha = async errorHandler => {
+      const runMocha = async (errorHandler) => {
         try {
           await execa('node', mochaArgs, { stdio: 'inherit' });
         } catch (error) {
@@ -138,7 +138,7 @@ module.exports = runner.command(
 
         await runMocha(); // fail silently
       } else {
-        await runMocha(error => {
+        await runMocha((error) => {
           console.error(`mocha failed with status code "${error.code}"`);
           process.exit(1);
         });
@@ -175,7 +175,7 @@ module.exports = runner.command(
           {
             pattern: [
               ...globs.specs,
-              ...globs.baseDirs.map(dir =>
+              ...globs.baseDirs.map((dir) =>
                 path.join(dir, '**', '*.{js,jsx,ts,tsx}'),
               ),
               'index.js',
@@ -206,7 +206,7 @@ module.exports = runner.command(
       const jestForwardedOptions = rawCliArgs
         .slice(rawCliArgs.indexOf('test') + 1)
         // filter yoshi's option
-        .filter(arg => arg !== '--jest' && arg.indexOf('debug') === -1);
+        .filter((arg) => arg !== '--jest' && arg.indexOf('debug') === -1);
 
       jestCliOptions.push(...jestForwardedOptions);
 
@@ -234,7 +234,7 @@ module.exports = runner.command(
         });
 
         const rootChanges = Array.from(changedFiles).filter(
-          filename => path.dirname(filename) === rootDir,
+          (filename) => path.dirname(filename) === rootDir,
         );
 
         // Only optimize this run if none of the root files have changed
@@ -245,8 +245,8 @@ module.exports = runner.command(
           const resolver = await getDependencyResolver();
 
           // Filter files to only include unit test files
-          const unitTests = resolver.resolveInverse(changedFiles, filename =>
-            globs.unitTests.some(pattern =>
+          const unitTests = resolver.resolveInverse(changedFiles, (filename) =>
+            globs.unitTests.some((pattern) =>
               minimatch(path.relative(rootDir, filename), pattern),
             ),
           );

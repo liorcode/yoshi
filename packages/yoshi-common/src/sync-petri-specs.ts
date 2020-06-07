@@ -3,7 +3,7 @@ import path from 'path';
 import petriSpecs from 'petri-specs';
 import { STATICS_DIR } from 'yoshi-config/build/paths';
 
-export = async function({
+export = async function ({
   config = {},
   cwd = process.cwd(),
 }: {

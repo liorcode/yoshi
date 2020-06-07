@@ -5,14 +5,14 @@ const scripts = Scripts.setupProjectFromTemplate({
   projectType: 'typescript',
 });
 
-describe.each(['prod', 'dev'] as const)('json inclusion [%s]', mode => {
+describe.each(['prod', 'dev'] as const)('json inclusion [%s]', (mode) => {
   it('integration', async () => {
     await scripts[mode](async () => {
       await page.goto(scripts.serverUrl);
 
       const result = await page.$eval(
         '#json-inclusion',
-        elm => elm.textContent,
+        (elm) => elm.textContent,
       );
 
       expect(result).toBe('This is an abstract.');

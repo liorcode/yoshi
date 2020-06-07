@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './style.sass';
 
-export default function() {
+export default function () {
   return (
     <div>
       <p id="sass-inclusion" className={styles['sass-modules-inclusion']}>

@@ -12,7 +12,7 @@ export const replaceTemplates = (
   map: Record<string, string>,
   { graceful }: { graceful?: boolean } = {},
 ) => {
-  let result: string = content.replace(loopTemplateCodeRegEx, str => {
+  let result: string = content.replace(loopTemplateCodeRegEx, (str) => {
     const [keyTemplate] = str.match(loopHeaderTemplateRegEx) || [];
     const key = keyTemplate.slice(9, -9);
     const values = get(map, key, undefined);
@@ -31,13 +31,13 @@ export const replaceTemplates = (
     const bodyStr = bodyTemplate.slice(8, -11);
 
     return values
-      .map(value => {
+      .map((value) => {
         return replaceTemplates(bodyStr, { ...map, ...value });
       })
       .join(',');
   });
 
-  result = result.replace(templateRegex, match => {
+  result = result.replace(templateRegex, (match) => {
     const key = match.slice(2, -2);
     const value = get(map, key, undefined);
 
@@ -56,7 +56,7 @@ export const replaceTemplates = (
     return value;
   });
 
-  result = result.replace(loopTemplateRegEx, match => {
+  result = result.replace(loopTemplateRegEx, (match) => {
     const [, key = 'name'] = match
       .slice(6, -6)
       .split(loopItemNameSeparatorRegEx);

@@ -7,13 +7,13 @@ const scripts = Scripts.setupProjectFromTemplate({
 
 describe.each(['prod', 'dev'] as const)(
   'component svg inclusion [%s]',
-  mode => {
+  (mode) => {
     it('integration', async () => {
       await scripts[mode](async () => {
         await page.goto(scripts.serverUrl);
         const result = await page.$eval(
           '#component-svg-inclusion',
-          elm => elm.innerHTML,
+          (elm) => elm.innerHTML,
         );
 
         expect(result).toMatch(/(<svg)([^<]*|[^>]*)/);

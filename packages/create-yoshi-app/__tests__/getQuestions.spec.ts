@@ -2,10 +2,10 @@ const getQuestions = require('../src/getQuestions');
 
 jest.mock('parse-git-config');
 
-const getQuestion = name => getQuestions().find(item => item.name === name);
+const getQuestion = (name) => getQuestions().find((item) => item.name === name);
 
 describe('authorEmail', () => {
-  const mockEnvUser = value => (process.env.USER = value);
+  const mockEnvUser = (value) => (process.env.USER = value);
   const currentUser = process.env.USER;
   afterEach(() => {
     process.env.USER = currentUser;
