@@ -7,7 +7,7 @@ Extends [tslint-config-yoshi-base](https://github.com/wix/yoshi/tree/master/pack
 Install all peer dependencies:
 
 ```
-  "prettier": "^1.11.1",
+  "prettier": "^2.0.5",
   "tslint": ">=5.10.0",
   "tslint-react-hooks": "^2.1.0"
 ```

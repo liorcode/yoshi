@@ -3,7 +3,7 @@
 Install all peer dependencies:
 
 ```
-  "prettier": "^1.11.1",
+  "prettier": "^2.0.5",
   "tslint": ">=5.10.0"
 ```
 

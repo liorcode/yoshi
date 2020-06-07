@@ -85,7 +85,7 @@
     "nyc": "12.0.2",
     "os-name": "2.0.1",
     "pirates": "4.0.1",
-    "prettier": "1.19.1",
+    "prettier": "2.0.5",
     "react-dev-utils": "7.0.5",
     "react-hot-loader": "4.12.21",
     "source-map-support": "0.5.19",
