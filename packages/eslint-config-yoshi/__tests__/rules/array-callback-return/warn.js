@@ -5,7 +5,7 @@ myArray.reduce((memo, item, index) => {
   memo[item] = index;
 }, {});
 
-Array.from(nodes, node => {
+Array.from(nodes, (node) => {
   if (node === 1) {
     return true;
   }

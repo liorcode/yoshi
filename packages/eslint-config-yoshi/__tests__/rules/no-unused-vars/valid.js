@@ -1,3 +1,3 @@
-(function(foo, bar, baz, qux) {
+(function (foo, bar, baz, qux) {
   return qux;
 })();
