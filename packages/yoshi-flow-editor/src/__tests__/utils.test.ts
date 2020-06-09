@@ -11,9 +11,10 @@ describe('addOverrideQueryParamsWithModel', () => {
     const overrideParams = overrideQueryParamsWithModel(
       {
         appName: 'app',
+        projectName: '@wix/app',
         artifactId: '7891',
         editorEntryFileName: 'a/b/editor.app.ts',
-        viewerAppFileName: 'a/b',
+        viewerEntryFileName: 'a/b',
         appDefId: 'APP_DEF_ID',
         sentry: null,
         urls: {
@@ -48,13 +49,14 @@ describe('addOverrideQueryParamsWithModel', () => {
     const overrideParams = overrideQueryParamsWithModel(
       {
         appName: 'app',
+        projectName: '@wix/app',
         artifactId: '7891',
         urls: {},
         experimentsConfig: {
           scope: 'test-scope',
         },
         editorEntryFileName: 'a/b/editor.app.ts',
-        viewerAppFileName: 'a/b',
+        viewerEntryFileName: 'a/b',
         appDefId: 'APP_DEF_ID',
         sentry: null,
         components: [
@@ -91,10 +93,11 @@ describe('addOverrideQueryParamsWithModel', () => {
     const overrideParams = overrideQueryParamsWithModel(
       {
         appName: 'app',
+        projectName: '@wix/app',
         artifactId: '7891',
         urls: {},
         editorEntryFileName: null,
-        viewerAppFileName: 'a/b',
+        viewerEntryFileName: 'a/b',
         appDefId: 'APP_DEF_ID',
         experimentsConfig: {
           scope: 'test-scope',
@@ -117,7 +120,7 @@ describe('addOverrideQueryParamsWithModel', () => {
     const urlWithParams = overrideParams('https://mysite.com');
 
     expect(urlWithParams).toBe(
-      `https://mysite.com/?tpaWidgetUrlOverride=WIDGET_ID=${serverUrl}/editor/comp&tpaSettingsUrlOverride=WIDGET_ID=${serverUrl}/settings/comp&widgetsUrlOverride=WIDGET_ID=${cdnUrl}compViewerWidget.bundle.js&viewerPlatformOverrides=APP_DEF_ID=${cdnUrl}viewerScript.bundle.js&overridePlatformBaseUrls=APP_DEF_ID={"staticsBaseUrl":"${cdnUrl}"}`,
+      `https://mysite.com/?tpaWidgetUrlOverride=WIDGET_ID=${serverUrl}/editor/comp&tpaSettingsUrlOverride=WIDGET_ID=${serverUrl}/settings/comp&widgetsUrlOverride=WIDGET_ID=${cdnUrl}compViewerWidget.bundle.js&viewerPlatformOverrides=APP_DEF_ID=${cdnUrl}viewerScript.bundle.js&editorScriptUrlOverride=APP_DEF_ID=https://localhost:5005/editorScript.bundle.js&overridePlatformBaseUrls=APP_DEF_ID={"staticsBaseUrl":"${cdnUrl}"}`,
     );
   });
 });

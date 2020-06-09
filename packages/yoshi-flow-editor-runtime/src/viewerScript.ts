@@ -22,6 +22,9 @@ type ControllerDescriptor = {
   id: string | null;
   method: Function;
   widgetType: WidgetType;
+  controllerFileName: string | null;
+  appName: string | null;
+  componentName: string | null;
 };
 
 const getFirstDescriptor = (descriptors: Array<ControllerDescriptor>) => {
@@ -92,8 +95,19 @@ function ooiControllerWrapper(
     appData,
   });
 
-  const wrappedController = Promise.resolve(userControllerPromise).then(
-    (userController: any) => {
+  const wrappedController = Promise.resolve(userControllerPromise)
+    .catch(error => {
+      if (!flowAPI.inEditor) {
+        // Currently platform doesn't log errors happened in worker. We want to fix it here.
+        console.error(
+          `❗️Error 👉 "${controllerDescriptor.appName}" app 👉 ${controllerDescriptor.componentName} controller ❗\n`,
+          error,
+        );
+        flowAPI.reportError(error);
+      }
+      throw error;
+    })
+    .then((userController: any) => {
       return {
         ...userController,
         pageReady: async (...args: Array<any>) => {
@@ -113,8 +127,7 @@ function ooiControllerWrapper(
         },
         exports: userController.corvid,
       };
-    },
-  );
+    });
 
   return wrappedController;
 }
@@ -147,6 +160,9 @@ export const createControllers = (createController: CreateControllerFn) => {
       method: createController,
       id: null,
       widgetType: OOI_WIDGET_COMPONENT_TYPE,
+      controllerFileName: null,
+      componentName: null,
+      appName: null,
     },
   ]);
 };
@@ -176,9 +192,11 @@ export const createControllersWithDescriptors = (
 };
 
 export const initAppForPageWrapper = (
-  initAppForPage: InitAppForPageFn,
+  initAppForPage: InitAppForPageFn | undefined,
   sentry: SentryConfig | null,
   experimentsConfig: ExperimentsConfig | null,
+  inEditor: boolean = false,
+  appName: string | null = null,
 ): IInitAppForPage => async (
   initParams: IAppData,
   apis: IPlatformAPI,
@@ -189,16 +207,30 @@ export const initAppForPageWrapper = (
     experimentsConfig,
     platformServices,
     sentry,
+    inEditor,
   });
 
   if (initAppForPage) {
-    appData = await initAppForPage(
-      initParams,
-      apis,
-      namespaces,
-      platformServices,
-      viewerScriptFlowAPI,
-    );
+    try {
+      appData = await initAppForPage(
+        initParams,
+        apis,
+        namespaces,
+        platformServices,
+        viewerScriptFlowAPI,
+      );
+    } catch (e) {
+      if (!inEditor) {
+        // Currently platform doesn't log errors happened in worker. We want to fix it here.
+        console.error(
+          `❗️Error 👉 "${appName}" app 👉 \`viewer.app.ts\` module ❗\n`,
+          e,
+        );
+        viewerScriptFlowAPI.reportError(e);
+      }
+      throw e;
+    }
   }
+  // appData will be available in controllers
   return appData;
 };

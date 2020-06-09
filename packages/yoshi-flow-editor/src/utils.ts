@@ -84,13 +84,10 @@ export const overrideQueryParamsWithModel = (
     viewerScriptUrlFormatter(model, cdnUrl),
   );
 
-  // Adding editorScript override url only if editor.app.ts entry file is present in project
-  if (model.editorEntryFileName) {
-    urlWithParams.searchParams.set(
-      'editorScriptUrlOverride',
-      editorScriptUrlFormatter(model, cdnUrl),
-    );
-  }
+  urlWithParams.searchParams.set(
+    'editorScriptUrlOverride',
+    editorScriptUrlFormatter(model, cdnUrl),
+  );
 
   urlWithParams.searchParams.set(
     'overridePlatformBaseUrls',

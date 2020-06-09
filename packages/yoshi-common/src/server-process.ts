@@ -25,8 +25,6 @@ function notUndefined<T>(x: T | undefined): x is T {
   return x !== undefined;
 }
 
-const inspectArg = process.argv.find((arg) => arg.includes('--debug'));
-
 type ServerProcessEnv = {
   NODE_ENV: 'development' | 'production';
   HMR_PORT?: string;
@@ -40,6 +38,7 @@ export class ServerProcess {
   public child?: child_process.ChildProcess;
   private useAppName?: boolean;
   public appName: string;
+  private inspectArg?: string;
 
   constructor({
     cwd = process.cwd(),
@@ -48,6 +47,7 @@ export class ServerProcess {
     port,
     useAppName,
     appName,
+    inspectArg,
   }: {
     cwd?: string;
     serverFilePath: string;
@@ -55,6 +55,7 @@ export class ServerProcess {
     port: number;
     useAppName?: boolean;
     appName: string;
+    inspectArg?: string;
   }) {
     this.cwd = cwd;
     this.serverFilePath = serverFilePath;
@@ -62,6 +63,7 @@ export class ServerProcess {
     this.port = port;
     this.useAppName = useAppName;
     this.appName = appName;
+    this.inspectArg = inspectArg;
   }
 
   async initialize() {
@@ -84,7 +86,7 @@ export class ServerProcess {
     this.child = execa.node(serverProcessWorker, [], {
       stdio: 'pipe',
       // execArgv
-      nodeOptions: [inspectArg]
+      nodeOptions: [this.inspectArg]
         .filter(notUndefined)
         .map((arg) => arg.replace('debug', 'inspect')),
       env: {
@@ -159,6 +161,7 @@ export class ServerProcessWithHMR extends ServerProcess {
     suricate,
     appName,
     port,
+    inspectArg,
   }: {
     cwd: string;
     serverFilePath: string;
@@ -166,6 +169,7 @@ export class ServerProcessWithHMR extends ServerProcess {
     suricate: boolean;
     appName: string;
     port: number;
+    inspectArg?: string;
   }) {
     super({
       cwd,
@@ -176,6 +180,7 @@ export class ServerProcessWithHMR extends ServerProcess {
         HMR_PORT: `${socketServer.hmrPort}`,
         NODE_ENV: 'development',
       },
+      inspectArg,
     });
 
     this.socketServer = socketServer;
@@ -212,12 +217,14 @@ export class ServerProcessWithHMR extends ServerProcess {
     appName,
     suricate,
     port,
+    inspectArg,
   }: {
     cwd?: string;
     serverFilePath: string;
     appName: string;
     suricate: boolean;
     port: number;
+    inspectArg?: string;
   }) {
     const socketServer = await SocketServer.create();
 
@@ -228,6 +235,7 @@ export class ServerProcessWithHMR extends ServerProcess {
       appName,
       suricate,
       port,
+      inspectArg,
     });
   }
 }

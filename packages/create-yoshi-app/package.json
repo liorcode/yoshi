@@ -1,6 +1,6 @@
 {
   "name": "create-yoshi-app",
-  "version": "4.85.0",
+  "version": "4.87.0",
   "description": "create yoshi powered apps",
   "keywords": [
     "create",
@@ -40,6 +40,7 @@
     "globby": "^9.0.0",
     "listr": "^0.14.3",
     "lodash": "^4.17.11",
+    "open": "^6.4.0",
     "parse-git-config": "^2.0.2",
     "pascal-case": "^2.0.1",
     "prompts": "^2.3.2",

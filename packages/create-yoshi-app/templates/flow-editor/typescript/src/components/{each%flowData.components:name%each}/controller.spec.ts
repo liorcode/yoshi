@@ -35,6 +35,7 @@ describe('createController', () => {
         fedopsLogger: getFedopsLoggerMock(),
         widgetId: 'WIDGET_ID',
         controllerConfig,
+        inEditor: false,
         getSiteLanguage() {
           return 'en';
         },

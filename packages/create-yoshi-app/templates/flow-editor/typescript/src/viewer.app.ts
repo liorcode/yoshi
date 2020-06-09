@@ -7,10 +7,7 @@ export const initAppForPage: InitAppForPageFn = async (
   platformServices,
   flowAPI,
 ) => {
-  const { reportError } = flowAPI;
-  try {
-    console.log('App inited');
-  } catch (e) {
-    reportError(e);
-  }
+  console.log(
+    `App inited in ${flowAPI.inEditor ? 'Editor' : 'Viewer'} environment!`,
+  );
 };

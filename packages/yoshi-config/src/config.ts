@@ -39,6 +39,8 @@ type WebpackEntry = string | Array<string> | Entry | EntryFunc;
 
 type WebpackExternals = ExternalsElement | Array<ExternalsElement>;
 
+type WebpackResolveAlias = { [key: string]: string };
+
 export type InitialConfig = {
   extends?: string;
   separateCss?: boolean | 'prod';
@@ -64,7 +66,7 @@ export type InitialConfig = {
   hmr?: boolean | 'auto';
   liveReload?: boolean;
   performance?: Options.Performance | false;
-  resolveAlias?: { [key: string]: string };
+  resolveAlias?: WebpackResolveAlias;
   hooks?: HooksConfig;
   umdNamedDefine?: boolean;
   projectType?: ProjectType;
@@ -81,6 +83,7 @@ export type InitialConfig = {
   webWorker?: {
     entry?: WebpackEntry;
     externals?: WebpackExternals;
+    resolveAlias?: WebpackResolveAlias;
   };
   webWorkerServer?: {
     entry?: WebpackEntry;
@@ -134,6 +137,7 @@ export type Config = {
   projectType: ProjectType | null;
   serverExternals?: WebpackExternals;
   webWorkerEntry?: WebpackEntry;
+  webWorkerResolveAlias?: WebpackResolveAlias;
   webWorkerExternals?: WebpackExternals;
   webWorkerServerEntry?: WebpackEntry;
   suricate: boolean;

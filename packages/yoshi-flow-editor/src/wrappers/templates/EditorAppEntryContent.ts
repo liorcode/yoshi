@@ -3,15 +3,16 @@ import {
   ExperimentsConfig,
 } from 'yoshi-flow-editor-runtime/build/constants';
 import t from './template';
+import { viewerScriptOptionalImport } from './CommonViewerScriptEntry';
 
 type Opts = Record<
   | 'editorAppWrapperPath'
   | 'componentFileName'
   | 'controllerFileName'
-  | 'viewerAppFileName'
   | 'componentName',
   string
 > & {
+  viewerEntryFileName: string | null;
   sentryConfig: SentryConfig | null;
   experimentsConfig: ExperimentsConfig | null;
 };
@@ -25,9 +26,8 @@ export default t<Opts>`
     import UserComponent from '${({ componentFileName }) => componentFileName}';
     import createController from '${({ controllerFileName }) =>
       controllerFileName}';
-    import * as viewerApp from '${({ viewerAppFileName }) =>
-      viewerAppFileName}';
-    var importedApp = viewerApp;
+    ${({ viewerEntryFileName }) =>
+      viewerScriptOptionalImport({ viewerEntryFileName })}
 
     var componentName = '${({ componentName }) => componentName}';
     var sentryConfig = ${({ sentryConfig }) =>
@@ -53,7 +53,6 @@ export default t<Opts>`
       sentry: sentryConfig,
       experimentsConfig: experimentsConfig,
       userController: createController,
-      mapPlatformStateToAppData: importedApp.mapPlatformStateToAppData,
       customInitAppForPage: importedApp.initAppForPage
     });
 

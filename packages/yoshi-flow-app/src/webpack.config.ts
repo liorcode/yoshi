@@ -158,7 +158,7 @@ export function createWebWorkerWebpackConfig(
   workerConfig.output!.globalObject = 'self';
 
   workerConfig.entry = config.webWorkerEntry;
-
+  workerConfig.resolve!.alias = config.resolveAlias;
   workerConfig.externals = config.webWorkerExternals;
 
   return workerConfig;

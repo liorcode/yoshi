@@ -76,6 +76,7 @@ const validConfig: RequiredRecursively<InitialConfig> = {
         app: 'index.js',
       },
     ),
+    resolveAlias: {},
     externals: multipleValidOptions(['React'], { react: 'React' }),
   },
   server: {

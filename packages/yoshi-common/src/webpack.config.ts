@@ -828,7 +828,7 @@ export function createBaseWebpackConfig({
           : []
         : []),
 
-      ...(useProgressBar
+      ...(process.env.DEBUG !== 'true' && useProgressBar
         ? [
             new WebpackBar(
               getProgressBarInfo(configName, isDev, isMonorepo, name, target),

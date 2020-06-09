@@ -128,3 +128,29 @@ exports[`CommonEditorScriptEntry template generates correct template with entry 
   
 "
 `;
+
+exports[`CommonEditorScriptEntry template generates correct template without entry editorScript file for OOI components 1`] = `
+"
+  var editorScriptEntry = { editorReady: function () {} };
+
+  
+
+  
+  var editorReadyWrapper = require('yoshi-flow-editor-runtime/build/editorScript.js').editorReadyWrapper;
+  var editorReady = editorScriptEntry.editorReady;
+
+  var sentry = null;
+
+  var experimentsConfig = null;
+
+  if (editorReady) {
+    editorReady = editorReadyWrapper(editorReady, sentry, experimentsConfig, 'some-app');
+  }
+
+  module.exports = editorScriptEntry.default || {
+    ...editorScriptEntry,
+    editorReady,
+  };
+  
+"
+`;

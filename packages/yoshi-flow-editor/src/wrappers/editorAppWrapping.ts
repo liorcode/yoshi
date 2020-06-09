@@ -26,7 +26,7 @@ const componentWrapper = (
         componentName: component.name,
         componentFileName: component.widgetFileName,
         controllerFileName: component.viewerControllerFileName,
-        viewerAppFileName: model.viewerAppFileName,
+        viewerEntryFileName: model.viewerEntryFileName,
         sentryConfig: model.sentry,
         experimentsConfig: model.experimentsConfig,
       });

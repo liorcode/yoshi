@@ -20,7 +20,7 @@ const viewerScriptWrapper = (
       const generateControllerEntryContent = controllerEntry({
         viewerScriptWrapperPath,
         controllerFileName: component.viewerControllerFileName,
-        viewerAppFileName: model.viewerAppFileName,
+        viewerEntryFileName: model.viewerEntryFileName,
       });
 
       fs.outputFileSync(

@@ -92,6 +92,7 @@ Promise.resolve().then(async () => {
     process.env.BABEL_ENV = 'production';
   }
 
+  // TODO: Just read the project's package.json and take the name there
   const config = loadConfig();
 
   const model = await generateFlowEditorModel(config);

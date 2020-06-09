@@ -270,7 +270,7 @@ export function createWebWorkerWebpackConfig(
   workerConfig.output!.globalObject = 'self';
 
   workerConfig.entry = pkg.config.webWorkerEntry;
-
+  workerConfig.resolve!.alias = pkg.config.webWorkerResolveAlias;
   workerConfig.externals = pkg.config.webWorkerExternals;
 
   return workerConfig;

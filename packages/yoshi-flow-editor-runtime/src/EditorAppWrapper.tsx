@@ -59,6 +59,7 @@ const createEditorAppForWixSDK = ({
         customInitAppForPage,
         sentry,
         experimentsConfig,
+        true,
       ),
     },
     Wix: sdk.Wix,
@@ -127,6 +128,7 @@ export default (props: IEditorAppWrapperProps) => {
             if (Wix) {
               window.Sentry.configureScope(scope => {
                 scope.setTag('msid', Wix.Utils.getInstanceValue('metaSiteId'));
+                scope.setTag('environment', 'Editor');
                 scope.setUser({
                   id: Wix.Utils.getInstanceValue('uid'),
                 });

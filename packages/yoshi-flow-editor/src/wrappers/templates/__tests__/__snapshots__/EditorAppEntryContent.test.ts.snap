@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditorAppEntry template generates correct template for editor app entry 1`] = `
+"
+    import React from 'react';
+    import ReactDOM from 'react-dom';
+    import EditorAppWrapper from 'some/editor-app-wrapper';
+
+    import UserComponent from 'some/components/MyWidget.tsx';
+    import createController from 'some/components/controller.ts';
+    
+  import * as viewerApp from 'some/viwer.app.ts';
+    var importedApp = viewerApp;
+
+
+    var componentName = 'MyWidget';
+    var sentryConfig = {
+      DSN: 'https//dsn.com',
+      id: '123',
+      projectName: 'some-project',
+      teamName: 'some-team',
+    };
+
+    var experimentsConfig = null;
+
+    var WrappedEditorApp = () => React.createElement(EditorAppWrapper, {
+      UserComponent: UserComponent,
+      name: componentName,
+      sentry: sentryConfig,
+      experimentsConfig: experimentsConfig,
+      userController: createController,
+      customInitAppForPage: importedApp.initAppForPage
+    });
+
+    ReactDOM.render(React.createElement(WrappedEditorApp, null), document.getElementById('root'));
+"
+`;
+
+exports[`EditorAppEntry template generates correct template for editor app entry without viewerEntryFileName 1`] = `
+"
+    import React from 'react';
+    import ReactDOM from 'react-dom';
+    import EditorAppWrapper from 'some/editor-app-wrapper';
+
+    import UserComponent from 'some/components/MyWidget.tsx';
+    import createController from 'some/components/controller.ts';
+    
+  var importedApp = {};
+
+
+    var componentName = 'MyWidget';
+    var sentryConfig = null;
+
+    var experimentsConfig = null;
+
+    var WrappedEditorApp = () => React.createElement(EditorAppWrapper, {
+      UserComponent: UserComponent,
+      name: componentName,
+      sentry: sentryConfig,
+      experimentsConfig: experimentsConfig,
+      userController: createController,
+      customInitAppForPage: importedApp.initAppForPage
+    });
+
+    ReactDOM.render(React.createElement(WrappedEditorApp, null), document.getElementById('root'));
+"
+`;

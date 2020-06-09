@@ -81,9 +81,9 @@ This will bootstrap a new Business-Manager application, along with a single (roo
 ## Development
 
 Run `npx yoshi-bm start` to start your Business-Manager application.
-This serves your module bundles on http://localhost:3200.
+This serves your application's statics and opens up production Business-Manager, pre-configured with the needed overrides.
 
-> In the future, your application will be launched in production Business-Manager automatically.
+> To override this, pass `--url`, for example: `npx yoshi-bm start --url http://localhost:3000`.
 
 ## Deployment
 

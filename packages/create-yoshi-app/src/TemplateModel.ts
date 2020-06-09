@@ -13,6 +13,7 @@ export interface TemplateDefinition {
   name: string;
   title?: string;
   path: string;
+  warning?: string;
   language: Array<'typescript' | 'javascript'>;
 }
 

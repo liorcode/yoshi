@@ -5,14 +5,40 @@ import {
 import commonViewerScriptEntry from '../CommonViewerScriptEntry';
 
 describe('CommonViewerScriptEntry template', () => {
-  it('generates correct template with single controller', () => {
+  it('generates correct template with a single controller', () => {
     const generateControllerEntryContent = commonViewerScriptEntry({
       viewerScriptWrapperPath:
         'yoshi-flow-editor-runtime/build/viewerScript.js',
       sentryConfig: null,
+      appName: 'someapp',
       controllersMeta: [
         {
           controllerFileName: 'project/src/components/button/controller.ts',
+          id: '123',
+          widgetType: OOI_WIDGET_COMPONENT_TYPE,
+          controllerId: 'CONTROLLER_ID',
+          componentName: 'SomeWidget',
+        },
+      ],
+      experimentsConfig: {
+        scope: 'test-scope',
+      },
+      viewerEntryFileName: 'project/src/app.ts',
+    });
+
+    expect(generateControllerEntryContent).toMatchSnapshot();
+  });
+
+  it('generates correct template with a single controller and without viewerEntryFileName', () => {
+    const generateControllerEntryContent = commonViewerScriptEntry({
+      viewerScriptWrapperPath:
+        'yoshi-flow-editor-runtime/build/viewerScript.js',
+      sentryConfig: null,
+      appName: 'someApp',
+      controllersMeta: [
+        {
+          controllerFileName: 'project/src/components/button/controller.ts',
+          componentName: 'SomeComp',
           id: '123',
           widgetType: OOI_WIDGET_COMPONENT_TYPE,
         },
@@ -20,7 +46,7 @@ describe('CommonViewerScriptEntry template', () => {
       experimentsConfig: {
         scope: 'test-scope',
       },
-      viewerAppFileName: 'project/src/app.ts',
+      viewerEntryFileName: null,
     });
 
     expect(generateControllerEntryContent).toMatchSnapshot();
@@ -31,22 +57,27 @@ describe('CommonViewerScriptEntry template', () => {
       viewerScriptWrapperPath:
         'yoshi-flow-editor-runtime/build/viewerScript.js',
       sentryConfig: null,
+      appName: 'someapp',
       controllersMeta: [
         {
           controllerFileName: 'project/src/components/todo/controller.ts',
           id: '123',
           widgetType: OOI_WIDGET_COMPONENT_TYPE,
+          controllerId: 'CONTROLLER_ID',
+          componentName: 'SomeWidget',
         },
         {
           controllerFileName: 'project/src/components/todo/controller.ts',
           id: '567',
           widgetType: OOI_WIDGET_COMPONENT_TYPE,
+          controllerId: 'CONTROLLER_ID',
+          componentName: 'SomeWidget',
         },
       ],
       experimentsConfig: {
         scope: 'test-scope',
       },
-      viewerAppFileName: 'project/src/app.ts',
+      viewerEntryFileName: 'project/src/app.ts',
     });
 
     expect(generateControllerEntryContent).toMatchSnapshot();
@@ -57,23 +88,27 @@ describe('CommonViewerScriptEntry template', () => {
       viewerScriptWrapperPath:
         'yoshi-flow-editor-runtime/build/viewerScript.js',
       sentryConfig: null,
+      appName: 'someapp',
       controllersMeta: [
         {
           controllerFileName: 'project/src/components/todo/controller.ts',
           id: '123',
           widgetType: PLATFORM_WIDGET_COMPONENT_TYPE,
+          controllerId: 'CONTROLLER_ID',
+          componentName: 'SomeWidget',
         },
         {
           controllerFileName: 'project/src/components/todo/controller.ts',
           id: '567',
           controllerId: '09876',
           widgetType: PLATFORM_WIDGET_COMPONENT_TYPE,
+          componentName: 'SomeWidget',
         },
       ],
       experimentsConfig: {
         scope: 'test-scope',
       },
-      viewerAppFileName: 'project/src/app.ts',
+      viewerEntryFileName: 'project/src/app.ts',
     });
 
     expect(generateControllerEntryContent).toMatchSnapshot();
@@ -84,11 +119,12 @@ describe('CommonViewerScriptEntry template', () => {
       viewerScriptWrapperPath:
         'yoshi-flow-editor-runtime/build/viewerScript.js',
       sentryConfig: null,
+      appName: 'someApp',
       controllersMeta: [],
       experimentsConfig: {
         scope: 'test-scope',
       },
-      viewerAppFileName: 'project/src/app.ts',
+      viewerEntryFileName: 'project/src/app.ts',
     });
 
     expect(generateControllerEntryContent).toMatchSnapshot();
@@ -104,17 +140,20 @@ describe('CommonViewerScriptEntry template', () => {
         projectName: 'project-name',
         id: 'xxx',
       },
+      appName: 'someApp',
       controllersMeta: [
         {
           controllerFileName: 'project/src/components/button/controller.ts',
           id: '123',
           widgetType: OOI_WIDGET_COMPONENT_TYPE,
+          controllerId: 'CONTROLLER_ID',
+          componentName: 'SomeWidget',
         },
       ],
       experimentsConfig: {
         scope: 'test-scope',
       },
-      viewerAppFileName: 'project/src/app.ts',
+      viewerEntryFileName: 'project/src/app.ts',
     });
 
     expect(generateControllerEntryContent).toMatchSnapshot();

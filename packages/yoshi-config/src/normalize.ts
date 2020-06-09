@@ -80,6 +80,7 @@ export default (initialConfig: InitialConfig, pkgJson: PackageJson): Config => {
     yoshiServer: initialConfig.yoshiServer ?? false,
     projectType: initialConfig.projectType ?? null,
     webWorkerEntry: initialConfig.webWorker?.entry,
+    webWorkerResolveAlias: initialConfig.webWorker?.resolveAlias,
     webWorkerExternals: initialConfig.webWorker?.externals,
     serverExternals: initialConfig.server?.externals,
     webWorkerServerEntry: initialConfig.webWorkerServer?.entry,

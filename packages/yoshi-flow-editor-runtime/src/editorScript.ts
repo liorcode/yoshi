@@ -8,12 +8,30 @@ export const editorReadyWrapper = (
   sentry: SentryConfig | null,
   experimentsConfig: ExperimentsConfig | null,
   artifactId: string,
-): PlatformEditorReadyFn => (editorSDK, appDefinitionId, platformOptions) => {
+): PlatformEditorReadyFn => async (
+  editorSDK,
+  appDefinitionId,
+  platformOptions,
+) => {
   const flowAPI = new EditorScriptFlowAPI({
     experimentsConfig,
     platformOptions,
     sentry,
     artifactId,
   });
-  return editorReady(editorSDK, appDefinitionId, platformOptions, flowAPI);
+  let editorReadyResult;
+
+  try {
+    editorReadyResult = await editorReady(
+      editorSDK,
+      appDefinitionId,
+      platformOptions,
+      flowAPI,
+    );
+  } catch (error) {
+    flowAPI.reportError(error);
+    throw error;
+  }
+
+  return editorReadyResult;
 };

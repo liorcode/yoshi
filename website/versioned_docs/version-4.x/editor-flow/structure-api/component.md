@@ -16,140 +16,31 @@ File which `export default createController` function.
 
 `createController` is called with useful arguments by platform.
 
-Arguments:
-### `controllerConfig`
+Options:
+#### `controllerConfig`
 Controller config passed by the platform.
 
 Read more: [IControllerInfo in platform docs](https://bo.wix.com/wix-docs/client/client-viewer-platform/articles/lifecycle#client-viewer-platform_articles_lifecycle_controllerinfo)
 
-### `flowAPI`
-Object with experiments, locations and useful helpers passed by the flow to reduce boilerplate on the controller side.
+#### `flowAPI`
+Additional utilities to reduce runtime boilerplate.
 
-#### `getExperiments`
-`() => Promise<Experiments>`
+Follow [Flow API section](../runtime-API.md#flowapi) for more info.
 
-Return a Promise, which will be resolved with `Experiments` instance for current app's scope.
-To read more about experiments API, [check Experiments page](https://github.com/wix-private/fed-infra/tree/master/experiments/wix-experiments)
-
-*controller.ts*
-```ts
-export default async function({ flowAPI }) => {
-  return {
-    pageReady() {
-      const experiments = await flowAPI.getExperiments();
-      setProps({
-        withNewButton: experiments.enabled('specs.my-scope.EnableNewButton'),
-      });
-    }
-  };
-}
-```
-
-Parallel loading example to improve your controller performance:
-
-*controller.ts*
-```ts
-export default async function createController({ flowData }) => {
-  return {
-    pageReady() {
-      const [experiments, someData] = await Promise.all([
-        flowData.getExperiments(),
-        getSomeData(),
-      ]);
-      setProps({
-        withNewButton: experiments.enabled('specs.my-scope.EnableNewButton'),
-        someData,
-      });
-    }
-  };
-}
-```
-
-#### isSSR
-`() => boolean`
-
-Whether or not worker script is being executed in server-side rendering environment.
-
-#### isMobile
-`() => boolean`
-
-Current form factor of the `window` is a mobile;
-
-#### getSiteLanguage
-`(fallbackLanguage = 'en') => string`
-
-If multilingual is enabled, returns current language for it. If not, returns site language. Will take a fallback language if nothing found.
-
-*controller.ts*
-```ts
-export default async function({ flowAPI }) => {
-  return {
-    pageReady() {
-      const language = flowAPI.getSiteLanguage();
-      const translations = getSiteTranslations(language);
-
-      // ...
-    }
-  };
-}
-```
-
-#### reportError
-`(error: Error) => void`
-A function that comes from already initilized sentryMonitor to capture an exception in your controller.
-It will create an error with `Viewer:Worker` environment for your sentry DSN configured in `.application.json`.
-
-`sentryMonitor` is available under `flowAPI.sentryMonitor`
-
-*controller.ts*
-```ts
-export default async function({ flowAPI }) => {
-  return {
-    pageReady() {
-      try {
-        await doSomethingDangerous();
-      } catch (e) {
-        flowAPI.reportError(e); // or flowAPI.sentryMonotor.captureException(e);
-      }
-
-      // ...
-    }
-  };
-}
-```
-
-#### fedopsLogger
-`BaseLogger<string>` from `@wix/fedops-logger`
-
-Already initialized Fedops Logger instance.
-
-[Read more about Fedops API](https://github.com/wix-private/fed-infra/tree/master/fedops/fedops-logger)
 
 *controller.ts*
 ```ts
 export default async function({ flowAPI, controllerConfig }) => {
-  const { fedopsLogger, isSSR, widgetId } = flowAPI;
-  fedopsLogger.appLoadStarted();
-
   return {
     pageReady() {
-      const someData = await getSomeData();
-
-      setProps({
-        someData,
+      const experiments = await flowAPI.getExperiments();
+      controllerConfig.setProps({
+        withNewButton: experiments.enabled('specs.my-scope.EnableNewButton'),
       });
-
-      if (isSSR()) {
-        fedopsLogger.appLoaded({
-          appId: controllerConfig.appParams.appDefinitionId,
-          widgetId
-        });
-      }
     }
   };
 }
 ```
-
 
 ## `Widget`
 File which `export default` React Component.
@@ -167,9 +58,9 @@ export default ({ title }) => (<div>
 
 *controller.ts*
 ```tsx
-export default () => ({
+export default ({ controllerConfig }) => ({
   pageReady() {
-    setProps({
+    controllerConfig.setProps({
       title: 'Some title from controller',
     });
   }

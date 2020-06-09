@@ -393,6 +393,7 @@ export default class DevEnvironment {
     storybook = false,
     compileTypeScriptFiles = false,
     yoshiServer = false,
+    inspectArg,
   }: {
     webpackConfigs: [
       webpack.Configuration?, // Main client config
@@ -415,6 +416,7 @@ export default class DevEnvironment {
     storybook?: boolean;
     yoshiServer?: boolean;
     compileTypeScriptFiles?: boolean;
+    inspectArg?: string;
   }): Promise<DevEnvironment> {
     const [clientConfig, serverConfig] = webpackConfigs;
 
@@ -427,6 +429,7 @@ export default class DevEnvironment {
         port: appServerPort,
         suricate,
         appName,
+        inspectArg,
       });
 
       if (serverProcess && serverConfig) {

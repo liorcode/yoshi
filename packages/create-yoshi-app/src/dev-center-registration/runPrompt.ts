@@ -33,7 +33,7 @@ export default async (
       return fallbackWithDefaultTemplate();
     }
   } catch (e) {
-    // We want to show unhanded errors
+    // We want to show unhandled errors
     if (e.message !== 'Aborted') {
       console.error(e);
       console.log(

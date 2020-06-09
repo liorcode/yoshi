@@ -1,5 +1,65 @@
 # Changelog
 
+## 4.87.0 (2020-06-09)
+
+#### :rocket: New Feature
+
+- `yoshi-config`, `yoshi-flow-app`, `yoshi-flow-monorepo`
+  - [#2526](https://github.com/wix/yoshi/pull/2526) Support configuring webworker compilation's resolve.alias ([@ronami](https://github.com/ronami))
+- `yoshi-flow-library`
+  - [#2519](https://github.com/wix/yoshi/pull/2519) Pass unused arguments to jest in library-flow ([@daliusd](https://github.com/daliusd))
+- `yoshi-flow-editor`
+  - [#2507](https://github.com/wix/yoshi/pull/2507) Make `viewer.app.ts` and `editor.app.ts` optional ([@yavorsky](https://github.com/yavorsky))
+
+#### :building_construction: Templates
+
+- `create-yoshi-app`
+  - [#2514](https://github.com/wix/yoshi/pull/2514) Endorse starting from wix-serverless when creating a server project ([@ranyitz](https://github.com/ranyitz))
+
+#### :bug: Bug Fix
+
+- `yoshi-common`, `yoshi-flow-app`
+  - [#2523](https://github.com/wix/yoshi/pull/2523) Fix a bug with server process and `--debug` argv ([@ranyitz](https://github.com/ranyitz))
+- `yoshi-flow-editor-runtime`, `yoshi-flow-editor`
+  - [#2521](https://github.com/wix/yoshi/pull/2521) Init flowAPI even if no `viewer.app.ts` was created ([@yavorsky](https://github.com/yavorsky))
+
+#### :memo: Documentation
+
+- [#2522](https://github.com/wix/yoshi/pull/2522) Add warning about global installation ([@daliusd](https://github.com/daliusd))
+
+## 4.86.0 (2020-06-07)
+
+#### :rocket: New Feature
+
+- `yoshi-flow-bm`
+  - [#2418](https://github.com/wix/yoshi/pull/2418) Open production BM on `yoshi-bm start` ([@amitdahan](https://github.com/amitdahan))
+  - [#2469](https://github.com/wix/yoshi/pull/2469) Add `--url` to `yoshi-bm start` ([@amitdahan](https://github.com/amitdahan))
+- `jest-yoshi-preset`
+  - [#2505](https://github.com/wix/yoshi/pull/2505) Read `{testEnv}-setup.(ts|js)` files from within `src/(__tests__|test)` ([@amitdahan](https://github.com/amitdahan))
+
+#### :bug: Bug Fix
+
+- `yoshi-flow-bm`
+  - [#2502](https://github.com/wix/yoshi/pull/2502) Fix nested route inference in flow-bm ([@amitdahan](https://github.com/amitdahan))
+
+#### :memo: Documentation
+
+- [#2517](https://github.com/wix/yoshi/pull/2517) Improve contributing section - sort, arrange and ensure it's up to date ([@ranyitz](https://github.com/ranyitz))
+- [#2506](https://github.com/wix/yoshi/pull/2506) Update runtime docs ([@yavorsky](https://github.com/yavorsky))
+
+#### :house: Internal
+
+- `jest-yoshi-preset`, `yoshi-flow-legacy`, `yoshi-flow-library`
+  - [#2510](https://github.com/wix/yoshi/pull/2510) Replace jest-teamcity-reporter with jest-teamcity ([@ohana54](https://github.com/ohana54))
+
+#### Committers: 5
+
+- Amit Dahan ([@amitdahan](https://github.com/amitdahan))
+- Artem Yavorsky ([@yavorsky](https://github.com/yavorsky))
+- Ran Yitzhaki ([@ranyitz](https://github.com/ranyitz))
+- Tomer Ohana ([@ohana54](https://github.com/ohana54))
+- [@wix-renovate](https://github.com/wix-renovate)
+
 ## 4.85.0 (2020-06-04)
 
 #### :rocket: New Feature

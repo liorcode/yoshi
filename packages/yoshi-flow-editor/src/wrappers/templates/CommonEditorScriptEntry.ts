@@ -7,7 +7,7 @@ import { TemplateControllerConfig } from './CommonViewerScriptEntry';
 
 type Opts = {
   controllersMeta: Array<TemplateControllerConfig>;
-  editorEntryFileName: string;
+  editorEntryFileName: string | null;
   shouldUseAppBuilder: boolean;
   editorScriptWrapperPath: string;
   sentry: SentryConfig | null;
@@ -17,8 +17,13 @@ type Opts = {
 
 // We want allow users to use default even despite fact that platform doesn't support it.
 export default t<Opts>`
-  var editorScriptEntry = require('${({ editorEntryFileName }) =>
-    editorEntryFileName}');
+  ${({ editorEntryFileName }) => {
+    return `var editorScriptEntry = ${
+      editorEntryFileName
+        ? `require('${editorEntryFileName}');`
+        : `{ editorReady: function () {} };`
+    }`;
+  }}
 
   ${({ shouldUseAppBuilder, controllersMeta }) =>
     shouldUseAppBuilder

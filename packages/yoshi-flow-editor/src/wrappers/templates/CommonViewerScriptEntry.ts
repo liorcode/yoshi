@@ -9,18 +9,32 @@ export type TemplateControllerConfig = {
   id: string | null;
   controllerFileName: string;
   widgetType: WidgetType;
+  componentName: string;
   controllerId?: string;
 };
 
 type Opts = {
   viewerScriptWrapperPath: string;
-  viewerAppFileName: string;
+  viewerEntryFileName: string | null;
   sentryConfig: SentryConfig | null;
   experimentsConfig: ExperimentsConfig | null;
+  appName: string | null;
   controllersMeta: Array<TemplateControllerConfig>;
 };
 
+type ViewerScriptOpts = {
+  viewerEntryFileName: string | null;
+};
+
 const getControllerVariableName = (index: number) => `controller${index}`;
+
+export const viewerScriptOptionalImport = t<ViewerScriptOpts>`
+  ${({ viewerEntryFileName }) =>
+    viewerEntryFileName
+      ? `import * as viewerApp from '${viewerEntryFileName}';
+    var importedApp = viewerApp;`
+      : `var importedApp = {};`}
+`;
 
 const importsForControllers = t<{
   controllersMeta: Array<TemplateControllerConfig>;
@@ -44,12 +58,16 @@ const getControllerScriptId = (controller: TemplateControllerConfig) => {
 
 const controllerConfigs = t<{
   controllersMeta: Array<TemplateControllerConfig>;
-}>`${({ controllersMeta }) =>
+  appName: string | null;
+}>`${({ controllersMeta, appName }) =>
   controllersMeta
     .map(
       (controller, i) =>
         `{ method: ${getControllerVariableName(i)},
           widgetType: "${controller.widgetType}",
+          controllerFileName: "${controller.controllerFileName}",
+          appName: ${appName ? `"${appName}"` : 'null'},
+          componentName: "${controller.componentName}",
           id: ${getControllerScriptId(controller)} }`,
     )
     .join(', ')}`;
@@ -59,8 +77,8 @@ export default t<Opts>`
     viewerScriptWrapperPath,
   }) => viewerScriptWrapperPath}';
   ${({ controllersMeta }) => importsForControllers({ controllersMeta })}
-  import * as viewerApp from '${({ viewerAppFileName }) => viewerAppFileName}';
-  var importedApp = viewerApp;
+  ${({ viewerEntryFileName }) =>
+    viewerScriptOptionalImport({ viewerEntryFileName })}
 
   var sentryConfig = ${({ sentryConfig }) =>
     sentryConfig
@@ -79,11 +97,15 @@ export default t<Opts>`
   }`
       : 'null'};
 
-  export const initAppForPage = initAppForPageWrapper(importedApp.initAppForPage, sentryConfig, experimentsConfig);
+  export const initAppForPage = initAppForPageWrapper(importedApp.initAppForPage, sentryConfig, experimentsConfig, false, ${({
+    appName,
+  }) => (appName ? `"${appName}"` : 'null')});
   export const createControllers = createControllersWithDescriptors([${({
     controllersMeta,
+    appName,
   }) =>
     controllerConfigs({
       controllersMeta,
+      appName,
     })}]);
 `;

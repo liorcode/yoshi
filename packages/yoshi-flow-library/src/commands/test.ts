@@ -26,7 +26,7 @@ const test: cliCommand = async function (argv, config) {
       // Aliases
       '-h': '--help',
     },
-    { argv },
+    { argv, permissive: true },
   );
 
   const { '--help': help, '--watch': watch } = args;
@@ -81,6 +81,7 @@ const test: cliCommand = async function (argv, config) {
   const jestCliOptions = [
     require.resolve('jest/bin/jest'),
     `--rootDir=${process.cwd()}`,
+    ...args._,
   ];
 
   watch && jestCliOptions.push('--watch');

@@ -62,7 +62,10 @@ const start: cliCommand = async function (argv, config) {
     process.exit(0);
   }
 
+  const inspectArg = process.argv.find(arg => arg.includes('--debug'));
+
   let serverStartFile;
+
   try {
     serverStartFile = getServerStartFile({ serverStartFileCLI });
   } catch (e) {
@@ -115,6 +118,7 @@ const start: cliCommand = async function (argv, config) {
     createEjsTemplates: config.experimentalBuildHtml,
     storybook: config.experimentalStorybook,
     yoshiServer: config.yoshiServer,
+    inspectArg,
   });
 
   await devEnvironment.start();
